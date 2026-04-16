@@ -8,5 +8,7 @@ build/
 
 .env
 .env.local
-
+.env.*
+frontend/.env
+backend/.env
 uploads/
