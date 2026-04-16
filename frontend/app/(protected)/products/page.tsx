@@ -68,15 +68,20 @@ export default function ProductsPage() {
   // =========================
   // ARCHIVE
   // =========================
-  const handleDelete = async (id: number) => {
-    try {
-      await archiveProduct(id);
-      toast.success('Product archived');
-      fetchProducts();
-    } catch {
-      toast.error('Archive failed');
-    }
-  };
+const handleDelete = async (id: number) => {
+  try {
+    await archiveProduct(id);
+    toast.success('Product archived');
+    fetchProducts();
+  } catch (err: any) {
+    const message =
+      err?.response?.data?.error ||
+      err?.message ||
+      'Archive failed';
+
+    toast.error(message);
+  }
+};
 
   // =========================
   // FILTER MENU (FIXED)

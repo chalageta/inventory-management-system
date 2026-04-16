@@ -173,8 +173,7 @@ const handleSubmit = async () => {
             <Form.Item
               name="invoice_no"
               label="Invoice Number"
-              rules={[{ required: true }]}
-            >
+               >
               <Input placeholder="INV-2026-001" />
             </Form.Item>
           </Col>
@@ -196,7 +195,7 @@ const handleSubmit = async () => {
             <Form.Item
               name="supplier_name"
               label="Supplier Name"
-              rules={[{ required: true }]}
+             
             >
               <Input placeholder="Global Med Inc." />
             </Form.Item>
@@ -222,33 +221,6 @@ const handleSubmit = async () => {
               rules={[{ required: true, type: 'number', min: 1 }]}
             >
               <InputNumber style={{ width: '100%' }} min={1} />
-            </Form.Item>
-          </Col>
-
-          <Col span={8}>
-            <Form.Item
-              name="unit_price"
-              label="Unit Price"
-              rules={[{ required: true, type: 'number', min: 0 }]}
-            >
-              <InputNumber
-                style={{ width: '100%' }}
-                min={0}
-                formatter={(v) => `$ ${v}`}
-              />
-            </Form.Item>
-          </Col>
-
-          <Col span={8}>
-            <Form.Item
-              name="total_amount"
-              label="Total Amount"
-            >
-              <InputNumber
-                style={{ width: '100%' }}
-                disabled
-                formatter={(v) => `$ ${v}`}
-              />
             </Form.Item>
           </Col>
         </Row>

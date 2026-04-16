@@ -52,3 +52,9 @@ export const updatePurchase = async (id: number, payload: any) => {
   const { data } = await api.put(`/purchases/${id}`, payload);
   return data;
 };
+
+// GET SINGLE PURCHASE DETAIL
+export const getPurchaseDetail = async (id: number) => {
+  const { data } = await api.get(`/purchases/${id}`);
+  return data;
+};

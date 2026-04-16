@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import {
   Table, Input, Button, Tag, Space,
-  Typography, Popconfirm, Card, Avatar
+  Typography, Popconfirm, Card, Avatar, Tooltip
 } from 'antd';
 import {
   PlusOutlined,
@@ -11,13 +11,17 @@ import {
   DeleteOutlined,
   SearchOutlined,
   UserOutlined,
-  EyeOutlined
+  EyeOutlined,
+  ClockCircleOutlined
 } from '@ant-design/icons';
 import { getUsers, deleteUser } from '@/lib/users';
 import { toast } from 'sonner';
 import UsersDialog from './users-dialog';
 import { useRouter } from 'next/navigation';
-import { Eye, EyeClosed, EyeIcon } from 'lucide-react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 const { Title, Text } = Typography;
 
@@ -42,6 +46,7 @@ export default function UsersPage() {
         limit
       });
 
+      // Deduplicate and set data
       const uniqueUsers = Array.from(
         new Map((res.data || []).map((u: any) => [u.id, u])).values()
       );
@@ -76,86 +81,106 @@ export default function UsersPage() {
   };
 
   const getRoleColor = (role: string) => {
-    if (role.includes('ADMIN') || role.includes('SUPERVISOR')) return 'volcano';
-    if (role.includes('VERIFICATION') || role.includes('APPROVAL')) return 'green';
+    const r = role.toUpperCase();
+    if (r === 'ADMIN') return 'volcano';
+    if (r === 'FINANCE') return 'gold';
+    if (r === 'CASHIER') return 'cyan';
+    if (r === 'PURCHASER') return 'purple';
+    if (r === 'STOREMAN') return 'geekblue';
     return 'blue';
   };
 
   const columns = [
     {
-      title: '#',
-      width: 50,
-      render: (_: any, __: any, index: number) => (page - 1) * limit + index + 1,
-    },
-   {
-  title: 'User',
-  key: 'user',
-  minWidth: 200,
-  render: (_: any, record: any) => (
-    <div
-      onClick={() => router.push(`/users/${record.id}`)}
-      className="cursor-pointer  flex items-center gap-3 p-2 rounded-md"
-    >
-      <div className="flex flex-col min-w-0">
-        <span className="font-semibold text-primary truncate">
-          {record.name || 'No Name'}
-        </span>
-
-        <span className="text-xs text-primary/80 truncate">
-          {record.email || 'No Email'}
-        </span>
-      </div>
-    </div>
-  ),
-},
-   {
-  title: 'Roles',
-  key: 'roles',
-  render: (u: any) => (
-    <Space wrap>
-      {u.roles?.length ? (
-        u.roles.map((role: string, index: number) => (
-          <Tag
-            key={`${u.id}-${role}-${index}`}
-            color={getRoleColor(role)}
-            className="rounded-md border-none px-2 py-0.5 text-[10px] font-bold uppercase"
+      title: 'User',
+      key: 'user',
+      render: (_: any, record: any) => (
+        <div className="flex items-center gap-3">
+          <Avatar 
+            icon={<UserOutlined />} 
+            className="bg-primary-light text-primary flex-shrink-0"
           >
-            {role.replace(/^ROLE_/, '')}
-          </Tag>
-        ))
-      ) : (
-        <Tag color="default">No Role</Tag>
-      )}
-    </Space>
-  ),
-},
+            {record.name?.charAt(0)}
+          </Avatar>
+          <div className="flex flex-col min-w-0">
+            <Text strong className="truncate m-0 leading-none">
+              {record.name || 'No Name'}
+            </Text>
+            <Text type="secondary" className="text-[11px] truncate">
+              {record.email}
+            </Text>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Roles',
+      key: 'roles',
+      render: (record: any) => (
+        <Space wrap size={[0, 4]}>
+          {record.roles?.map((role: string) => (
+            <Tag
+              key={`${record.id}-${role}`}
+              color={getRoleColor(role)}
+              className="rounded-md border-none px-2 py-0 text-[10px] font-bold uppercase"
+            >
+              {role}
+            </Tag>
+          ))}
+        </Space>
+      ),
+    },
     {
       title: 'Status',
       dataIndex: 'is_active',
       width: 100,
-      render: (active: boolean) => (
+      render: (active: number) => (
         <Tag
-          className="rounded-full px-3 py-0.5 text-[10px] font-bold uppercase border-none"
-          color={active ? 'green' : 'red'}
+          className="rounded-full px-3 py-0 text-[10px] font-bold uppercase border-none"
+          color={active === 1 ? 'green' : 'red'}
         >
-          {active ? 'Active' : 'Inactive'}
+          {active === 1 ? 'Active' : 'Inactive'}
         </Tag>
       ),
     },
     {
+      title: 'Last Activity',
+      dataIndex: 'last_login',
+      width: 150,
+      render: (date: string) => (
+        <div className="text-[11px] text-slate-500 flex items-center gap-1">
+          <ClockCircleOutlined />
+          {date ? dayjs(date).fromNow() : 'Never'}
+        </div>
+      )
+    },
+    {
       title: 'Actions',
       key: 'actions',
-      width: 100,
+      width: 120,
       align: 'right' as const,
       render: (u: any) => (
         <Space size="small">
-          <Button
-            type="text"
-            size="small"
-            icon={<EyeOutlined />}
-            onClick={() => router.push(`/users/${u.id}`)}
-          />
-          <Popconfirm title="Delete user?" onConfirm={() => handleDelete(u.id)}>
+          <Tooltip title="View Profile">
+            <Button
+              type="text"
+              size="small"
+              icon={<EyeOutlined />}
+              onClick={() => router.push(`/users/${u.id}`)}
+            />
+          </Tooltip>
+          <Tooltip title="Edit User">
+            <Button
+              type="text"
+              size="small"
+              icon={<EditOutlined />}
+              onClick={() => {
+                setEditingUser(u);
+                setDialogOpen(true);
+              }}
+            />
+          </Tooltip>
+          <Popconfirm title="Delete user?" onConfirm={() => handleDelete(u.id)} okText="Yes" cancelText="No">
             <Button type="text" size="small" danger icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
@@ -167,10 +192,10 @@ export default function UsersPage() {
     <div className="p-4 md:p-8 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
             <Title level={2} className="!mb-0">Staff Management</Title>
-            <Text type="secondary">Review and manage employee system access.</Text>
+            <Text type="secondary">Manage system users, roles, and access permissions.</Text>
           </div>
           <Button
             type="primary"
@@ -182,15 +207,15 @@ export default function UsersPage() {
             }}
             className="rounded-lg shadow-md h-12"
           >
-            Add User
+            Add New Staff
           </Button>
         </div>
 
-        {/* SEARCH & TABLE CONTAINER */}
-        <Card className="shadow-sm border-none rounded-xl overflow-hidden">
+        {/* DATA CARD */}
+        <Card className="shadow-sm border-none rounded-xl">
           <div className="mb-6">
             <Input
-              placeholder="Filter by name or email..."
+              placeholder="Search by name, email or phone..."
               prefix={<SearchOutlined className="text-slate-400" />}
               value={search}
               onChange={(e) => {
@@ -207,7 +232,7 @@ export default function UsersPage() {
             dataSource={users}
             rowKey="id"
             loading={loading}
-            scroll={{ x: 800 }} // 🔥 Allows horizontal scroll on mobile instead of squashing
+            scroll={{ x: 800 }}
             pagination={{
               current: page,
               total,

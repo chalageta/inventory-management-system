@@ -175,8 +175,7 @@ export default function SaleDetailPage() {
                     <TableRow>
                       <TableHead className="pl-6">Description</TableHead>
                       <TableHead>Qty</TableHead>
-                      <TableHead className="text-right">Unit Price</TableHead>
-                      <TableHead className="text-right pr-6">Amount</TableHead>
+                        <TableHead className="text-right pr-6">Amount</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>

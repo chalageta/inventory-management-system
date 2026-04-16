@@ -130,12 +130,7 @@ export default function PurchaseDetailPage() {
       dataIndex: 'batch_no',
       responsive: ['sm', 'md', 'lg', 'xl']
     },
-    {
-      title: 'Cost Price',
-      dataIndex: 'cost_price',
-      responsive: ['sm', 'md', 'lg', 'xl'],
-      render: (v: any) => <Text strong>${Number(v || 0).toFixed(2)}</Text>
-    },
+
     {
       title: 'Status',
       dataIndex: 'status',
@@ -240,10 +235,7 @@ export default function PurchaseDetailPage() {
             <Text strong>Total Items:</Text> {purchase.total_items}
           </Col>
 
-          <Col xs={24} sm={12} md={8}>
-            <Text strong>Total Amount:</Text> ${purchase.total_amount}
-          </Col>
-
+    
           <Col xs={24} sm={12} md={8}>
             <Text strong>Created By:</Text> {purchase.created_by}
           </Col>

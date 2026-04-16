@@ -32,12 +32,6 @@ const { Title, Text } = Typography;
 const { Option } = Select;
 const { useBreakpoint } = Grid;
 
-// ✅ currency formatter
-const currency = (val: any) =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(Number(val || 0));
 
 export default function PurchasePage() {
   const screens = useBreakpoint();
@@ -45,7 +39,6 @@ export default function PurchasePage() {
 
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const { can } = useAuth();
   const router = useRouter();
 
   const [page, setPage] = useState(1);
@@ -60,6 +53,9 @@ export default function PurchasePage() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [reason, setReason] = useState('');
 
+  const { can = () => false } = useAuth();
+
+const canCreate = useCallback(() => can('create_purchase'), [can]);
   // =========================
   // FETCH
   // =========================
@@ -78,7 +74,7 @@ export default function PurchasePage() {
       setTotal(result?.pagination?.total || 0);
     } catch (err: any) {
       const msg = err?.response?.data?.error || err?.message;
-      message.error(msg || 'Failed');
+      toast.error(msg || 'Failed');
     } finally {
       setLoading(false);
     }
@@ -93,20 +89,30 @@ export default function PurchasePage() {
   // =========================
   const handleApprove = async (id: number) => {
     await approvePurchase(id);
-    message.success('Approved');
+    toast.success('Approved');
     fetchData();
   };
 
-  const handleReceive = async (id: number) => {
+const handleReceive = async (id: number) => {
+  try {
     await receivePurchase(id);
-    message.success('Received');
+
+    toast.success('Received');
     fetchData();
-  };
+  } catch (err: any) {
+    const msg =
+      err?.response?.data?.error ||
+      err?.message ||
+      'Failed to receive purchase';
+
+    toast.error(msg);
+  }
+};
 
   const handleReject = async () => {
     if (!selectedId) return;
     await rejectPurchase(selectedId, reason);
-    message.success('Rejected');
+    toast.success('Rejected');
     setRejectModal(false);
     setReason('');
     fetchData();
@@ -149,19 +155,11 @@ export default function PurchasePage() {
       )
     },
     {
-      title: 'Unit Price',
-      responsive: ['md', 'lg', 'xl'],
-      render: (v: any, r: any) => <Text strong>{currency(r.unit_price)}</Text>
-    },
-    {
-      title: 'Qty / Total',
+      title: 'Total',
       responsive: ['sm', 'md', 'lg', 'xl'],
       render: (r: any) => (
         <Space direction="vertical" size={0}>
-          <Text>{r.total_items} Units</Text>
-          <Text type="success" strong>
-            {currency(r.total_amount)}
-          </Text>
+          <Text>{r.total_items}</Text>
         </Space>
       )
     },
@@ -186,59 +184,57 @@ export default function PurchasePage() {
     );
   }
 },
-    {
-      title: 'Actions',
-      fixed: isMobile ? undefined : 'right',
-      render: (_: any, record: any) => {
-        const canApprove = can('approve_purchase');
-        const canReject = can('reject_purchase');
-        const canReceive = can('receive_purchase');
-        const canDelete = can('delete_purchase');
+ {
+  title: 'Actions',
+  fixed: isMobile ? undefined : 'right',
+  render: (_: any, record: any) => {
+    const canApprove = can('approve_purchase');
+    const canReject = can('reject_purchase');
+    const canReceive = can('receive_purchase');
+    const canDelete = can('delete_purchase');
+    const canUpdate = can('update_purchase');
 
-        return (
-          <Space wrap>
-            <Button
-              size="small"
-              onClick={() => router.push(`/purchases/${record.id}`)}
-            >
-              View
-            </Button>
+    return (
+      <Space wrap>
+        <Button
+          size="small"
+          onClick={() => router.push(`/purchases/${record.id}`)}
+        >
+          View
+        </Button>
 
-            {record.status === 'pending' && (
-              <>
-                {canApprove && (
-                  <Button
-                    type="primary"
-                    size="small"
-                    icon={<CheckOutlined />}
-                    onClick={() => handleApprove(record.id)}
-                  />
-                )}
-
-                {canReject && (
-                  <Button
-                    danger
-                    size="small"
-                    icon={<CloseOutlined />}
-                    onClick={() => {
-                      setSelectedId(record.id);
-                      setRejectModal(true);
-                    }}
-                  />
-                )}
-              </>
+        {/* ===================== PENDING ONLY ===================== */}
+        {record.status === 'pending' && (
+          <>
+            {canUpdate && (
+              <Button
+                size="small"
+                type="default"
+                onClick={() => router.push(`/purchases/edit/${record.id}`)}
+              >
+                Edit
+              </Button>
             )}
 
-            {record.status === 'approved' && canReceive && (
+            {canApprove && (
               <Button
                 type="primary"
-                ghost
                 size="small"
-                icon={<InboxOutlined />}
-                onClick={() => handleReceive(record.id)}
-              >
-                Receive
-              </Button>
+                icon={<CheckOutlined />}
+                onClick={() => handleApprove(record.id)}
+              />
+            )}
+
+            {canReject && (
+              <Button
+                danger
+                size="small"
+                icon={<CloseOutlined />}
+                onClick={() => {
+                  setSelectedId(record.id);
+                  setRejectModal(true);
+                }}
+              />
             )}
 
             {canDelete && (
@@ -249,10 +245,25 @@ export default function PurchasePage() {
                 <Button danger type="text" icon={<DeleteOutlined />} />
               </Popconfirm>
             )}
-          </Space>
-        );
-      }
-    }
+          </>
+        )}
+        
+        {record.status === 'pending' && canReceive && (
+  <Button
+    type="primary"
+    ghost
+    size="small"
+    icon={<InboxOutlined />}
+    onClick={() => handleReceive(record.id)}
+  >
+    Receive
+  </Button>
+)}
+
+      </Space>
+    );
+  }
+}
   ];
 
   return (
@@ -262,7 +273,7 @@ export default function PurchasePage() {
         <Col xs={24} md={12}>
           <Title level={isMobile ? 4 : 3}>Purchase Management</Title>
         </Col>
-
+   {canCreate() && (
         <Col xs={24} md={12} style={{ textAlign: isMobile ? 'left' : 'right' }}>
           <Button
             type="primary"
@@ -273,6 +284,7 @@ export default function PurchasePage() {
             Create Purchase
           </Button>
         </Col>
+   ) }
       </Row>
 
       {/* FILTERS */}
