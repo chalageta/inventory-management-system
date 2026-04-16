@@ -26,34 +26,50 @@ export const getUsers = async (req, res) => {
     const offset = (page - 1) * limit;
 
     const [users] = await db.execute(
-      `SELECT 
+      `
+      SELECT 
         u.id,
         u.name,
         u.email,
+        u.phone,
         u.is_active,
         u.last_login,
         u.created_at,
-        GROUP_CONCAT(r.name) AS roles
+        u.updated_at,
+
+        GROUP_CONCAT(r.name) AS roles,
+
+        -- computed status label
+        CASE 
+          WHEN u.deleted_at IS NOT NULL THEN 'deleted'
+          WHEN u.is_active = 1 THEN 'active'
+          ELSE 'inactive'
+        END AS status
+
       FROM users u
       LEFT JOIN user_roles ur ON u.id = ur.user_id
       LEFT JOIN roles r ON ur.role_id = r.id
+
       WHERE u.deleted_at IS NULL
-      AND (u.name LIKE ? OR u.email LIKE ?)
+        AND (u.name LIKE ? OR u.email LIKE ?)
+
       GROUP BY u.id
       ORDER BY u.created_at DESC
-      LIMIT ? OFFSET ?`,
+      LIMIT ? OFFSET ?
+      `,
       [`%${search}%`, `%${search}%`, limit, offset]
     );
 
     const [countResult] = await db.execute(
-      `SELECT COUNT(*) AS total 
-       FROM users 
-       WHERE deleted_at IS NULL 
-       AND (name LIKE ? OR email LIKE ?)`,
+      `
+      SELECT COUNT(*) AS total 
+      FROM users 
+      WHERE deleted_at IS NULL 
+        AND (name LIKE ? OR email LIKE ?)
+      `,
       [`%${search}%`, `%${search}%`]
     );
 
-    // 🔥 Convert roles string → array
     const formattedUsers = users.map(u => ({
       ...u,
       roles: u.roles ? u.roles.split(',') : []
@@ -69,6 +85,7 @@ export const getUsers = async (req, res) => {
     });
 
   } catch (err) {
+    console.error("Get Users Error:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -234,18 +251,36 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // 1. First, delete associated entries in user_roles
-    // This removes the foreign key dependency
-    await db.execute(`DELETE FROM user_roles WHERE user_id = ?`, [id]);
+    // 1. Check user exists
+    const [user] = await db.execute(
+      `SELECT id FROM users WHERE id = ? AND deleted_at IS NULL`,
+      [id]
+    );
 
-    // 2. Now delete the user from the users table
-    const [result] = await db.execute(`DELETE FROM users WHERE id = ?`, [id]);
-
-    if (result.affectedRows === 0) {
+    if (user.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json({ message: "User and role associations deleted successfully" });
+    // 2. SOFT DELETE (FIXED)
+    await db.execute(
+      `
+      UPDATE users 
+      SET deleted_at = NOW(), is_active = 0 
+      WHERE id = ?
+      `,
+      [id]
+    );
+
+    // 3. OPTIONAL: clean role mappings
+    await db.execute(
+      `DELETE FROM user_roles WHERE user_id = ?`,
+      [id]
+    );
+
+    res.json({
+      message: "User deactivated successfully"
+    });
+
   } catch (err) {
     console.error("Delete Error:", err);
     res.status(500).json({ error: err.message });

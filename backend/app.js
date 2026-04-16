@@ -48,6 +48,7 @@ app.use('/api/stock-logs', stockLogsRoutes);
 app.use('/api/rbac', rbacRoutes);
 app.use('/api/purchases', purchaseRoutes);
 
+
 app.get('/', (req, res) => {
   res.send('Gilando Backend is running 🚀');
 });

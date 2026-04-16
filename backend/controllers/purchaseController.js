@@ -2,17 +2,16 @@ import db from '../config/db.js';
 
 /**
  * CREATE PURCHASE (PURCHASER ROLE)
- */
-export const createPurchase = async (req, res) => {
+ */export const createPurchase = async (req, res) => {
   let {
     product_id,
-    supplier_name,
+    supplier_name = null,
     supplier_phone = null,
-    invoice_no,
+    invoice_no = null,
     reference = null,
     total_items,
-    total_amount,
-    unit_price,
+    total_amount = null,
+    unit_price = null,
     note = null
   } = req.body;
 
@@ -20,29 +19,29 @@ export const createPurchase = async (req, res) => {
 
   try {
     // =========================
-    // VALIDATION
+    // REQUIRED VALIDATION (UPDATED)
     // =========================
-    if (!product_id || !supplier_name || !invoice_no || !total_items) {
+    if (!product_id || !total_items) {
       return res.status(400).json({
-        error: "product_id, supplier_name, invoice_no, total_items are required"
+        error: "product, total_items are required"
       });
     }
 
     if (total_items <= 0) {
-      return res.status(400).json({ error: "total_items must be greater than 0" });
+      return res.status(400).json({
+        error: "total_items must be greater than 0"
+      });
     }
 
     // =========================
-    // CALCULATION LOGIC
+    // PRICE LOGIC (OPTIONAL)
     // =========================
+
     if (unit_price && !total_amount) {
-      // ✅ Case 1: unit_price provided
       total_amount = (Number(unit_price) * Number(total_items)).toFixed(2);
     } else if (!unit_price && total_amount) {
-      // ✅ Case 2: total_amount provided
       unit_price = (Number(total_amount) / Number(total_items)).toFixed(2);
     } else if (unit_price && total_amount) {
-      // ✅ Case 3: both provided → validate consistency
       const calculated = Number(unit_price) * Number(total_items);
 
       if (Math.abs(calculated - Number(total_amount)) > 0.01) {
@@ -51,9 +50,8 @@ export const createPurchase = async (req, res) => {
         });
       }
     } else {
-      return res.status(400).json({
-        error: "Provide either unit_price or total_amount"
-      });
+      unit_price = null;
+      total_amount = null;
     }
 
     // =========================
@@ -81,9 +79,94 @@ export const createPurchase = async (req, res) => {
     res.status(201).json({
       message: "Purchase created successfully",
       purchase_id: result.insertId,
+      supplier_name,
+      supplier_phone,
       unit_price,
       total_amount
     });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const updatePurchase = async (req, res) => {
+  const purchaseId = req.params.id;
+  const userId = req.user?.id;
+
+  try {
+    const [rows] = await db.execute(
+      `SELECT * FROM purchases WHERE id=? AND deleted_at IS NULL`,
+      [purchaseId]
+    );
+
+    if (!rows.length) {
+      return res.status(404).json({ error: "Purchase not found" });
+    }
+
+    // ONLY PENDING CAN BE EDITED
+    if (rows[0].status !== "pending") {
+      return res.status(400).json({
+        error: "Only pending purchases can be updated"
+      });
+    }
+
+    const old = rows[0];
+
+    const {
+      product_id,
+      supplier_name,
+      supplier_phone,
+      invoice_no,
+      reference,
+      total_items,
+      unit_price,
+      total_amount,
+      note
+    } = req.body;
+
+    // ✅ FIX: fallback old values + convert undefined → null
+    const data = {
+      product_id: product_id ?? old.product_id,
+      supplier_name: supplier_name ?? old.supplier_name,
+      supplier_phone: supplier_phone ?? old.supplier_phone,
+      invoice_no: invoice_no ?? old.invoice_no,
+      reference: reference ?? old.reference,
+      total_items: total_items ?? old.total_items,
+      unit_price: unit_price ?? old.unit_price,
+      total_amount: total_amount ?? old.total_amount,
+      note: note ?? old.note,
+      updated_by: userId
+    };
+
+    await db.execute(
+      `UPDATE purchases
+       SET product_id=?,
+           supplier_name=?,
+           supplier_phone=?,
+           invoice_no=?,
+           reference=?,
+           total_items=?,
+           unit_price=?,
+           total_amount=?,
+           note=?,
+           updated_by=?
+       WHERE id=?`,
+      [
+        data.product_id,
+        data.supplier_name,
+        data.supplier_phone,
+        data.invoice_no,
+        data.reference,
+        data.total_items,
+        data.unit_price,
+        data.total_amount,
+        data.note,
+        data.updated_by,
+        purchaseId
+      ]
+    );
+
+    res.json({ message: "Purchase updated successfully" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -139,6 +222,7 @@ export const approvePurchase = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 export const receivePurchase = async (req, res) => {
   const purchaseId = req.params.id;
   const userId = req.user?.id;
@@ -162,11 +246,20 @@ export const receivePurchase = async (req, res) => {
     const purchase = rows[0];
 
     // =========================
-    // 2. VALIDATION
+    // 2. BLOCK DUPLICATE RECEIVE (IMPORTANT FIX)
     // =========================
+    if (purchase.status === "received") {
+      await db.rollback();
+      return res.status(400).json({
+        error: "Purchase already received. Inventory already created."
+      });
+    }
+
     if (purchase.status !== "approved") {
       await db.rollback();
-      return res.status(400).json({ error: "Must be approved first" });
+      return res.status(400).json({
+        error: "Purchase must be approved first"
+      });
     }
 
     if (!purchase.product_id) {
@@ -174,48 +267,49 @@ export const receivePurchase = async (req, res) => {
       return res.status(400).json({ error: "Product not linked to purchase" });
     }
 
-    // ✅ USE UNIT PRICE DIRECTLY
-    let unitCost = Number(purchase.unit_price);
+    // =========================
+    // 3. EXTRA SAFETY: CHECK IF INVENTORY EXISTS
+    // =========================
+    const [existingItems] = await db.execute(
+      `SELECT COUNT(*) AS count FROM inventory_items WHERE purchase_id = ?`,
+      [purchaseId]
+    );
 
-    // 🔥 SAFE FALLBACK (only if null)
-    if (!unitCost || unitCost <= 0) {
-      unitCost = Number(purchase.total_amount) / purchase.total_items;
-    }
-
-    // EXTRA SAFETY
-    if (!unitCost || isNaN(unitCost)) {
+    if (existingItems[0].count > 0) {
       await db.rollback();
       return res.status(400).json({
-        error: "Invalid unit price or total amount"
+        error: "Inventory already exists for this purchase"
       });
     }
 
+    // =========================
+    // 4. BUILD INVENTORY DATA
+    // =========================
     const batchNo = `BATCH-${purchase.id}-${Date.now()}`;
-    const serials = [];
-
     const inventoryValues = [];
     const itemLogs = [];
 
-    // =========================
-    // 3. BUILD INVENTORY DATA
-    // =========================
+    const unitCost =
+      purchase.unit_price !== null && purchase.unit_price !== undefined
+        ? Number(purchase.unit_price)
+        : null;
+
     for (let i = 1; i <= purchase.total_items; i++) {
       const serial = `${batchNo}-${i}`;
-      serials.push(serial);
 
       inventoryValues.push([
         purchase.product_id,
         purchase.id,
         batchNo,
         serial,
-        unitCost, // ✅ FIXED: use unit_price
+        unitCost, // can be null
         'available',
         userId
       ]);
     }
 
     // =========================
-    // 4. INSERT INVENTORY (BULK)
+    // 5. INSERT INVENTORY
     // =========================
     const [insertResult] = await db.query(
       `INSERT INTO inventory_items
@@ -225,11 +319,11 @@ export const receivePurchase = async (req, res) => {
     );
 
     // =========================
-    // 5. ITEM LOGS
+    // 6. STOCK LOGS
     // =========================
     let startId = insertResult.insertId;
 
-    for (let i = 0; i < serials.length; i++) {
+    for (let i = 0; i < purchase.total_items; i++) {
       itemLogs.push([
         purchaseId,
         startId + i,
@@ -242,9 +336,6 @@ export const receivePurchase = async (req, res) => {
       ]);
     }
 
-    // =========================
-    // 6. BULK ITEM LOGS
-    // =========================
     if (itemLogs.length) {
       await db.query(
         `INSERT INTO stock_logs
@@ -255,7 +346,7 @@ export const receivePurchase = async (req, res) => {
     }
 
     // =========================
-    // 7. PURCHASE EVENT LOG
+    // 7. EVENT LOG
     // =========================
     await db.execute(
       `INSERT INTO stock_logs
@@ -270,7 +361,7 @@ export const receivePurchase = async (req, res) => {
     );
 
     // =========================
-    // 8. UPDATE PURCHASE STATUS
+    // 8. UPDATE STATUS
     // =========================
     await db.execute(
       `UPDATE purchases SET status='received', updated_by=? WHERE id=?`,
@@ -279,14 +370,10 @@ export const receivePurchase = async (req, res) => {
 
     await db.commit();
 
-    // =========================
-    // RESPONSE
-    // =========================
     res.json({
       message: "Stock received successfully",
       batch_no: batchNo,
-      unit_price: unitCost, // ✅ useful for frontend
-      created_items: serials.length
+      created_items: purchase.total_items
     });
 
   } catch (err) {
@@ -370,59 +457,6 @@ export const getPurchases = async (req, res) => {
         totalPages: Math.ceil(total / limit)
       }
     });
-
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-export const updatePurchase = async (req, res) => {
-  const purchaseId = req.params.id;
-  const userId = req.user?.id;
-
-  try {
-    const [rows] = await db.execute(
-      `SELECT * FROM purchases WHERE id=? AND deleted_at IS NULL`,
-      [purchaseId]
-    );
-
-    if (!rows.length) {
-      return res.status(404).json({ error: "Purchase not found" });
-    }
-
-    if (rows[0].status !== "pending") {
-      return res.status(400).json({ error: "Only pending purchases can be updated" });
-    }
-
-    const {
-      supplier_name,
-      supplier_phone,
-      invoice_no,
-      reference,
-      total_items,
-      total_amount,
-      note
-    } = req.body;
-
-    await db.execute(
-      `UPDATE purchases
-       SET supplier_name=?, supplier_phone=?, invoice_no=?, reference=?,
-           total_items=?, total_amount=?, note=?, updated_by=?
-       WHERE id=?`,
-      [
-        supplier_name,
-        supplier_phone,
-        invoice_no,
-        reference,
-        total_items,
-        total_amount,
-        note,
-        userId,
-        purchaseId
-      ]
-    );
-
-    res.json({ message: "Purchase updated successfully" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });

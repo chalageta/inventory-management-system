@@ -349,24 +349,33 @@ export const updateProduct = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
-
-/**
- * @desc    Archive product (soft delete)
- * @route   DELETE /api/products/:id
- * @access  Admin/Manager
- */
 export const archiveProduct = async (req, res) => {
   try {
-    const userId = req.user?.id || 1;
+    const userId = req.user?.id;
     const productId = req.params.id;
 
-    const [result] = await db.execute(
-      `UPDATE products SET active = FALSE, deleted_at = NOW(), updated_by = ? WHERE id = ?`,
+    // 1. Check inventory existence
+    const [inv] = await db.execute(
+      `SELECT COUNT(*) AS count FROM inventory_items WHERE product_id = ? AND deleted_at IS NULL`,
+      [productId]
+    );
+
+    if (inv[0].count > 0) {
+      return res.status(400).json({
+        error: "Product has inventory. It will be archived instead of deleted."
+      });
+    }
+
+    // 2. Soft delete product
+    await db.execute(
+      `UPDATE products 
+       SET active = FALSE, deleted_at = NOW(), updated_by = ?
+       WHERE id = ?`,
       [userId, productId]
     );
 
-    if (result.affectedRows === 0) return res.status(404).json({ error: "Product not found" });
     res.json({ message: "Product archived successfully" });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

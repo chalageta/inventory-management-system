@@ -1,15 +1,71 @@
-
 import express from 'express';
+
+import {
+  getAllProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  archiveProduct
+} from '../controllers/productController.js';
+
+import { protect, checkPermission } from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
-import { protect } from '../middleware/authMiddleware.js';
-import * as productController from '../controllers/productController.js';
+/**
+ * =========================
+ * PRODUCT ROUTES
+ * =========================
+ */
 
+/**
+ * GET ALL PRODUCTS
+ */
+router.get(
+  '/',
+  protect(),
+  checkPermission('view_products'),
+  getAllProducts
+);
 
-router.get('/', protect(), productController.getAllProducts);
-router.get('/:id', protect(), productController.getProduct);
+/**
+ * GET SINGLE PRODUCT
+ */
+router.get(
+  '/:id',
+  protect(),
+  checkPermission('view_products'),
+  getProduct
+);
 
-router.post('/', protect(['Admin', 'Manager']), productController.createProduct);
-router.put('/:id', protect(['Admin', 'Manager']), productController.updateProduct);
-router.delete('/:id', protect(['Admin', 'Manager']), productController.archiveProduct);
+/**
+ * CREATE PRODUCT
+ */
+router.post(
+  '/',
+  protect(),
+  checkPermission('create_product'),
+  createProduct
+);
+
+/**
+ * UPDATE PRODUCT
+ */
+router.put(
+  '/:id',
+  protect(),
+  checkPermission('update_product'),
+  updateProduct
+);
+
+/**
+ * DELETE / ARCHIVE PRODUCT
+ */
+router.delete(
+  '/:id',
+  protect(),
+  checkPermission('delete_product'),
+  archiveProduct
+);
+
 export default router;

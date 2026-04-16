@@ -4,7 +4,7 @@ import {
   approvePurchase,
   receivePurchase,
   getPurchases,
-  getPurchaseDetail,   // ✅ ADD THIS
+  getPurchaseDetail,  
   updatePurchase,
   deletePurchase,
   rejectPurchase

@@ -9,12 +9,10 @@ export const getAllInventoryItems = async (req, res) => {
     const { product_id, status, search, page = 1, limit = 10, grouped } = req.query;
     const params = [];
 
-    // =========================
-    // ✅ BASE QUERY
-    // =========================
     let baseQuery = `
       FROM inventory_items i
       LEFT JOIN products p ON i.product_id = p.id
+      LEFT JOIN purchases pu ON i.purchase_id = pu.id
       LEFT JOIN sales s ON i.sale_id = s.id
       WHERE i.deleted_at IS NULL
     `;
@@ -34,9 +32,7 @@ export const getAllInventoryItems = async (req, res) => {
       params.push(`%${search}%`);
     }
 
-    // =========================
-    // ✅ GROUPED RESPONSE
-    // =========================
+    // ================= GROUPED =================
     if (grouped === "true") {
       const groupedQuery = `
         SELECT 
@@ -52,7 +48,6 @@ export const getAllInventoryItems = async (req, res) => {
 
       const [summary] = await db.execute(groupedQuery, params);
 
-      // 👉 fetch serials per product
       const result = [];
 
       for (let row of summary) {
@@ -62,6 +57,7 @@ export const getAllInventoryItems = async (req, res) => {
             i.id,
             i.serial_number,
             i.status,
+            i.purchase_id,
             s.reference AS sale_reference,
             s.customer_name
           FROM inventory_items i
@@ -72,18 +68,13 @@ export const getAllInventoryItems = async (req, res) => {
           [row.product_id]
         );
 
-        result.push({
-          ...row,
-          items
-        });
+        result.push({ ...row, items });
       }
 
       return res.json({ data: result });
     }
 
-    // =========================
-    // ✅ FLAT RESPONSE (DEFAULT)
-    // =========================
+    // ================= FLAT =================
     const countQuery = `SELECT COUNT(*) AS total ${baseQuery}`;
     const [countResult] = await db.execute(countQuery, params);
     const total = countResult[0].total;
@@ -91,10 +82,13 @@ export const getAllInventoryItems = async (req, res) => {
     const offset = (page - 1) * limit;
 
     const dataQuery = `
-      SELECT i.*, 
-             p.name AS product_name,
-             s.reference AS sale_reference, 
-             s.customer_name
+      SELECT 
+        i.*,
+        p.name AS product_name,
+        pu.invoice_no,
+        pu.reference AS purchase_reference,
+        s.reference AS sale_reference,
+        s.customer_name
       ${baseQuery}
       ORDER BY i.created_at DESC
       LIMIT ? OFFSET ?
