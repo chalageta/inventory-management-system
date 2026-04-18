@@ -6,7 +6,16 @@ import db from '../config/db.js';
  */
 export const getAllInventoryItems = async (req, res) => {
   try {
-    const { product_id, status, search, page = 1, limit = 10, grouped } = req.query;
+    const {
+      product_id,
+      status,
+      search,
+      page = 1,
+      limit = 10,
+      grouped,
+      all // ✅ NEW
+    } = req.query;
+
     const params = [];
 
     let baseQuery = `
@@ -74,7 +83,29 @@ export const getAllInventoryItems = async (req, res) => {
       return res.json({ data: result });
     }
 
-    // ================= FLAT =================
+    // ================= ✅ ALL MODE (NO PAGINATION) =================
+    if (all === "true") {
+      const dataQuery = `
+        SELECT 
+          i.*,
+          p.name AS product_name,
+          pu.invoice_no,
+          pu.reference AS purchase_reference,
+          s.reference AS sale_reference,
+          s.customer_name
+        ${baseQuery}
+        ORDER BY i.created_at DESC
+      `;
+
+      const [items] = await db.execute(dataQuery, params);
+
+      return res.json({
+        data: items,
+        pagination: null // optional
+      });
+    }
+
+    // ================= PAGINATED =================
     const countQuery = `SELECT COUNT(*) AS total ${baseQuery}`;
     const [countResult] = await db.execute(countQuery, params);
     const total = countResult[0].total;
@@ -282,7 +313,7 @@ export const archiveInventoryItem = async (req, res) => {
     // 2. Log as ADJUSTMENT per your ENUM schema
     await db.execute(
       `INSERT INTO stock_logs (inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
-       VALUES (?, ?, 'ADJUSTMENT', ?, 'archived', 'Item moved to archive', ?)`,
+       VALUES (?, ?, 'ARCHIVE', ?, 'archived', 'Item moved to archive', ?)`,
       [itemId, item[0].product_id, item[0].status, userId]
     );
 

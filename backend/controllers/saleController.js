@@ -20,15 +20,24 @@ export const createSale = async (req, res) => {
     const reference = `SO-${Date.now()}`;
     let totalAmount = 0;
 
+    // =========================
+    // CREATE SALE
+    // =========================
     const [saleResult] = await db.execute(
       `INSERT INTO sales (reference, user_id, customer_name, status)
-       VALUES (?, ?, ?, 'Pending')`,
+       VALUES (?, ?, ?, 'Approved')`,
       [reference, userId, customer_name]
     );
 
     const saleId = saleResult.insertId;
 
+    const stockLogs = [];
+
+    // =========================
+    // PROCESS ITEMS
+    // =========================
     for (const item of items) {
+
       const [rows] = await db.execute(
         `SELECT id, product_id, status, cost_price
          FROM inventory_items
@@ -39,28 +48,63 @@ export const createSale = async (req, res) => {
 
       if (!rows.length) throw new Error("Item not available");
 
-      const costPrice = Number(rows[0].cost_price || 0);
+      const inv = rows[0];
+
+      const costPrice = Number(inv.cost_price || 0);
       const salePrice = item.sale_price > 0 ? Number(item.sale_price) : costPrice;
 
       totalAmount += salePrice;
 
-      // sale items
+      // =========================
+      // INSERT SALE ITEM
+      // =========================
       await db.execute(
         `INSERT INTO sale_items
         (sale_id, product_id, inventory_item_id, quantity, cost_price, sale_price)
         VALUES (?, ?, ?, 1, ?, ?)`,
-        [saleId, item.product_id, item.inventory_item_id, costPrice, salePrice]
+        [saleId, inv.product_id, inv.id, costPrice, salePrice]
       );
 
-      // 🔥 RESERVE ONLY (NOT SOLD)
+      // =========================
+      // UPDATE INVENTORY → RESERVED
+      // =========================
       await db.execute(
         `UPDATE inventory_items
-         SET status = 'reserved', sale_id = ?
+         SET status = 'sold', sale_id = ?
          WHERE id = ?`,
-        [saleId, item.inventory_item_id]
+        [saleId, inv.id]
+      );
+
+      // =========================
+      // 🔥 STOCK LOG (IMPORTANT)
+      // =========================
+      stockLogs.push([
+        null,                  // purchase_id
+        inv.id,                // inventory_item_id
+        inv.product_id,
+        'SOLD',            // action_type
+        'available',           // from_status
+        'sold',            // to_status
+        `Sale #${reference} approved`,
+        userId
+      ]);
+    }
+
+    // =========================
+    // INSERT STOCK LOGS
+    // =========================
+    if (stockLogs.length) {
+      await db.query(
+        `INSERT INTO stock_logs
+         (purchase_id, inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
+         VALUES ?`,
+        [stockLogs]
       );
     }
 
+    // =========================
+    // UPDATE TOTAL
+    // =========================
     await db.execute(
       `UPDATE sales SET total_amount = ? WHERE id = ?`,
       [totalAmount, saleId]
@@ -68,13 +112,20 @@ export const createSale = async (req, res) => {
 
     await db.commit();
 
-    res.status(201).json({ success: true, saleId, reference, totalAmount });
+    res.status(201).json({
+      success: true,
+      saleId,
+      reference,
+      totalAmount
+    });
 
   } catch (err) {
     await db.rollback();
     res.status(500).json({ error: err.message });
   }
-};export const approveSale = async (req, res) => {
+};
+
+export const approveSale = async (req, res) => {
   try {
     await db.execute(
       `UPDATE sales SET status = 'Approved' WHERE id = ?`,
