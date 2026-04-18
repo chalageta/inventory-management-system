@@ -132,11 +132,13 @@ Permissions define the exact actions a role can perform (e.g., `view_sales`, `ma
 
 ### System Reports
 
-Data analysis across the entire warehouse pipeline.
+The **Reports** module provides data analysis across the entire warehouse pipeline. It is divided into five specialized tabs:
 
-1. Go to **Reports**.
-2. **Sales Report:** Analyze revenue grouped by specific timeframes.
-3. **Top Products:** Identify high-volume products to optimize future purchases and adjust `min_stock` counts.
+1. **Dashboard Tab:** Provides an aggregated overview of the catalog scale (Products/Categories), financial volume (Purchases/Sales), and a visual pie chart showing the proportion of items that are Available, Sold, or Reserved.
+2. **Sales Tab:** Groups revenue analysis by tracking the `total_amount` against specific sale references over time, allowing managers to instantly visualize peak sales periods.
+3. **Purchases Tab:** Analyzes procurement impact by charting `total_amount` metrics per invoice, helping optimize supplier expenditure.
+4. **Inventory Tab:** Visualizes the capital tied up in the warehouse by comparing product cost prices globally, giving a snapshot of asset distribution.
+5. **Stock Tab:** Creates an audit trail summary, tallying specific `action_type` frequency per product alongside an exact table of who moved what (From/To statuses).
 
 ---
 
