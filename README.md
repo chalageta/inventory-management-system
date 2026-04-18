@@ -124,3 +124,60 @@ Data analysis across the entire warehouse pipeline.
 1. Go to **Reports**.
 2. **Sales Report:** Analyze revenue grouped by specific timeframes.
 3. **Top Products:** Identify high-volume products to optimize future purchases and adjust `min_stock` counts.
+
+---
+
+## Practical Training Exercises
+
+To ensure new staff members are fully equipped to use the system, here are step-by-step roleplay exercises designed to train them on core features. Management should oversee the completion of these tasks using a testing or staging environment (or dummy data that can be archived later).
+
+### Storeman Training Scenarios
+
+**Exercise 1: Catalog Setup**
+
+1. Navigate to **Categories**. Add a new category named "Training Electronics".
+2. Navigate to **Products -> Add New Product**.
+3. Create a product named "Test Wireless Mouse". Set the UoM to "Unit", assign it to "Training Electronics", and set `min_stock` to 5.
+
+**Exercise 2: Receiving Incoming Stock**
+
+1. Navigate to **Purchases**.
+2. Record a simulated purchase order from a supplier for your "Test Wireless Mouse" indicating a quantity of 10.
+3. Once the items are 'received', check the **Current Stock** page to verify there are 10 unique serial numbers listed with a status of `'available'`.
+
+**Exercise 3: Fulfilling an Order**
+
+1. Navigate to **Sales**.
+2. Create a new sale for a walk-in customer.
+3. Select the "Test Wireless Mouse" and select two specific serial numbers to mark as sold.
+4. Go back to **Current Stock** and filter by "Test Wireless Mouse". Verify that the two selected serials now show a status of `'sold'` and the remaining 8 are `'available'`.
+
+**Exercise 4: Handling Damages**
+
+1. Navigate to **Current Stock**.
+2. Find one of the remaining `'available'` "Test Wireless Mouse" serial numbers.
+3. Edit its status to `'damaged'` and add a note saying "Dropped during transit".
+4. Navigate to **Stock Logs** and locate the exact `STATUS_CHANGE` entry proving accountability.
+
+### Administrator Training Scenarios
+
+**Exercise 1: Custom Role Creation**
+
+1. Navigate to **Role Management** under the Admin menu.
+2. Create a new role titled "Junior Storeman".
+3. Navigate to **Permission Management**.
+4. Assign this "Junior Storeman" role strictly the `view_inventory` and `view_products` permissions, purposely excluding `view_sales` or `manage_users`.
+
+**Exercise 2: Staff Onboarding**
+
+1. Navigate to **Manage Users**.
+2. Create a new user profile with a dummy email (e.g., `junior@test.com`).
+3. Assign them the "Junior Storeman" role created in Exercise 1.
+4. _Test:_ Log out as Administrator and log in as the Junior Storeman. Verify that the sidebar strictly restricts access to only Products and Current Stock.
+
+**Exercise 3: Auditing and Reports**
+
+1. Log back in as the Administrator.
+2. Navigate to **Reports -> Sales Report**.
+3. Locate the sale processed by the Storeman in their "Exercise 3". Validate that the system correctly calculated the revenue for the day.
+4. Navigate to **Stock Logs**. Search for the `damaged` serial number the Storeman processed. Validate that the system tracked the exact time and User ID of the staff member who made the adjustment.
