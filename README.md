@@ -195,3 +195,16 @@ To ensure new staff members are fully equipped to use the system, here are step-
 1. Expand your sidebar fully to see all available modules (from Dashboard down to Reports and Permission Management).
 2. Navigate to **Purchases** and **Sales / Out** to review the records processed by your staff during their training.
 3. Make an **ADJUSTMENT** directly from the **Current Stock** page to simulate stepping in to assist a Storeman with advanced stock control.
+
+**Exercise 5: Account Security & Profile Management**
+
+1. Navigate to your **Profile** via the sidebar navigation.
+2. Update your personal information (e.g., phone number or bio) and upload a new profile picture to personalize your dashboard.
+3. Navigate to **Change Password** (Security Settings) to update your account's password. Confirm the change matches your new secure string.
+
+**Exercise 6: Advanced User Management (Editing & Status Control)**
+
+1. Navigate to **Manage Users** and locate the "Junior Storeman" you created during onboarding. Click their record to fetch their detailed profile (Get User by ID).
+2. **Edit User Info:** Modify their assigned contact details or promote them by assigning an additional role, then save the changes.
+3. **Deactivate User:** Temporarily suspend their account by marking them as Deactivated to cut off system access gracefully.
+4. **Activate User:** Restore their account by Activating them, ensuring they can log in to the system again.

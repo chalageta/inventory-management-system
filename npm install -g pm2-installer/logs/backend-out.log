@@ -23,3 +23,8 @@
 ◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 ◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (5) from .env // tip: ⌘ override existing { override: true }
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
