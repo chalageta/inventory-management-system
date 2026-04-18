@@ -69,13 +69,14 @@ The **Current Stock** section shows you exactly what is in the warehouse.
 
 > **Important:** Accuracy in keeping status updated ensures smooth sales processing and prevents overselling.
 
-### Sales & Outbound Stock
+### Sales, Outbound Stock & Finance Workflow
 
-The **Sales** menu tracks items leaving the warehouse.
+The **Sales** menu orchestrates items leaving the warehouse and integrates heavily with Finance checks.
 
-1. **Creating a Sale:** Input the customer's details or select an existing customer.
-2. **Scanning Out Items:** Scan the serial numbers of the products being sold. Ensure the status of these specific serials is marked as `'available'`.
-3. **Completion:** Upon successful completion, the system transitions those serial numbers to a `'sold'` status.
+1. **Creating a Sale (Pending):** A Storeman creates a new sale by entering the Customer's name and selecting explicit serial numbers from current `'available'` inventory. Upon saving, the sale sits in a **'Pending'** state, and the selected inventory items are locked to a **'reserved'** status so they cannot be double-sold.
+2. **Finance Approval:** Management or Finance reviews the **'Pending'** sale. They can either **Approve** it (validating the pricing) or **Reject** it (which automatically releases the reserved items back to the `'available'` inventory pool).
+3. **Dispatch & Completion:** Once a sale is **'Approved'**, the Storeman dispatches the items to the customer and officially clicks **Complete**. This finalizes the transaction—the sale becomes **'Completed'** and the reserved items permanently transition to the **'sold'** status.
+4. **Receipt Generation:** Receipts containing company headers, items, serial numbers, and totals can be viewed and printed only _after_ the sale has been Approved or Completed.
 
 ### Stock Logs & History
 
