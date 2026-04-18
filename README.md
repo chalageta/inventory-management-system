@@ -90,7 +90,15 @@ Under **Stock Logs**, every single movement is recorded permanently.
 
 ## Administrator User Manual
 
-As an **Administrator**, you have full access to the system. Beyond standard inventory operations, your core focus is on security, team organization, and high-level reporting.
+As an **Administrator**, you have full access to the system. You will see every item on the sidebar. Beyond standard inventory operations, your core focus is on security, team organization, and high-level reporting.
+
+### Full Operational Overview
+
+You have complete back-office access to all Storeman modules:
+
+- **Categories & Products:** Can create, update, or archive catalogs.
+- **Purchases & Sales:** Can review all incoming shipments and outgoing orders.
+- **Current Stock & Logs:** Can make emergency adjustments to stock that Storemen may be restricted from doing.
 
 ### User Management
 
@@ -181,3 +189,9 @@ To ensure new staff members are fully equipped to use the system, here are step-
 2. Navigate to **Reports -> Sales Report**.
 3. Locate the sale processed by the Storeman in their "Exercise 3". Validate that the system correctly calculated the revenue for the day.
 4. Navigate to **Stock Logs**. Search for the `damaged` serial number the Storeman processed. Validate that the system tracked the exact time and User ID of the staff member who made the adjustment.
+
+**Exercise 4: System-Wide Management**
+
+1. Expand your sidebar fully to see all available modules (from Dashboard down to Reports and Permission Management).
+2. Navigate to **Purchases** and **Sales / Out** to review the records processed by your staff during their training.
+3. Make an **ADJUSTMENT** directly from the **Current Stock** page to simulate stepping in to assist a Storeman with advanced stock control.
