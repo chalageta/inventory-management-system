@@ -27,7 +27,11 @@ Welcome to the Inventory Management System! This manual is designed to help **St
 
 Upon logging in, you will be greeted by the **Dashboard**, giving you an overview of operations relevant to your access level. The system uses a sidebar for navigation. Depending on your role, you will only see the menus you have permission to access.
 
-- **Dashboard:** Provides a high-level overview of daily metrics.
+- **Dashboard:** Acts as your primary command center, presenting real-time synchronized metrics:
+  - **KPI Modules**: Instantly view system totals for Products, Categories, and Sales. Notably, it highlights **Low Stock** items in red to proactively manage procurement.
+  - **Inventory Distribution**: Tracks the exact state of physical goods across states: Total Items, Available, Sold, and Reserved (pending finance completion).
+  - **Sales Trends & Top Sellers**: Visual graphs chart the flow of sales over periods, alongside a quick-reference table of the highest-moving products.
+  - **Recent Activity Feed**: A permanent, chronological log displaying recent system actions (such as new sales or stock adjustments), including exactly _who_ triggered it and _when_.
 - **Profile:** Keep your account details updated.
 - **Logout:** Ensure you log out securely at the end of your shift.
 
