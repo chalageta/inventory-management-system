@@ -22,11 +22,12 @@ app.use(
     crossOriginResourcePolicy: { policy: "cross-origin" },
   })
 );
-
-// ✅ 2. Standard CORS Setup
 app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true,
+  origin: [
+  'http://localhost:3000',
+  // 'http://192.168.1.10:3000'
+],
+credentials: true,
 }));
 
 // ✅ 3. Middleware

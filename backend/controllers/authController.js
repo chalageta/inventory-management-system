@@ -7,6 +7,8 @@ import fs from 'fs';
 dotenv.config();
 
 // =======================
+// 🔐 TOKEN GENERATOR
+// =======================
 const generateToken = (user, expiresIn = '30m') => {
   return jwt.sign(
     { id: user.id, role: user.role },

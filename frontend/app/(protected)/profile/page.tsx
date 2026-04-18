@@ -34,7 +34,7 @@ export default function ProfilePage() {
   const [file, setFile] = useState<any>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5000";
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
     if (user) {
