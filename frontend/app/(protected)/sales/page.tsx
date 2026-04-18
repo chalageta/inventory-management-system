@@ -60,14 +60,18 @@ export default function SalesPage() {
     fetchSales();
   }, [fetchSales]);
 
-  const fetchInventory = async () => {
-    try {
-      const res = await api.get('/inventory', { params: { status: 'available' } }); 
-      setAvailableItems(res.data.data || []);
-    } catch (err) {
-      toast.error("Could not load available inventory");
-    }
-  };
+const fetchInventory = async () => {
+  try {
+    const res = await api.get('/inventory', {
+      params: { status: 'available', all: 'true' }  // ✅ Pass all=true
+    });
+
+    setAvailableItems(res.data.data || []);
+
+  } catch (err) {
+    toast.error("Could not load available inventory");
+  }
+};  
 
   // =========================
   // WORKFLOW ACTIONS

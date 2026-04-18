@@ -28,3 +28,8 @@
 ◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
 ◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
 🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (5) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000

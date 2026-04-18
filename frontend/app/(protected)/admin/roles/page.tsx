@@ -1,325 +1,509 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import {
   Card, Table, Button, Modal, Form, Input, message,
-  Space, Typography, Tag, Checkbox, Row, Col, Divider,
-  Popconfirm, Steps, Badge
+  Space, Typography, Checkbox, Row, Col, Divider,
+  Popconfirm, Tooltip, Tag, Badge, Collapse, Alert
 } from 'antd';
+import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 
 import {
-  PlusOutlined, EditOutlined, DeleteOutlined,
-  SafetyOutlined, ArrowRightOutlined,
-  CheckCircleOutlined
+  PlusOutlined, DeleteOutlined,
+  CheckCircleOutlined, EyeOutlined,
+  UnorderedListOutlined, FolderOpenOutlined
 } from '@ant-design/icons';
 
 import api from '@/lib/api';
 import { ShieldEllipsisIcon } from 'lucide-react';
 
 const { Title, Text } = Typography;
+const { Panel } = Collapse;
+
+interface Permission {
+  id: number;
+  name: string;
+  module: string;
+  created_at: string;
+}
+
+interface Role {
+  id: number;
+  name: string;
+  created_at: string;
+}
+
+type PermissionsGrouped = Record<string, Permission[]>;
 
 export default function RoleManagementPage() {
-  const [roles, setRoles] = useState<any[]>([]);
-  const [permissions, setPermissions] = useState<any[]>([]);
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [allPermissionsGrouped, setAllPermissionsGrouped] = useState<PermissionsGrouped>({});
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // pagination + search
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState('');
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isEdit, setIsEdit] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isPermOpen, setIsPermOpen] = useState(false);
 
   const [form] = Form.useForm();
-  const [activeRoleId, setActiveRoleId] = useState<number | null>(null);
-  const [selectedPermissions, setSelectedPermissions] = useState<number[]>([]);
+  const [activeRole, setActiveRole] = useState<Role | null>(null);
+  const [selectedPermissionIds, setSelectedPermissionIds] = useState<number[]>([]);
 
-  // ================= LOAD =================
-  const fetchData = async (pageNum = page, searchText = search) => {
+  // ================= 1. INITIAL LOAD =================
+  const fetchData = useCallback(async (pageNum = page, searchText = search) => {
     setLoading(true);
     try {
       const [roleRes, permRes] = await Promise.all([
-        api.get('/rbac/roles', {
-          params: {
-            page: pageNum,
-            limit,
-            search: searchText
-          }
-        }),
+        api.get('/rbac/roles', { params: { page: pageNum, limit, search: searchText } }),
         api.get('/rbac/permissions')
       ]);
-
-      setRoles(roleRes.data.data || []);
-      setTotal(roleRes.data.pagination?.total || 0);
-      setPermissions(permRes.data);
+      setRoles(roleRes.data?.data || []);
+      setTotal(roleRes.data?.pagination?.total || 0);
+      setAllPermissionsGrouped(permRes.data?.grouped || {});
+    } catch (error) {
+      message.error("Failed to load data");
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, limit, search]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-  // ================= OPEN CREATE =================
-  const openCreateModal = () => {
-    setIsEdit(false);
-    setActiveRoleId(null);
-    setCurrentStep(0);
-    setSelectedPermissions([]);
-    form.resetFields();
-    setIsModalOpen(true);
+  // ================= 2. SORTING LOGIC (BY CHECKED STATUS) =================
+  const sortedPermissionsGrouped = useMemo(() => {
+    const sorted: PermissionsGrouped = {};
+    Object.entries(allPermissionsGrouped).forEach(([moduleName, perms]) => {
+      sorted[moduleName] = [...perms].sort((a, b) => {
+        const aChecked = selectedPermissionIds.includes(a.id);
+        const bChecked = selectedPermissionIds.includes(b.id);
+        if (aChecked && !bChecked) return -1;
+        if (!aChecked && bChecked) return 1;
+        return 0;
+      });
+    });
+    return sorted;
+  }, [allPermissionsGrouped, selectedPermissionIds]);
+
+  // ================= 3. MODULE UTILS =================
+  const getModulePermissions = (moduleName: string): Permission[] => {
+    return allPermissionsGrouped[moduleName] || [];
   };
 
-  // ================= OPEN EDIT =================
-  const openEditModal = async (role: any) => {
-    setIsEdit(true);
-    setActiveRoleId(role.id);
-    setCurrentStep(0);
-    form.setFieldsValue({ name: role.name });
+  const isModuleFullySelected = (modulePerms: Permission[]): boolean => {
+    return modulePerms.length > 0 && 
+           modulePerms.every(p => selectedPermissionIds.includes(p.id));
+  };
 
+  const isModulePartiallySelected = (modulePerms: Permission[]): boolean => {
+    const selectedCount = modulePerms.filter(p => 
+      selectedPermissionIds.includes(p.id)
+    ).length;
+    return selectedCount > 0 && selectedCount < modulePerms.length;
+  };
+
+  const toggleModulePermissions = (modulePerms: Permission[]) => {
+    const moduleIds = modulePerms.map(p => p.id);
+    const allSelected = isModuleFullySelected(modulePerms);
+    
+    if (allSelected) {
+      // Deselect all in module
+      setSelectedPermissionIds(prev => 
+        prev.filter(id => !moduleIds.includes(id))
+      );
+    } else {
+      // Select all in module
+      setSelectedPermissionIds(prev => 
+        [...new Set([...prev, ...moduleIds])]
+      );
+    }
+  };
+
+  const handlePermissionChange = (checkedValues: CheckboxValueType[]) => {
+    setSelectedPermissionIds(checkedValues as number[]);
+  };
+
+  // ================= 4. OPEN MODAL =================
+  const openPermissionsModal = async (role: Role) => {
+    setActiveRole(role);
+    setSelectedPermissionIds([]); 
+    setIsPermOpen(true);
     try {
       const res = await api.get(`/rbac/role-permissions/${role.id}`);
-      setSelectedPermissions(res.data.permissions.map((p: any) => p.id));
-    } catch {
-      message.error('Failed to load permissions');
-    }
-
-    setIsModalOpen(true);
-  };
-
-  // ================= STEP 1 =================
-  const handleNextStep = async () => {
-    try {
-      const values = await form.validateFields();
-      setSubmitting(true);
-
-      if (isEdit && activeRoleId) {
-        await api.put(`/rbac/roles/${activeRoleId}`, {
-          name: values.name
-        });
-      } else {
-        const res = await api.post('/rbac/roles', {
-          name: values.name
-        });
-
-        const newId = res.data.roleId || res.data.id;
-        if (!newId) throw new Error("Role ID missing");
-
-        setActiveRoleId(newId);
-      }
-
-      setCurrentStep(1);
-    } catch {
-      message.error("Failed to proceed");
-    } finally {
-      setSubmitting(false);
+      const currentIds = res.data?.permissions?.map((p: Permission) => p.id) || [];
+      setSelectedPermissionIds(currentIds);
+    } catch (error) {
+      message.error('Could not load permissions for this role');
     }
   };
 
-  // ================= FINAL SAVE =================
-  const handleFinalSave = async () => {
-    if (!activeRoleId) return message.error("Role missing");
-
+  // ================= 5. SAVE =================
+  const handleSavePermissions = async () => {
+    if (!activeRole) return;
     setSubmitting(true);
     try {
       await api.post('/rbac/assign-permissions', {
-        roleId: activeRoleId,
-        permissionIds: selectedPermissions || []
+        roleId: activeRole.id,
+        permissionIds: selectedPermissionIds
       });
-
-      message.success(isEdit ? 'Role updated successfully' : 'Role created successfully');
-
-      setIsModalOpen(false);
-      setCurrentStep(0);
-      setSelectedPermissions([]);
-
-      fetchData(page, search);
-    } catch {
+      message.success('Permissions updated successfully');
+      setIsPermOpen(false);
+      fetchData();
+    } catch (error) {
       message.error('Failed to save permissions');
     } finally {
       setSubmitting(false);
     }
   };
 
-  // ================= DELETE =================
   const handleDelete = async (id: number) => {
     try {
       await api.delete(`/rbac/roles/${id}`);
       message.success('Role deleted');
-      fetchData(page, search);
+      fetchData();
     } catch {
       message.error('Delete failed');
     }
   };
 
-  return (
-    <div className="p-3 sm:p-4 md:p-6 bg-slate-50 min-h-screen">
+  const handleCreateRole = async (values: { name: string }) => {
+    try {
+      await api.post('/rbac/roles', values);
+      message.success('Role created successfully');
+      setIsCreateOpen(false);
+      form.resetFields();
+      fetchData();
+    } catch {
+      message.error('Failed to create role');
+    }
+  };
 
-      {/* HEADER */}
-      <div className="flex flex-col sm:flex-row sm:justify-between gap-3 bg-white p-4 sm:p-6 rounded-2xl shadow-sm">
-        <div>
-          <Title level={3} className="!mb-0 flex items-center gap-2">
-            <ShieldEllipsisIcon /> Role Access Control
-          </Title>
-          <Text type="secondary">Manage roles and permissions</Text>
-        </div>
+  // ================= 6. RENDER MODULE PANEL =================
+  const renderModulePanel = (moduleName: string, perms: Permission[]) => {
+    const moduleKey = `module-${moduleName}`;
+    const isFullySelected = isModuleFullySelected(perms);
+    const isPartial = isModulePartiallySelected(perms);
+    
+    let moduleStatus: React.ReactNode = null;
+    if (isFullySelected) {
+      moduleStatus = <Badge status="success" text="All" />;
+    } else if (isPartial) {
+      moduleStatus = <Badge status="processing" text="Partial" />;
+    }
 
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={openCreateModal}
+    return (
+      <Panel
+        key={moduleKey}
+        header={
+          <div className="flex items-center justify-between w-full pr-4">
+            <div className="flex items-center gap-2">
+              <FolderOpenOutlined className="text-blue-500" />
+              <Text strong className="uppercase text-sm">
+                {moduleName.replace(/-/g, ' ')}
+              </Text>
+              <Tag color="blue" className="ml-2">{perms.length}</Tag>
+            </div>
+            <Space>
+              {moduleStatus}
+              <Button
+                size="small"
+                type={isFullySelected ? "primary" : "default"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleModulePermissions(perms);
+                }}
+              >
+                {isFullySelected ? 'Deselect All' : 'Select All'}
+              </Button>
+            </Space>
+          </div>
+        }
+        extra={
+          <Checkbox
+            checked={isFullySelected}
+            indeterminate={isPartial}
+            onChange={() => toggleModulePermissions(perms)}
+            onClick={(e) => e.stopPropagation()}
+          />
+        }
+      >
+        <Checkbox.Group
+          className="w-full"
+          value={selectedPermissionIds}
+          onChange={handlePermissionChange}
         >
-          Create Role
-        </Button>
-      </div>
+          <Row gutter={[12, 12]}>
+            {perms.map((perm) => {
+              const isChecked = selectedPermissionIds.includes(perm.id);
+              return (
+                <Col xs={24} sm={12} md={8} lg={6} key={perm.id}>
+                  <Card
+                    size="small"
+                    className={`cursor-pointer transition-all ${
+                      isChecked 
+                        ? 'border-blue-500 bg-blue-50 shadow-sm' 
+                        : 'border-slate-200 hover:border-blue-300'
+                    }`}
+                    onClick={() => {
+                      const next = isChecked
+                        ? selectedPermissionIds.filter(id => id !== perm.id)
+                        : [...selectedPermissionIds, perm.id];
+                      setSelectedPermissionIds(next);
+                    }}
+                  >
+                    <div className="flex items-start gap-2">
+                      <Checkbox
+                        value={perm.id}
+                        checked={isChecked}
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-0.5"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <Text 
+                          strong 
+                          className={`text-sm capitalize block truncate ${
+                            isChecked ? 'text-blue-700' : 'text-slate-700'
+                          }`}
+                          title={perm.name.replace(/_/g, ' ')}
+                        >
+                          {perm.name.replace(/_/g, ' ')}
+                        </Text>
+                        <Text type="secondary" className="text-xs block">
+                          ID: {perm.id}
+                        </Text>
+                      </div>
+                    </div>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+        </Checkbox.Group>
+      </Panel>
+    );
+  };
 
-      {/* SEARCH */}
-      <div className="mt-4 mb-3">
-        <Input.Search
-          placeholder="Search roles..."
-          allowClear
-          onSearch={(value) => {
-            setSearch(value);
-            setPage(1);
-            fetchData(1, value);
-          }}
-        />
-      </div>
+  // ================= 7. COLUMNS DEFINITION =================
+  const columns = [
+    {
+      title: 'Role Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (name: string) => (
+        <Tag color="blue" className="font-semibold px-3 py-1 border-0 rounded-md uppercase tracking-wider">
+          {name}
+        </Tag>
+      ),
+    },
+    {
+      title: 'Created At',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (date: string) => (
+        <Text type="secondary" className="text-xs">
+          {new Date(date).toLocaleDateString()}
+        </Text>
+      ),
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      width: 120,
+      align: 'right' as const,
+      render: (_: any, record: Role) => (
+        <Space>
+          <Tooltip title="Manage Permissions">
+            <Button 
+              className="flex items-center justify-center border-blue-100 text-blue-600 hover:bg-blue-50"
+              icon={<EyeOutlined />} 
+              onClick={() => openPermissionsModal(record)} 
+            />
+          </Tooltip>
+          <Popconfirm 
+            title="Delete this role?" 
+            onConfirm={() => handleDelete(record.id)} 
+            okText="Yes" 
+            cancelText="No"
+          >
+            <Button danger type="text" icon={<DeleteOutlined />} />
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
 
-      {/* TABLE */}
-      <Card className="rounded-2xl">
+  return (
+    <div className="p-4 md:p-8 bg-slate-50 min-h-screen">
+      
+      {/* HEADER */}
+      <Card className="mb-6 rounded-xl shadow-sm border-slate-200">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <Title level={3} className="!m-0 flex items-center gap-3 font-bold text-slate-800">
+              <ShieldEllipsisIcon size={28} className="text-blue-600" /> 
+              RBAC Management
+            </Title>
+            <Text className="text-slate-500 block mt-1">
+              Define roles and manage permissions by module
+            </Text>
+          </div>
+          <Button 
+            type="primary" 
+            size="large" 
+            className="rounded-lg h-11 px-6 font-semibold"
+            icon={<PlusOutlined />} 
+            onClick={() => setIsCreateOpen(true)}
+          >
+            Create New Role
+          </Button>
+        </div>
+      </Card>
+
+      {/* SEARCH & FILTERS */}
+      <Card className="mb-4 rounded-xl shadow-sm border-slate-200">
+        <Row gutter={[16, 16]} align="middle">
+          <Col xs={24} md={8}>
+            <Input
+              placeholder="Search roles..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onPressEnter={() => fetchData(1, search)}
+              prefix={<UnorderedListOutlined className="text-slate-400" />}
+              allowClear
+            />
+          </Col>
+          <Col xs={24} md={16} className="text-right">
+            <Button onClick={() => fetchData()}>Refresh</Button>
+          </Col>
+        </Row>
+      </Card>
+
+      {/* ROLES TABLE */}
+      <Card className="rounded-xl shadow-sm border-0 overflow-hidden">
         <Table
           rowKey="id"
           loading={loading}
           dataSource={roles}
-          pagination={{
-            current: page,
-            pageSize: limit,
-            total,
-            onChange: (p) => {
-              setPage(p);
-              fetchData(p, search);
-            }
+          pagination={{ 
+            current: page, 
+            pageSize: limit, 
+            total, 
+            onChange: (p) => { setPage(p); fetchData(p, search); },
+            showSizeChanger: false,
+            showTotal: (total) => `Total ${total} roles`
           }}
-          columns={[
-            {
-              title: 'Role Name',
-              dataIndex: 'name',
-              render: (t) => <b>{t}</b>
-            },
-            {
-              title: 'Status',
-              render: () => <Badge status="success" text="Active" />
-            },
-            {
-              title: 'Actions',
-              render: (_, r) => (
-                <Space>
-                  <Button icon={<EditOutlined />} onClick={() => openEditModal(r)}>
-                    Edit
-                  </Button>
-
-                  <Popconfirm title="Delete?" onConfirm={() => handleDelete(r.id)}>
-                    <Button danger icon={<DeleteOutlined />} />
-                  </Popconfirm>
-                </Space>
-              )
-            }
-          ]}
+          columns={columns}
+          locale={{ emptyText: 'No roles found' }}
         />
       </Card>
 
-      {/* MODAL */}
+      {/* MODAL: PERMISSIONS BY MODULE */}
       <Modal
-        open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
-        footer={null}
-        width="90%"
-        style={{ maxWidth: 900 }}
-        centered
-      >
-
-        <Steps
-          current={currentStep}
-          items={[
-            { title: 'Identity' },
-            { title: 'Permissions' }
-          ]}
-          className="mb-6"
-        />
-
-        {/* STEP 1 */}
-        {currentStep === 0 && (
-          <div>
-            <Form form={form} layout="vertical">
-              <Form.Item
-                name="name"
-                label="Role Name"
-                rules={[{ required: true }]}
-              >
-                <Input size="large" />
-              </Form.Item>
-            </Form>
-
-            <Button
-              type="primary"
-              loading={submitting}
-              onClick={handleNextStep}
-              icon={<ArrowRightOutlined />}
-              block
-            >
-              Next
-            </Button>
+        title={
+          <div className="pb-2">
+            <Text type="secondary" className="text-[10px] uppercase font-bold tracking-widest text-blue-500">
+              Edit Access Control
+            </Text>
+            <Title level={4} className="!m-0 text-slate-800 uppercase">
+              {activeRole?.name}
+            </Title>
           </div>
-        )}
+        }
+        open={isPermOpen}
+        onCancel={() => setIsPermOpen(false)}
+        width={1200}
+        centered
+        footer={[
+          <Button key="cancel" className="rounded-lg px-6" onClick={() => setIsPermOpen(false)}>
+            Cancel
+          </Button>,
+          <Button 
+            key="save" 
+            type="primary" 
+            className="rounded-lg px-8 font-semibold"
+            loading={submitting} 
+            icon={<CheckCircleOutlined />} 
+            onClick={handleSavePermissions}
+          >
+            Save Changes
+          </Button>
+        ]}
+      >
+        <div className="py-2" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+          <Alert
+            message="Tip: Checked permissions appear first in each module"
+            type="info"
+            showIcon
+            className="mb-4"
+            closable
+          />
+          
+          <Collapse 
+            defaultActiveKey={Object.keys(sortedPermissionsGrouped)}
+            className="permission-collapse"
+            ghost={false}
+            bordered
+          >
+            {Object.entries(sortedPermissionsGrouped)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([moduleName, perms]) => 
+                renderModulePanel(moduleName, perms)
+              )
+            }
+          </Collapse>
+        </div>
+      </Modal>
 
-        {/* STEP 2 */}
-        {currentStep === 1 && (
+      {/* CREATE ROLE MODAL */}
+      <Modal
+        title={
           <>
-            <Divider>Permissions</Divider>
-
-            <Checkbox.Group
-              value={selectedPermissions}
-              onChange={(v) => setSelectedPermissions(v as number[])}
-            >
-              <Row gutter={[10, 10]}>
-                {permissions.map((p) => (
-                  <Col xs={24} sm={12} md={8} key={p.id}>
-                    <div className="p-3 border rounded">
-                      <Checkbox value={p.id}>
-                        <div>
-                          <b>{p.module}</b>
-                          <div>{p.name}</div>
-                        </div>
-                      </Checkbox>
-                    </div>
-                  </Col>
-                ))}
-              </Row>
-            </Checkbox.Group>
-
-            <div className="flex justify-between mt-5">
-              <Button onClick={() => setCurrentStep(0)}>
-                Back
-              </Button>
-
-              <Button
-                type="primary"
-                loading={submitting}
-                onClick={handleFinalSave}
-                icon={<CheckCircleOutlined />}
-              >
-                Save
-              </Button>
-            </div>
+            <PlusOutlined className="mr-2 text-blue-500" />
+            Create New Role
           </>
-        )}
-
+        }
+        open={isCreateOpen}
+        onCancel={() => {
+          setIsCreateOpen(false);
+          form.resetFields();
+        }}
+        onOk={() => form.submit()}
+        okText="Create Role"
+        cancelText="Cancel"
+        confirmLoading={submitting}
+      >
+        <Form 
+          form={form} 
+          layout="vertical" 
+          onFinish={handleCreateRole}
+          initialValues={{ name: '' }}
+        >
+          <Form.Item 
+            name="name" 
+            label={
+              <label>
+                Role Name <Text type="danger">*</Text>
+              </label>
+            } 
+            rules={[
+              { required: true, message: 'Please enter a role name' },
+              { pattern: /^[a-zA-Z0-9_]+$/, message: 'Only letters, numbers, and underscores allowed' }
+            ]}
+            extra="Use underscores for multi-word names (e.g., finance_manager)"
+          >
+            <Input 
+              placeholder="e.g. Finance_Manager" 
+              className="rounded-md h-10" 
+              maxLength={50}
+              showCount
+            />
+          </Form.Item>
+        </Form>
       </Modal>
     </div>
   );

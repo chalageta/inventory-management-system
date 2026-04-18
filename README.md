@@ -181,12 +181,12 @@ To ensure new staff members are fully equipped to use the system, here are step-
 
 ### Administrator Training Scenarios
 
-**Exercise 1: Custom Role Creation**
+**Exercise 1: Custom Role Creation & Assigning Permissions**
 
 1. Navigate to **Role Management** under the Admin menu.
-2. Create a new role titled "Junior Storeman".
-3. Navigate to **Permission Management**.
-4. Assign this "Junior Storeman" role strictly the `view_inventory` and `view_products` permissions, purposely excluding `view_sales` or `manage_users`.
+2. Click **Create Role** and enter the title "Junior Storeman".
+3. Once created, click the **Eye icon** (View & Manage Permissions) next to your new role in the table.
+4. From the comprehensive permission list that opens, check strictly the `view_inventory` and `view_products` checkboxes, purposely excluding `view_sales` or `manage_users`, and click **Save Permissions**.
 
 **Exercise 2: Staff Onboarding**
 
