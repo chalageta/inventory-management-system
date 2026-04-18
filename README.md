@@ -208,3 +208,10 @@ To ensure new staff members are fully equipped to use the system, here are step-
 2. **Edit User Info:** Modify their assigned contact details or promote them by assigning an additional role, then save the changes.
 3. **Deactivate User:** Temporarily suspend their account by marking them as Deactivated to cut off system access gracefully.
 4. **Activate User:** Restore their account by Activating them, ensuring they can log in to the system again.
+
+**Exercise 7: Category Management (Admin/Manager Restricted)**
+
+1. Navigate to **Categories** from the sidebar navigation. Only Admins and Managers have full write access here.
+2. **Add Category:** Click "Add Category" and create a test group appropriately named "Administrative Supplies".
+3. **Search & Edit:** Use the search bar to locate your new category, then click the Edit button to update its description or toggle its active status.
+4. **Delete Category:** Test the soft-delete functionality by deleting the category, ensuring it is removed from the active list of grouped items.
