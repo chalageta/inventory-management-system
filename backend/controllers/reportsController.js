@@ -22,11 +22,10 @@ const getDateFilters = (startDate, endDate, alias = 's') => {
   return { conditions, params };
 };
 
-
 export const getStatsSummary = async (req, res) => {
   try {
     // =========================
-    // PRODUCTS (FIXED)
+    // PRODUCTS
     // =========================
     const [[products]] = await db.execute(`
       SELECT COUNT(*) AS total
@@ -36,7 +35,7 @@ export const getStatsSummary = async (req, res) => {
     `);
 
     // =========================
-    // CATEGORIES (FIXED)
+    // CATEGORIES
     // =========================
     const [[categories]] = await db.execute(`
       SELECT COUNT(*) AS total
@@ -46,7 +45,7 @@ export const getStatsSummary = async (req, res) => {
     `);
 
     // =========================
-    // PURCHASES (SOFT DELETE SAFE)
+    // PURCHASES
     // =========================
     const [[purchases]] = await db.execute(`
       SELECT COUNT(*) AS total
@@ -55,7 +54,7 @@ export const getStatsSummary = async (req, res) => {
     `);
 
     // =========================
-    // SALES (SOFT DELETE SAFE)
+    // SALES
     // =========================
     const [[sales]] = await db.execute(`
       SELECT COUNT(*) AS total
@@ -64,14 +63,13 @@ export const getStatsSummary = async (req, res) => {
     `);
 
     // =========================
-    // INVENTORY (FIXED)
+    // INVENTORY (REMOVED RESERVED)
     // =========================
     const [[inventoryRaw]] = await db.execute(`
       SELECT 
         COUNT(*) AS total_items,
         SUM(CASE WHEN status = 'available' THEN 1 ELSE 0 END) AS available,
-        SUM(CASE WHEN status = 'sold' THEN 1 ELSE 0 END) AS sold,
-        SUM(CASE WHEN status = 'reserved' THEN 1 ELSE 0 END) AS reserved
+        SUM(CASE WHEN status = 'sold' THEN 1 ELSE 0 END) AS sold
       FROM inventory_items
       WHERE deleted_at IS NULL
     `);
@@ -80,24 +78,21 @@ export const getStatsSummary = async (req, res) => {
       total_items: Number(inventoryRaw.total_items || 0),
       available: Number(inventoryRaw.available || 0),
       sold: Number(inventoryRaw.sold || 0),
-      reserved: Number(inventoryRaw.reserved || 0),
     };
 
     // =========================
-    // LOW STOCK (FIXED LOGIC)
+    // LOW STOCK (SIMPLE LOGIC)
     // =========================
+    // Example: low stock if available items < 5
     const [[lowStock]] = await db.execute(`
-      SELECT COUNT(*) AS total FROM (
-        SELECT 
-          p.id,
-          p.min_stock,
-          COUNT(CASE WHEN i.status = 'available' THEN 1 END) AS available_qty
-        FROM products p
-        LEFT JOIN inventory_items i ON i.product_id = p.id
-        WHERE p.deleted_at IS NULL
-        AND p.active = 1
-        GROUP BY p.id, p.min_stock
-        HAVING available_qty <= p.min_stock
+      SELECT COUNT(*) AS total
+      FROM (
+        SELECT product_id, COUNT(*) AS available_qty
+        FROM inventory_items
+        WHERE status = 'available'
+        AND deleted_at IS NULL
+        GROUP BY product_id
+        HAVING available_qty < 5
       ) AS t
     `);
 

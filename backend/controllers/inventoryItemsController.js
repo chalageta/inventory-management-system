@@ -24,6 +24,8 @@ export const getAllInventoryItems = async (req, res) => {
       LEFT JOIN purchases pu ON i.purchase_id = pu.id
       LEFT JOIN sales s ON i.sale_id = s.id
       WHERE i.deleted_at IS NULL
+AND p.deleted_at IS NULL
+AND p.active = 1
     `;
 
     if (product_id) {

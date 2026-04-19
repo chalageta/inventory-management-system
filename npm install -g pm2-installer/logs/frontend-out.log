@@ -54,3 +54,17 @@
 - Local:         http://localhost:3000
 - Network:       http://192.168.1.7:3000
 ✓ Ready in 232ms
+▲ Next.js 16.2.0
+- Local:         http://localhost:3000
+✓ Ready in 422ms
+▲ Next.js 16.2.0
+- Local:         http://localhost:3000
+✓ Ready in 381ms
+▲ Next.js 16.2.0
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.6:3000
+✓ Ready in 177ms
+▲ Next.js 16.2.0
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.6:3000
+✓ Ready in 157ms

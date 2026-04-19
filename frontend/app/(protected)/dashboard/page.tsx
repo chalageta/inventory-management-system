@@ -161,23 +161,7 @@ const [trendRaw, setTrendRaw] = useState<any>(null);
         </Col>
       </Row>
 
-      {/* INVENTORY DISTRIBUTION */}
-      <Card title="Inventory Distribution" variant="outlined" className="shadow-sm">
-        <Row gutter={16} className="text-center">
-          <Col span={6}>
-            <Statistic title="Total Items" value={stats?.inventory?.total_items || 0} />
-          </Col>
-          <Col span={6}>
-            <Statistic title="Available" value={stats?.inventory?.available || 0} valueStyle={{ color: '#3f8600' }} />
-          </Col>
-          <Col span={6}>
-            <Statistic title="Sold" value={stats?.inventory?.sold || 0} />
-          </Col>
-          <Col span={6}>
-            <Statistic title="Reserved" value={stats?.inventory?.reserved || 0} valueStyle={{ color: '#fa8c16' }} />
-          </Col>
-        </Row>
-      </Card>
+  
 
       <Row gutter={[16, 16]}>
         {/* TRENDS */}
