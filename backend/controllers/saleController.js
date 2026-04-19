@@ -84,8 +84,8 @@ export const createSale = async (req, res) => {
         inv.product_id,
         'SOLD',            // action_type
         'available',           // from_status
-        'sold',            // to_status
-        `Sale #${reference} approved`,
+        'sold',           
+        `sold to #${customer_name}`,
         userId
       ]);
     }

@@ -63,7 +63,7 @@ export default function SalesPage() {
 const fetchInventory = async () => {
   try {
     const res = await api.get('/inventory', {
-      params: { status: 'available', all: 'true' }  // ✅ Pass all=true
+      params: { status: 'available', all: 'true' }  
     });
 
     setAvailableItems(res.data.data || []);

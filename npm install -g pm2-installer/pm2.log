@@ -1,0 +1,21 @@
+2026-04-19T08:14:16: PM2 log: ===============================================================================
+2026-04-19T08:14:16: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-04-19T08:14:16: PM2 log: Time                 : Sun Apr 19 2026 08:14:16 GMT+0300 (East Africa Time)
+2026-04-19T08:14:16: PM2 log: PM2 version          : 6.0.14
+2026-04-19T08:14:16: PM2 log: Node.js version      : 22.17.0
+2026-04-19T08:14:16: PM2 log: Current arch         : x64
+2026-04-19T08:14:16: PM2 log: PM2 home             : npm install -g pm2-installer
+2026-04-19T08:14:16: PM2 log: PM2 PID file         : C:\Users\HP\Desktop\inventory management system\npm install -g pm2-installer\pm2.pid
+2026-04-19T08:14:16: PM2 log: RPC socket file      : \\.\pipe\rpc.sock
+2026-04-19T08:14:16: PM2 log: BUS socket file      : \\.\pipe\pub.sock
+2026-04-19T08:14:16: PM2 log: Application log path : C:\Users\HP\Desktop\inventory management system\npm install -g pm2-installer\logs
+2026-04-19T08:14:16: PM2 log: Worker Interval      : 30000
+2026-04-19T08:14:16: PM2 log: Process dump file    : C:\Users\HP\Desktop\inventory management system\npm install -g pm2-installer\dump.pm2
+2026-04-19T08:14:16: PM2 log: Concurrent actions   : 2
+2026-04-19T08:14:16: PM2 log: SIGTERM timeout      : 1600
+2026-04-19T08:14:16: PM2 log: Runtime Binary       : C:\Program Files\nodejs\node.exe
+2026-04-19T08:14:16: PM2 log: ===============================================================================
+2026-04-19T08:14:16: PM2 log: App [frontend:0] starting in -fork mode-
+2026-04-19T08:14:16: PM2 log: App [backend:1] starting in -fork mode-
+2026-04-19T08:14:16: PM2 log: App [frontend:0] online
+2026-04-19T08:14:16: PM2 log: App [backend:1] online
