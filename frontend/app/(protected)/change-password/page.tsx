@@ -1,8 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Form, Input, Button, Typography, Card } from 'antd';
-import { LockOutlined, SecurityScanFilled, ShopFilled } from '@ant-design/icons';
+import { Form, Input, Button, Typography, Card, Divider } from 'antd';
+import { 
+  LockOutlined, 
+  KeyOutlined, 
+  ArrowRightOutlined
+} from '@ant-design/icons';
 import { toast } from 'sonner';
 import api from '@/lib/api';
 
@@ -15,12 +19,11 @@ export default function ChangePasswordPage() {
   const handleChangePassword = async (values: any) => {
     setLoading(true);
     try {
-      // We only send oldPassword and newPassword to the API
       await api.put('/auth/change-password', {
         oldPassword: values.oldPassword,
         newPassword: values.newPassword
       });
-      toast.success('Password changed successfully');
+      toast.success('Password updated successfully');
       form.resetFields();
     } catch (err: any) {
       toast.error(err.response?.data?.error || 'Change failed');
@@ -30,82 +33,88 @@ export default function ChangePasswordPage() {
   };
 
   return (
-    <div className="p-4 md:p-12 min-h-screen bg-slate-50 flex justify-center items-start">
-      <Card className="w-full max-w-md shadow-lg rounded-2xl border-none">
-        <div className="text-center mb-8">
-          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <SecurityScanFilled className="text-blue-600 w-8 h-8" />
-          </div>
-          <Title level={3} className="mb-1">Security Settings</Title>
-          <Text type="secondary">Keep your account secure by updating your password</Text>
-        </div>
+    <div className="p-4 md:p-12 min-h-[calc(100vh-64px)] bg-slate-50/20 flex justify-center items-center">
+      <Card 
+        className="w-full max-w-lg shadow-2xl rounded-[32px] border-none overflow-hidden bg-white/90 backdrop-blur-md"
+        styles={{ body: { padding: '48px' } }}
+      >
+        <Divider className="border-slate-100 my-10">
+          <LockOutlined className="text-slate-200" />
+        </Divider>
 
         <Form 
           form={form} 
           layout="vertical" 
           onFinish={handleChangePassword}
           requiredMark={false}
+          className="space-y-6"
         >
           <Form.Item
             name="oldPassword"
-            label={<span className="font-semibold text-slate-600">Current Password</span>}
-            rules={[{ required: true, message: 'Current password is required' }]}
+            label={<span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Current Access Key</span>}
+            rules={[{ required: true, message: 'Please enter your current password' }]}
           >
             <Input.Password 
-              prefix={<LockOutlined className="text-slate-400 mr-2" />} 
+              prefix={<LockOutlined className="text-primary/40 mr-2" />} 
               size="large" 
-              placeholder="••••••••"
+              placeholder="Enter current password"
+              className="rounded-2xl border-slate-100 bg-slate-50/50 hover:bg-white focus:bg-white h-14 px-4 transition-all"
             />
           </Form.Item>
 
           <Form.Item
             name="newPassword"
-            label={<span className="font-semibold text-slate-600">New Password</span>}
+            label={<span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">New Security Key</span>}
             rules={[
               { required: true, message: 'New password is required' },
-              { min: 6, message: 'Must be at least 6 characters' },
+              { min: 6, message: 'Password must be at least 6 characters' },
             ]}
           >
             <Input.Password 
-              prefix={<LockOutlined className="text-slate-400 mr-2" />} 
+              prefix={<LockOutlined className="text-primary/40 mr-2" />} 
               size="large" 
-              placeholder="••••••••"
+              placeholder="Min. 6 alphanumeric chars"
+              className="rounded-2xl border-slate-100 bg-slate-50/50 hover:bg-white focus:bg-white h-14 px-4 transition-all"
             />
           </Form.Item>
 
           <Form.Item
             name="confirmPassword"
-            label={<span className="font-semibold text-slate-600">Confirm New Password</span>}
+            label={<span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Confirm Authorization</span>}
             dependencies={['newPassword']}
             rules={[
-              { required: true, message: 'Please confirm your password' },
+              { required: true, message: 'Please confirm your new password' },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('newPassword') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Passwords do not match'));
+                  return Promise.reject(new Error('Verification mismatch'));
                 },
               }),
             ]}
           >
             <Input.Password 
-              prefix={<LockOutlined className="text-slate-400 mr-2" />} 
+              prefix={<LockOutlined className="text-primary/40 mr-2" />} 
               size="large" 
-              placeholder="••••••••"
+              placeholder="Repeat your new security key"
+              className="rounded-2xl border-slate-100 bg-slate-50/50 hover:bg-white focus:bg-white h-14 px-4 transition-all"
             />
           </Form.Item>
 
-          <Button 
-            type="primary" 
-            htmlType="submit" 
-            block 
-            loading={loading} 
-            size="large"
-            className="h-12 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold mt-4"
-          >
-            Update Password
-          </Button>
+          <div className="pt-8">
+            <Button 
+              type="primary" 
+              htmlType="submit" 
+              block 
+              loading={loading} 
+              size="large"
+              icon={<ArrowRightOutlined />}
+              className="h-16 bg-gradient-to-r from-primary to-indigo-600 hover:from-primary hover:to-indigo-700 rounded-3xl font-black text-lg shadow-xl shadow-primary/40 border-none transition-all active:scale-[0.98]"
+            >
+              Verify & Update
+            </Button>
+          </div>
         </Form>
       </Card>
     </div>

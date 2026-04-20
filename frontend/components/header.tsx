@@ -71,6 +71,15 @@ const imageUrl =
     },
   ];
 
+  const getInitials = (name: string) => {
+    if (!name) return "??";
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return parts[0].substring(0, 2).toUpperCase();
+  };
+
   return (
     <header className="sticky top-0 z-50 flex h-16 items-center justify-between bg-white/80 backdrop-blur border-b px-6">
 
@@ -90,7 +99,7 @@ const imageUrl =
           </Sheet>
         </div>
 
-        <div className="lg:hidden font-bold text-blue-600">
+        <div className="lg:hidden font-bold text-primary">
           Gilando IMS
         </div>
       </div>
@@ -110,7 +119,7 @@ const imageUrl =
                   {user?.name || "User"}
                 </span>
 
-                <span className="text-[10px] font-bold text-blue-500 uppercase flex items-center gap-1">
+                <span className="text-[10px] font-bold text-primary uppercase flex items-center gap-1">
                   <ShieldCheck className="h-3 w-3" />
                   {user?.role_name || "Guest"}
                 </span>
@@ -118,12 +127,19 @@ const imageUrl =
 
               {/* AVATAR */}
               <div className="relative">
-             <div className="h-10 w-10 rounded-full overflow-hidden border">
-  <img
-    src={`${BASE_URL}${user?.image}`}
-    className="h-full w-full"
-  />
-</div>
+                <div className="h-10 w-10 rounded-full overflow-hidden border flex items-center justify-center bg-blue-50">
+                  {imageUrl ? (
+                    <img
+                      src={imageUrl}
+                      alt={user?.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-sm font-bold text-primary">
+                      {getInitials(user?.name || "")}
+                    </span>
+                  )}
+                </div>
 
                 <div className="absolute -bottom-1 -right-1 bg-white rounded-full border p-0.5">
                   <ChevronDown className="h-3 w-3 text-slate-500" />

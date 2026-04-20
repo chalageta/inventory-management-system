@@ -109,3 +109,971 @@
 ◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 ◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+[2026-04-20 16:49:34] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+[2026-04-20 16:52:39] DEBUG Sending mail using SMTP/8.0.5[client:8.0.5]
+[2026-04-20 16:52:39] DEBUG [Q73yvcupIAs] Resolved s918.lon1.mysecurecloudhost.com as 192.250.239.60 [cache miss]
+[2026-04-20 16:52:40] INFO  [Q73yvcupIAs] Secure connection established to 192.250.239.60:465
+[2026-04-20 16:52:40] DEBUG [Q73yvcupIAs] S: 220-s918.lon1.mysecurecloudhost.com ESMTP Exim 4.99.1 #2 Mon, 20 Apr 2026 16:52:42 +0000 
+[2026-04-20 16:52:40] DEBUG [Q73yvcupIAs] S: 220-We do not authorize the use of this system to transport unsolicited, 
+[2026-04-20 16:52:40] DEBUG [Q73yvcupIAs] S: 220 and/or bulk e-mail.
+[2026-04-20 16:52:40] DEBUG [Q73yvcupIAs] C: EHLO [127.0.0.1]
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-s918.lon1.mysecurecloudhost.com Hello [127.0.0.1] [196.189.27.51]
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-SIZE 104857600
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-LIMITS MAILMAX=1000 RCPTMAX=50000
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-8BITMIME
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-PIPELINING
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-PIPECONNECT
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250-AUTH PLAIN LOGIN
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] S: 250 HELP
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] SMTP handshake finished
+[2026-04-20 16:52:42] DEBUG [Q73yvcupIAs] C: AUTH PLAIN AGluZm9AZW1waGFybWFjZXV0aWNhbC5jb20ALyogc2VjcmV0ICov
+[2026-04-20 16:52:43] DEBUG [Q73yvcupIAs] S: 235 Authentication succeeded
+[2026-04-20 16:52:43] INFO  [Q73yvcupIAs] User "info@empharmaceutical.com" authenticated
+[2026-04-20 16:52:43] INFO  Sending message <15bf4ce1-c123-fd18-ceed-d8ab258c8098@empharmaceutical.com> to <chalageta21@gmail.com>
+[2026-04-20 16:52:43] DEBUG [Q73yvcupIAs] C: MAIL FROM:<info@empharmaceutical.com>
+[2026-04-20 16:52:44] DEBUG [Q73yvcupIAs] S: 250 OK
+[2026-04-20 16:52:44] DEBUG [Q73yvcupIAs] C: RCPT TO:<chalageta21@gmail.com>
+[2026-04-20 16:52:44] DEBUG [Q73yvcupIAs] S: 250 Accepted
+[2026-04-20 16:52:44] DEBUG [Q73yvcupIAs] C: DATA
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] S: 354 Enter message, ending with "." on a line by itself
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] From: Inventory System <info@empharmaceutical.com>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] To: chalageta21@gmail.com
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Subject: =?UTF-8?Q?=E2=9A=A0=EF=B8=8F_Low_Stock_Alert_=283_?=
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]  =?UTF-8?Q?items=29?=
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Message-ID: <15bf4ce1-c123-fd18-ceed-d8ab258c8098@empharmaceutical.com>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] X-Priority: 1 (Highest)
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] X-Msmail-Priority: High
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Importance: High
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Content-Transfer-Encoding: quoted-printable
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Date: Mon, 20 Apr 2026 16:52:39 +0000
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] MIME-Version: 1.0
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] Content-Type: text/html; charset=utf-8
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] 
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] 
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <div style=3D"font-family:Arial,sans-serif;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <h2>=E2=9A=A0=EF=B8=8F Low Stock Alert</h2>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <p>3 product(s) need attention</p>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]        =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <p>=E2=9A=A0=EF=B8=8F The following products are below minimum stock =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] level:</p>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] 
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0"=
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]  style=3D"border-collapse:collapse; margin-top:20px;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <thead>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           <tr style=3D"background:#f1f5f9;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]             <th =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] style=3D"padding:10px; text-align:left;">Product</th>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]             <th style=3D"padding:10px; text-align:center;">Available</th>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]             <th style=3D"padding:10px; text-align:center;">Min Stock</th>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           </tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </thead>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <tbody>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]          =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid #e2e8f0;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           Digital Blood Pressure Monitor
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           0
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           2
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]    =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] #e2e8f0;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           Patient Monitor (Multi-Parameter)
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           0
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           6
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]    =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] #e2e8f0;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           Ultrasound Scanner
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           3
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         <td =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] style=3D"padding:10px; border-bottom:1px solid #e2e8f0; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] text-align:center;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]           11
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </td>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </tr>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]    =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         </tbody>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </table>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] 
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       <p style=3D"margin-top:20px; =
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] font-weight:bold;">
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]         Please restock these items as soon as possible.
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </p>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]    =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]       </div>
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs]    =20
+[2026-04-20 16:52:45] DEBUG [Q73yvcupIAs] .
+[2026-04-20 16:52:45] INFO  [Q73yvcupIAs] <2595 bytes encoded mime message (source size 2531 bytes)>
+[2026-04-20 16:52:47] DEBUG [Q73yvcupIAs] S: 250 OK id=1wErrb-00000003cmd-13uX
+[2026-04-20 16:52:47] DEBUG [Q73yvcupIAs] Closing connection to the server using "end"
+📧 Low stock email sent: <15bf4ce1-c123-fd18-ceed-d8ab258c8098@empharmaceutical.com>
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 17:00:57] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+[2026-04-20 17:01:36] DEBUG Sending mail using SMTP/8.0.5[client:8.0.5]
+[2026-04-20 17:01:43] DEBUG [RzvuPhgK6rw] Resolved s918.lon1.mysecurecloudhost.com as 192.250.239.60 [cache miss]
+[2026-04-20 17:01:44] INFO  [RzvuPhgK6rw] Secure connection established to 192.250.239.60:465
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 220-s918.lon1.mysecurecloudhost.com ESMTP Exim 4.99.1 #2 Mon, 20 Apr 2026 17:01:46 +0000 
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 220-We do not authorize the use of this system to transport unsolicited, 
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 220 and/or bulk e-mail.
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] C: EHLO [127.0.0.1]
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-s918.lon1.mysecurecloudhost.com Hello [127.0.0.1] [196.189.27.51]
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-SIZE 104857600
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-LIMITS MAILMAX=1000 RCPTMAX=50000
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-8BITMIME
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-PIPELINING
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-PIPECONNECT
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250-AUTH PLAIN LOGIN
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250 HELP
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] SMTP handshake finished
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] C: AUTH PLAIN AGluZm9AZW1waGFybWFjZXV0aWNhbC5jb20ALyogc2VjcmV0ICov
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 235 Authentication succeeded
+[2026-04-20 17:01:45] INFO  [RzvuPhgK6rw] User "info@empharmaceutical.com" authenticated
+[2026-04-20 17:01:45] INFO  Sending message <2adc9d11-4888-1beb-0a6b-be99ffe0bb3a@empharmaceutical.com> to <chalageta21@gmail.com>
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] C: MAIL FROM:<info@empharmaceutical.com>
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] S: 250 OK
+[2026-04-20 17:01:45] DEBUG [RzvuPhgK6rw] C: RCPT TO:<chalageta21@gmail.com>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] S: 250 Accepted
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] C: DATA
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] S: 354 Enter message, ending with "." on a line by itself
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] From: Inventory System <info@empharmaceutical.com>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] To: chalageta21@gmail.com
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Subject: =?UTF-8?Q?=E2=9A=A0=EF=B8=8F_Low_Stock_Alert=3A_3_?=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  =?UTF-8?Q?items_require_attention?=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Message-ID: <2adc9d11-4888-1beb-0a6b-be99ffe0bb3a@empharmaceutical.com>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] X-Priority: 1 (Highest)
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] X-Msmail-Priority: High
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Importance: High
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Content-Transfer-Encoding: quoted-printable
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Date: Mon, 20 Apr 2026 17:01:36 +0000
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] MIME-Version: 1.0
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Content-Type: text/html; charset=utf-8
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       <!DOCTYPE html>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       <html>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       <head>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <meta =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] charset=3D"utf-8">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <meta name=3D"viewport" content=3D"width=3Ddevic=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] e-width, initial-scale=3D1.0">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       </head>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       <body style=3D"margin: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] cellpadding=3D"0">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <td align=3D"center" =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"padding: 40px 10px;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]               <table width=3D"600" =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width: 600px;=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  background-color: #ffffff; border-radius: 12px; overflow: hidden; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <!-- =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Header -->
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   <td =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"background-color: #4f46e5; padding: 32px; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <div style=3D"background-color: rgba(255, 255, 255, 0.=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 2); width: 48px; height: 48px; border-radius: 12px; display: inline-block; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] line-height: 48px; margin-bottom: 16px;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <span =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"font-size: 24px;">=E2=9A=A0=EF=B8=8F</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <h1 style=3D"margin: 0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: -0.=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 025em;">Low Stock Alert</h1>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <p style=3D"margin: 8px 0 =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 0; color: #e0e7ff; font-size: 16px;">Action required for 3 product(s)</p>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <!-- Body -->
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   <td =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"padding: 32px;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <p style=3D"margin: 0 0 24px;=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  color: #475569; font-size: 15px; line-height: 1.5;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       The following items have fallen below their minimum =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] stock thresholds. Please review and restock these items to avoid service =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] disruption.
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </p>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                    =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] cellpadding=3D"0" style=3D"border: 1px solid #e2e8f0; border-radius: 8px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] overflow: hidden;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <thead>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                         =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] <tr style=3D"background-color: #f1f5f9;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                           <th =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"padding: 12px 16px; text-align: left; font-size: 11px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] font-weight: 700; color: #64748b; text-transform: uppercase;">Product</th>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                           <th style=3D"padding: 12px 16px; text-align: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] center; font-size: 11px; font-weight: 700; color: #64748b; text-transform: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] uppercase;">Stock</th>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                           <th style=3D"padding: 12px=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  16px; text-align: center; font-size: 11px; font-weight: 700; color: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] #64748b; text-transform: uppercase;">Min</th>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                           <th=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  style=3D"padding: 12px 16px; text-align: right; font-size: 11px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] font-weight: 700; color: #64748b; text-transform: uppercase;">Level</th>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                         </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       </thead>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <tbody>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                        =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 14px;">Digital Blood Pressure Monitor</div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] color: #475569;">0</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"color: #64748b;">2</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-align: right;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]               CRITICAL
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             </span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]      =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 14px;">Patient Monitor (Multi-Parameter)</div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] color: #475569;">0</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"color: #64748b;">6</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-align: right;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]               CRITICAL
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             </span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]      =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 14px;">Ultrasound Scanner</div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"font-family: ui-monospace, =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] color: #475569;">1</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"color: #64748b;">11</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-align: right;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]               CRITICAL
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             </span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]      =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       </tbody>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </table>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                    =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <!-- CTA -->
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <div =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] style=3D"margin-top: 32px; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <a =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] href=3D"#/inventory" style=3D"background-color: #4f46e5; color: #ffffff; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight:=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  600; font-size: 15px; display: inline-block;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                         =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Manage Inventory
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       </a>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <!-- Footer -->
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 <tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   <td style=3D"padding: 24px 32px; background-color: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <p style=3D"margin: 0; font-size: 12px; color: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] #94a3b8;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       This is an automated notification from =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] your Inventory Management System.
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </p>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     <div style=3D"margin-top: 12px;">
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <a href=3D"#" style=3D"color: #6366f1; =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] text-decoration: none; font-size: 12px; font-weight: 600;">System =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] Settings</a>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <span style=3D"color: #cbd5e1; margin: 0=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  8px;">&bull;</span>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                       <a href=3D"#" style=3D"color: =
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] #6366f1; text-decoration: none; font-size: 12px; font-weight: 600;">Support=
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]  Center</a>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                     </div>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                   </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]                 </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]               </table>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]             </td>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]           </tr>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]         </table>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       </body>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]       </html>
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw]    =20
+[2026-04-20 17:01:46] DEBUG [RzvuPhgK6rw] .
+[2026-04-20 17:01:46] INFO  [RzvuPhgK6rw] <8215 bytes encoded mime message (source size 8089 bytes)>
+[2026-04-20 17:01:49] DEBUG [RzvuPhgK6rw] S: 250 OK id=1wEs0L-0000000405r-00Km
+[2026-04-20 17:01:49] DEBUG [RzvuPhgK6rw] Closing connection to the server using "end"
+📧 Low stock email sent: <2adc9d11-4888-1beb-0a6b-be99ffe0bb3a@empharmaceutical.com>
+[2026-04-20 17:12:16] DEBUG Sending mail using SMTP/8.0.5[client:8.0.5]
+[2026-04-20 17:12:27] DEBUG [VgLeDIiOPHI] Resolved s918.lon1.mysecurecloudhost.com as 192.250.239.60 [cache miss]
+[2026-04-20 17:12:30] INFO  [VgLeDIiOPHI] Secure connection established to 192.250.239.60:465
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 220-s918.lon1.mysecurecloudhost.com ESMTP Exim 4.99.1 #2 Mon, 20 Apr 2026 17:12:30 +0000 
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 220-We do not authorize the use of this system to transport unsolicited, 
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 220 and/or bulk e-mail.
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] C: EHLO [127.0.0.1]
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-s918.lon1.mysecurecloudhost.com Hello [127.0.0.1] [196.189.27.51]
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-SIZE 104857600
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-LIMITS MAILMAX=1000 RCPTMAX=50000
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-8BITMIME
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-PIPELINING
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-PIPECONNECT
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250-AUTH PLAIN LOGIN
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 250 HELP
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] SMTP handshake finished
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] C: AUTH PLAIN AGluZm9AZW1waGFybWFjZXV0aWNhbC5jb20ALyogc2VjcmV0ICov
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] S: 235 Authentication succeeded
+[2026-04-20 17:12:32] INFO  [VgLeDIiOPHI] User "info@empharmaceutical.com" authenticated
+[2026-04-20 17:12:32] INFO  Sending message <208376bf-ace3-f0a9-3c69-a30aac67b8ba@empharmaceutical.com> to <chalageta21@gmail.com>
+[2026-04-20 17:12:32] DEBUG [VgLeDIiOPHI] C: MAIL FROM:<info@empharmaceutical.com>
+[2026-04-20 17:12:33] DEBUG [VgLeDIiOPHI] S: 250 OK
+[2026-04-20 17:12:33] DEBUG [VgLeDIiOPHI] C: RCPT TO:<chalageta21@gmail.com>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] S: 250 Accepted
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] C: DATA
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] S: 354 Enter message, ending with "." on a line by itself
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] From: Inventory System <info@empharmaceutical.com>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] To: chalageta21@gmail.com
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Subject: =?UTF-8?Q?=E2=9A=A0=EF=B8=8F_Low_Stock_Alert=3A_3_?=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  =?UTF-8?Q?items_require_attention?=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Message-ID: <208376bf-ace3-f0a9-3c69-a30aac67b8ba@empharmaceutical.com>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] X-Priority: 1 (Highest)
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] X-Msmail-Priority: High
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Importance: High
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Content-Transfer-Encoding: quoted-printable
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Date: Mon, 20 Apr 2026 17:12:16 +0000
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] MIME-Version: 1.0
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Content-Type: text/html; charset=utf-8
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       <!DOCTYPE html>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       <html>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       <head>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <meta =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] charset=3D"utf-8">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <meta name=3D"viewport" content=3D"width=3Ddevic=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] e-width, initial-scale=3D1.0">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       </head>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       <body style=3D"margin: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] cellpadding=3D"0">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <td align=3D"center" =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"padding: 40px 10px;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]               <table width=3D"600" =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width: 600px;=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  background-color: #ffffff; border-radius: 12px; overflow: hidden; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <!-- =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Header -->
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   <td =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"background-color: #4f46e5; padding: 32px; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <div style=3D"background-color: rgba(255, 255, 255, 0.=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 2); width: 48px; height: 48px; border-radius: 12px; display: inline-block; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] line-height: 48px; margin-bottom: 16px;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <span =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"font-size: 24px;">=E2=9A=A0=EF=B8=8F</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <h1 style=3D"margin: 0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: -0.=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 025em;">Low Stock Alert</h1>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <p style=3D"margin: 8px 0 =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 0; color: #e0e7ff; font-size: 16px;">Action required for 3 product(s)</p>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <!-- Body -->
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   <td =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"padding: 32px;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <p style=3D"margin: 0 0 24px;=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  color: #475569; font-size: 15px; line-height: 1.5;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       The following items have fallen below their minimum =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] stock thresholds. Please review and restock these items to avoid service =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] disruption.
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </p>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                    =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] cellpadding=3D"0" style=3D"border: 1px solid #e2e8f0; border-radius: 8px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] overflow: hidden;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <thead>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                         =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] <tr style=3D"background-color: #f1f5f9;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                           <th =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"padding: 12px 16px; text-align: left; font-size: 11px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] font-weight: 700; color: #64748b; text-transform: uppercase;">Product</th>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                           <th style=3D"padding: 12px 16px; text-align: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] center; font-size: 11px; font-weight: 700; color: #64748b; text-transform: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] uppercase;">Stock</th>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                           <th style=3D"padding: 12px=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  16px; text-align: center; font-size: 11px; font-weight: 700; color: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] #64748b; text-transform: uppercase;">Min</th>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                           <th=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  style=3D"padding: 12px 16px; text-align: right; font-size: 11px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] font-weight: 700; color: #64748b; text-transform: uppercase;">Level</th>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                         </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       </thead>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <tbody>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                        =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 14px;">Digital Blood Pressure Monitor</div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] color: #475569;">0</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"color: #64748b;">2</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-align: right;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]               CRITICAL
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             </span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]      =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 14px;">Patient Monitor (Multi-Parameter)</div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] color: #475569;">2</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"color: #64748b;">6</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-align: right;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  #fef3c7; color: #d97706;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]               LOW
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             </span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]      =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 14px;">Ultrasound Scanner</div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"font-family: ui-monospace, =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] color: #475569;">2</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"color: #64748b;">11</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-align: right;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]               CRITICAL
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             </span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]      =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       </tbody>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </table>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                    =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <!-- CTA -->
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <div =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] style=3D"margin-top: 32px; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <a =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] href=3D"#/inventory" style=3D"background-color: #4f46e5; color: #ffffff; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight:=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  600; font-size: 15px; display: inline-block;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                         =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Manage Inventory
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       </a>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <!-- Footer -->
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 <tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   <td style=3D"padding: 24px 32px; background-color: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <p style=3D"margin: 0; font-size: 12px; color: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] #94a3b8;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       This is an automated notification from =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] your Inventory Management System.
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </p>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     <div style=3D"margin-top: 12px;">
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <a href=3D"#" style=3D"color: #6366f1; =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] text-decoration: none; font-size: 12px; font-weight: 600;">System =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] Settings</a>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <span style=3D"color: #cbd5e1; margin: 0=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  8px;">&bull;</span>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                       <a href=3D"#" style=3D"color: =
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] #6366f1; text-decoration: none; font-size: 12px; font-weight: 600;">Support=
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]  Center</a>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                     </div>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                   </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]                 </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]               </table>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]             </td>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]           </tr>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]         </table>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       </body>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]       </html>
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI]    =20
+[2026-04-20 17:12:34] DEBUG [VgLeDIiOPHI] .
+[2026-04-20 17:12:34] INFO  [VgLeDIiOPHI] <8210 bytes encoded mime message (source size 8084 bytes)>
+[2026-04-20 17:12:36] DEBUG [VgLeDIiOPHI] S: 250 OK id=1wEsAm-00000004RuD-3H0e
+[2026-04-20 17:12:36] DEBUG [VgLeDIiOPHI] Closing connection to the server using "end"
+📧 Low stock email sent: <208376bf-ace3-f0a9-3c69-a30aac67b8ba@empharmaceutical.com>
+[2026-04-20 17:14:00] DEBUG Sending mail using SMTP/8.0.5[client:8.0.5]
+[2026-04-20 17:14:00] DEBUG [NFXE10UPIv0] Resolved s918.lon1.mysecurecloudhost.com as 192.250.239.60 [cache hit]
+[2026-04-20 17:14:00] INFO  [NFXE10UPIv0] Secure connection established to 192.250.239.60:465
+[2026-04-20 17:14:00] DEBUG [NFXE10UPIv0] S: 220-s918.lon1.mysecurecloudhost.com ESMTP Exim 4.99.1 #2 Mon, 20 Apr 2026 17:14:02 +0000 
+[2026-04-20 17:14:00] DEBUG [NFXE10UPIv0] S: 220-We do not authorize the use of this system to transport unsolicited, 
+[2026-04-20 17:14:00] DEBUG [NFXE10UPIv0] S: 220 and/or bulk e-mail.
+[2026-04-20 17:14:00] DEBUG [NFXE10UPIv0] C: EHLO [127.0.0.1]
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-s918.lon1.mysecurecloudhost.com Hello [127.0.0.1] [196.189.27.51]
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-SIZE 104857600
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-LIMITS MAILMAX=1000 RCPTMAX=50000
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-8BITMIME
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-PIPELINING
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-PIPECONNECT
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250-AUTH PLAIN LOGIN
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250 HELP
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] SMTP handshake finished
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] C: AUTH PLAIN AGluZm9AZW1waGFybWFjZXV0aWNhbC5jb20ALyogc2VjcmV0ICov
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 235 Authentication succeeded
+[2026-04-20 17:14:01] INFO  [NFXE10UPIv0] User "info@empharmaceutical.com" authenticated
+[2026-04-20 17:14:01] INFO  Sending message <f1718230-c5c9-1a5c-e45b-3e2e2043b928@empharmaceutical.com> to <chalageta21@gmail.com>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] C: MAIL FROM:<info@empharmaceutical.com>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250 OK
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] C: RCPT TO:<chalageta21@gmail.com>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 250 Accepted
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] C: DATA
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] S: 354 Enter message, ending with "." on a line by itself
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] From: Inventory System <info@empharmaceutical.com>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] To: chalageta21@gmail.com
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Subject: =?UTF-8?Q?=E2=9A=A0=EF=B8=8F_Low_Stock_Alert=3A_3_?=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  =?UTF-8?Q?items_require_attention?=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Message-ID: <f1718230-c5c9-1a5c-e45b-3e2e2043b928@empharmaceutical.com>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] X-Priority: 1 (Highest)
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] X-Msmail-Priority: High
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Importance: High
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Content-Transfer-Encoding: quoted-printable
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Date: Mon, 20 Apr 2026 17:14:00 +0000
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] MIME-Version: 1.0
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Content-Type: text/html; charset=utf-8
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       <!DOCTYPE html>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       <html>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       <head>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <meta =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] charset=3D"utf-8">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <meta name=3D"viewport" content=3D"width=3Ddevic=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] e-width, initial-scale=3D1.0">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       </head>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       <body style=3D"margin: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] cellpadding=3D"0">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <td align=3D"center" =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"padding: 40px 10px;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]               <table width=3D"600" =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width: 600px;=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  background-color: #ffffff; border-radius: 12px; overflow: hidden; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <!-- =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Header -->
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   <td =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"background-color: #4f46e5; padding: 32px; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <div style=3D"background-color: rgba(255, 255, 255, 0.=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 2); width: 48px; height: 48px; border-radius: 12px; display: inline-block; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] line-height: 48px; margin-bottom: 16px;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <span =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"font-size: 24px;">=E2=9A=A0=EF=B8=8F</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <h1 style=3D"margin: 0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: -0.=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 025em;">Low Stock Alert</h1>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <p style=3D"margin: 8px 0 =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 0; color: #e0e7ff; font-size: 16px;">Action required for 3 product(s)</p>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <!-- Body -->
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   <td =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"padding: 32px;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <p style=3D"margin: 0 0 24px;=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  color: #475569; font-size: 15px; line-height: 1.5;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       The following items have fallen below their minimum =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] stock thresholds. Please review and restock these items to avoid service =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] disruption.
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </p>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                    =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] cellpadding=3D"0" style=3D"border: 1px solid #e2e8f0; border-radius: 8px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] overflow: hidden;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <thead>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                         =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] <tr style=3D"background-color: #f1f5f9;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                           <th =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"padding: 12px 16px; text-align: left; font-size: 11px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] font-weight: 700; color: #64748b; text-transform: uppercase;">Product</th>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                           <th style=3D"padding: 12px 16px; text-align: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] center; font-size: 11px; font-weight: 700; color: #64748b; text-transform: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] uppercase;">Stock</th>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                           <th style=3D"padding: 12px=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  16px; text-align: center; font-size: 11px; font-weight: 700; color: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] #64748b; text-transform: uppercase;">Min</th>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                           <th=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  style=3D"padding: 12px 16px; text-align: right; font-size: 11px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] font-weight: 700; color: #64748b; text-transform: uppercase;">Level</th>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                         </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       </thead>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <tbody>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                        =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 14px;">Digital Blood Pressure Monitor</div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] color: #475569;">0</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"color: #64748b;">2</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-align: right;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  #fee2e2; color: #dc2626;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]               CRITICAL
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             </span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]      =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 14px;">Patient Monitor (Multi-Parameter)</div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"font-family: ui-monospace,=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] color: #475569;">2</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"color: #64748b;">6</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-align: right;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  #fef3c7; color: #d97706;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]               LOW
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             </span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]      =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <div style=3D"font-weight: 600; color: #1e293b; font-size: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 14px;">Ultrasound Scanner</div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"font-family: ui-monospace, =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 700; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] color: #475569;">1</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"color: #64748b;">3</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           <td style=3D"padding: 16px; border-bottom: 1px solid #e2e8f0; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-align: right;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             <span style=3D"padding: 4px 8px; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] border-radius: 9999px; font-size: 11px; font-weight: 700; background-color:=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  #fef3c7; color: #d97706;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]               LOW
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             </span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]      =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       </tbody>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </table>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                    =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <!-- CTA -->
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <div =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] style=3D"margin-top: 32px; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <a =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] href=3D"#/inventory" style=3D"background-color: #4f46e5; color: #ffffff; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight:=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  600; font-size: 15px; display: inline-block;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                         =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Manage Inventory
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       </a>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <!-- Footer -->
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 <tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   <td style=3D"padding: 24px 32px; background-color: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <p style=3D"margin: 0; font-size: 12px; color: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] #94a3b8;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       This is an automated notification from =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] your Inventory Management System.
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </p>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     <div style=3D"margin-top: 12px;">
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <a href=3D"#" style=3D"color: #6366f1; =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] text-decoration: none; font-size: 12px; font-weight: 600;">System =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] Settings</a>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <span style=3D"color: #cbd5e1; margin: 0=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  8px;">&bull;</span>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                       <a href=3D"#" style=3D"color: =
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] #6366f1; text-decoration: none; font-size: 12px; font-weight: 600;">Support=
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]  Center</a>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                     </div>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                   </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]                 </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]               </table>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]             </td>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]           </tr>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]         </table>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       </body>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]       </html>
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0]    =20
+[2026-04-20 17:14:01] DEBUG [NFXE10UPIv0] .
+[2026-04-20 17:14:01] INFO  [NFXE10UPIv0] <8204 bytes encoded mime message (source size 8078 bytes)>
+[2026-04-20 17:14:02] DEBUG [NFXE10UPIv0] S: 250 OK id=1wEsCC-00000004Txm-188z
+[2026-04-20 17:14:02] DEBUG [NFXE10UPIv0] Closing connection to the server using "end"
+📧 Low stock email sent: <f1718230-c5c9-1a5c-e45b-3e2e2043b928@empharmaceutical.com>
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-20 18:05:10] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-20 18:12:14] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 18:15:01] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-20 18:31:37] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-20 18:41:17] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-20 18:49:22] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: false
+}
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: false
+}
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: true
+}
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 18:51:39] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: true
+}
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: false
+}
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: false
+}
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-20 18:54:38] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+Update Profile Request: {
+  bodyKeys: [ 'name', 'email', 'phone', 'gender', 'address', 'bio' ],
+  hasFile: false
+}
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 18:58:37] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-20 19:01:06] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-20 19:02:31] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 19:06:08] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-20 19:10:25] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000

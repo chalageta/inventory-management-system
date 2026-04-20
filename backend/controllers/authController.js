@@ -472,19 +472,20 @@ export const me = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const userId = req.user.id;
-
     const body = req.body || {};
-
+    
+    // Debug log to trace image uploads
+    console.log("Update Profile Request:", { bodyKeys: Object.keys(body), hasFile: !!req.file });
+    
     const name = body.name ?? null;
-    const email = body.email ?? null;
     const phone = body.phone ?? null;
     const gender = body.gender ?? null;
     const address = body.address ?? null;
     const bio = body.bio ?? null;
 
-    // Get current user
+    // Get current user to handle image deletion if new one uploaded
     const [rows] = await db.execute(
-      `SELECT * FROM users WHERE id = ?`,
+      `SELECT image FROM users WHERE id = ?`,
       [userId]
     );
 
@@ -492,24 +493,38 @@ export const updateProfile = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const user = rows[0];
+    const existingUser = rows[0];
+    let imagePath = existingUser?.image || null;
+
+    // Handle new image upload
+    if (req.file) {
+      imagePath = `/uploads/profile/${req.file.filename}`;
+
+      // Delete old image file
+      if (existingUser?.image) {
+        const oldPath = `.${existingUser.image}`;
+        if (fs.existsSync(oldPath)) {
+          fs.unlinkSync(oldPath);
+        }
+      }
+    }
 
     await db.execute(
       `UPDATE users SET
         name = COALESCE(?, name),
-        email = COALESCE(?, email),
         phone = ?,
         gender = ?,
         address = ?,
-        bio = ?
+        bio = ?,
+        image = ?
       WHERE id = ?`,
       [
         name,
-        email,
         phone,
         gender,
         address,
         bio,
+        imagePath,
         userId
       ]
     );
@@ -521,6 +536,7 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 export const changePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;

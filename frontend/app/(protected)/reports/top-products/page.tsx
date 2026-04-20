@@ -55,7 +55,7 @@ export default function TopProductsReport() {
       key: 'name',
       render: (text: string, record: any) => (
         <div>
-          <div className="font-bold text-blue-600">{text}</div>
+          <div className="font-bold text-primary">{text}</div>
           <small className="text-gray-400">Barcode: {record.barcode}</small>
         </div>
       ),

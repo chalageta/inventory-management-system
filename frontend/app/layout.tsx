@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     'A modern inventory management system for tracking stock, sales, and purchases efficiently.',
   icons: {
-    icon: '/images/logo/gilando_logo.webp', // ✅ logo as favicon
+    icon: '/images/logo/gilando_logo.webp', 
   },
   openGraph: {
     title: 'Inventory Management System',
     description:
       'Manage your inventory, sales, and purchases in one unified platform.',
-    images: ['/images/logo/gilando_logo.webp'], // ✅ social preview logo
+    images: ['/images/logo/gilando_logo.webp'],
   },
   twitter: {
     card: 'summary_large_image',

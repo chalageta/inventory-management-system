@@ -90,10 +90,6 @@ export default function RoleManagementPage() {
     return sorted;
   }, [allPermissionsGrouped, selectedPermissionIds]);
 
-  // ================= 3. MODULE UTILS =================
-  const getModulePermissions = (moduleName: string): Permission[] => {
-    return allPermissionsGrouped[moduleName] || [];
-  };
 
   const isModuleFullySelected = (modulePerms: Permission[]): boolean => {
     return modulePerms.length > 0 && 
@@ -124,8 +120,14 @@ export default function RoleManagementPage() {
     }
   };
 
-  const handlePermissionChange = (checkedValues: CheckboxValueType[]) => {
-    setSelectedPermissionIds(checkedValues as number[]);
+  const handlePermissionChange = (checkedValues: CheckboxValueType[], modulePerms: Permission[]) => {
+    const moduleIds = modulePerms.map(p => p.id);
+    setSelectedPermissionIds(prev => {
+      // Filter out all permissions that belong to this module first
+      const otherModuleIds = prev.filter(id => !moduleIds.includes(id));
+      // Then add the new selections from this module
+      return [...otherModuleIds, ...(checkedValues as number[])];
+    });
   };
 
   // ================= 4. OPEN MODAL =================
@@ -202,7 +204,7 @@ export default function RoleManagementPage() {
         header={
           <div className="flex items-center justify-between w-full pr-4">
             <div className="flex items-center gap-2">
-              <FolderOpenOutlined className="text-blue-500" />
+              <FolderOpenOutlined className="text-primary" />
               <Text strong className="uppercase text-sm">
                 {moduleName.replace(/-/g, ' ')}
               </Text>
@@ -235,7 +237,7 @@ export default function RoleManagementPage() {
         <Checkbox.Group
           className="w-full"
           value={selectedPermissionIds}
-          onChange={handlePermissionChange}
+          onChange={(vals) => handlePermissionChange(vals, perms)}
         >
           <Row gutter={[12, 12]}>
             {perms.map((perm) => {
@@ -246,20 +248,20 @@ export default function RoleManagementPage() {
                     size="small"
                     className={`cursor-pointer transition-all ${
                       isChecked 
-                        ? 'border-blue-500 bg-blue-50 shadow-sm' 
+                        ? 'border-primary bg-blue-50 shadow-sm' 
                         : 'border-slate-200 hover:border-blue-300'
                     }`}
                     onClick={() => {
-                      const next = isChecked
-                        ? selectedPermissionIds.filter(id => id !== perm.id)
-                        : [...selectedPermissionIds, perm.id];
-                      setSelectedPermissionIds(next);
+                      setSelectedPermissionIds(prev => 
+                        isChecked
+                          ? prev.filter(id => id !== perm.id)
+                          : [...prev, perm.id]
+                      );
                     }}
                   >
                     <div className="flex items-start gap-2">
                       <Checkbox
                         value={perm.id}
-                        checked={isChecked}
                         onClick={(e) => e.stopPropagation()}
                         className="mt-0.5"
                       />
@@ -267,7 +269,7 @@ export default function RoleManagementPage() {
                         <Text 
                           strong 
                           className={`text-sm capitalize block truncate ${
-                            isChecked ? 'text-blue-700' : 'text-slate-700'
+                            isChecked ? 'text-primary' : 'text-slate-700'
                           }`}
                           title={perm.name.replace(/_/g, ' ')}
                         >
@@ -319,7 +321,7 @@ export default function RoleManagementPage() {
         <Space>
           <Tooltip title="Manage Permissions">
             <Button 
-              className="flex items-center justify-center border-blue-100 text-blue-600 hover:bg-blue-50"
+              className="flex items-center justify-center border-blue-100 text-primary hover:bg-blue-50"
               icon={<EyeOutlined />} 
               onClick={() => openPermissionsModal(record)} 
             />
@@ -345,7 +347,7 @@ export default function RoleManagementPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <Title level={3} className="!m-0 flex items-center gap-3 font-bold text-slate-800">
-              <ShieldEllipsisIcon size={28} className="text-blue-600" /> 
+              <ShieldEllipsisIcon size={28} className="text-primary" /> 
               RBAC Management
             </Title>
             <Text className="text-slate-500 block mt-1">
@@ -406,7 +408,7 @@ export default function RoleManagementPage() {
       <Modal
         title={
           <div className="pb-2">
-            <Text type="secondary" className="text-[10px] uppercase font-bold tracking-widest text-blue-500">
+            <Text type="secondary" className="text-[10px] uppercase font-bold tracking-widest text-primary">
               Edit Access Control
             </Text>
             <Title level={4} className="!m-0 text-slate-800 uppercase">
@@ -463,7 +465,7 @@ export default function RoleManagementPage() {
       <Modal
         title={
           <>
-            <PlusOutlined className="mr-2 text-blue-500" />
+            <PlusOutlined className="mr-2 text-primary" />
             Create New Role
           </>
         }

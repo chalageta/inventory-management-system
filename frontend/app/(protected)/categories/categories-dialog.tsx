@@ -96,7 +96,7 @@ export default function CategoriesDialog({
         >
           <Input
             placeholder="e.g. Electronics"
-            className="rounded-xl bg-slate-50 border-slate-100 p-2.5 hover:border-blue-400 focus:border-blue-500"
+            className="rounded-xl bg-slate-50 border-slate-100 p-2.5 hover:border-blue-400 focus:border-primary"
           />
         </Form.Item>
 
@@ -107,7 +107,7 @@ export default function CategoriesDialog({
           <Input.TextArea
             placeholder="Enter category details..."
             rows={4}
-            className="rounded-xl bg-slate-50 border-slate-100 p-2.5 hover:border-blue-400 focus:border-blue-500"
+            className="rounded-xl bg-slate-50 border-slate-100 p-2.5 hover:border-blue-400 focus:border-primary"
           />
         </Form.Item>
 
@@ -122,7 +122,7 @@ export default function CategoriesDialog({
             type="primary"
             htmlType="submit"
             loading={loading}
-            className="flex-1 rounded-xl font-bold h-11 bg-blue-600 shadow-lg shadow-blue-100 hover:bg-blue-700"
+            className="flex-1 rounded-xl font-bold h-11 bg-primary shadow-lg shadow-blue-100 hover:bg-primary"
           >
             {editingId ? 'Update' : 'Create'}
           </Button>

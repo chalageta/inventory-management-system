@@ -114,7 +114,7 @@ const StockLogsPage = () => {
             key: 'product',
             render: (record: StockLog) => (
                 <div className="flex flex-col">
-                    <Text strong className="text-blue-600 truncate max-w-[200px] block">
+                    <Text strong className="text-primary truncate max-w-[200px] block">
                         {record.product_name}
                     </Text>
                     <Text type="secondary" style={{ fontSize: 11 }} className="font-mono">
@@ -142,7 +142,7 @@ const StockLogsPage = () => {
                         {record.from_status || 'INIT'}
                     </span>
                     <ArrowRightOutlined className="text-gray-300 text-[10px]" />
-                    <span className="text-blue-600 text-xs font-semibold px-2 py-0.5 bg-blue-50 rounded border border-blue-100">
+                    <span className="text-primary text-xs font-semibold px-2 py-0.5 bg-blue-50 rounded border border-blue-100">
                         {record.to_status}
                     </span>
                 </div>
@@ -178,7 +178,7 @@ const StockLogsPage = () => {
             {/* Breadcrumbs */}
             <Breadcrumb
                 items={[
-                    { title: <span className="text-gray-400 hover:text-blue-600 cursor-pointer">Inventory</span> },
+                    { title: <span className="text-gray-400 hover:text-primary cursor-pointer">Inventory</span> },
                     { title: <span className="font-medium text-gray-900">Stock Audit Logs</span> },
                 ]}
                 className="mb-2"
@@ -187,7 +187,7 @@ const StockLogsPage = () => {
             {/* Header section with Title and Actions */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div className="flex items-start gap-4">
-                    <div className="bg-blue-600 p-3 rounded-2xl shadow-lg shadow-blue-200">
+                    <div className="bg-primary p-3 rounded-2xl shadow-lg shadow-blue-200">
                         <HistoryOutlined className="text-white text-2xl" />
                     </div>
                     <div>
@@ -207,12 +207,12 @@ const StockLogsPage = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         allowClear
-                        className="flex-1 lg:w-72 h-11 rounded-xl shadow-sm border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-all"
+                        className="flex-1 lg:w-72 h-11 rounded-xl shadow-sm border-gray-200 hover:border-blue-400 focus:border-primary transition-all"
                     />
                     <Button
                         icon={<ReloadOutlined className="text-gray-600" />}
                         onClick={() => fetchLogs(currentPage, searchQuery)}
-                        className="h-11 w-11 flex items-center justify-center rounded-xl hover:bg-gray-50 hover:text-blue-600 border-gray-200 shadow-sm"
+                        className="h-11 w-11 flex items-center justify-center rounded-xl hover:bg-gray-50 hover:text-primary border-gray-200 shadow-sm"
                     />
                 </div>
             </div>
@@ -225,7 +225,7 @@ const StockLogsPage = () => {
                     rowKey="id"
                     loading={{
                         spinning: loading,
-                        indicator: <Spin size="large" className="text-blue-600" />,
+                        indicator: <Spin size="large" className="text-primary" />,
                     }}
                     pagination={pagination ? {
                         current: currentPage,

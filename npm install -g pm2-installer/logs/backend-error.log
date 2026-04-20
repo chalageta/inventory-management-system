@@ -1,0 +1,9 @@
+ReferenceError: name is not defined
+    at updateProfile (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/authController.js:522:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+ReferenceError: name is not defined
+    at updateProfile (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/authController.js:522:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+ReferenceError: name is not defined
+    at updateProfile (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/authController.js:522:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

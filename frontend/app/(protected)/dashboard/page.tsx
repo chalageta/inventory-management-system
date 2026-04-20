@@ -127,7 +127,7 @@ const [trendRaw, setTrendRaw] = useState<any>(null);
             <Statistic
               title="Products"
               value={stats?.products || 0}
-              prefix={<AppstoreOutlined className="text-blue-500" />}
+              prefix={<AppstoreOutlined className="text-primary" />}
             />
           </Card>
         </Col>

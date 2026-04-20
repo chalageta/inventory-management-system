@@ -94,7 +94,7 @@ export default function SaleDetailPage() {
     return (
       <div className="flex h-screen items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-slate-500 font-medium">Loading Terminal Data...</p>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function SaleDetailPage() {
                 <Badge className={
                   sale.status === 'Completed' ? 'bg-green-100 text-green-700 border-green-200' :
                     sale.status === 'Cancelled' ? 'bg-red-100 text-red-700 border-red-200' :
-                      'bg-blue-100 text-blue-700'
+                      'bg-blue-100 text-primary'
                 }>
                   {sale.status}
                 </Badge>
@@ -185,7 +185,7 @@ export default function SaleDetailPage() {
                           <div className="flex flex-col">
                             <span className="font-bold text-slate-800">{item.product_name}</span>
                             {item.serial_numbers && (
-                              <span className="text-[10px] text-blue-600 font-mono mt-1 bg-blue-50 px-2 py-0.5 rounded-md self-start">
+                              <span className="text-[10px] text-primary font-mono mt-1 bg-blue-50 px-2 py-0.5 rounded-md self-start">
                                 SN: {item.serial_numbers}
                               </span>
                             )}
@@ -211,7 +211,7 @@ export default function SaleDetailPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="border-none shadow-sm rounded-3xl p-6 bg-white">
                 <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                  <AlertCircle className="h-3 w-3 text-blue-500" /> Transaction Notes
+                  <AlertCircle className="h-3 w-3 text-primary" /> Transaction Notes
                 </h4>
                 <p className="text-sm text-slate-500 italic">
                   No additional notes were recorded for this transaction.
@@ -233,7 +233,7 @@ export default function SaleDetailPage() {
                       <span className="text-blue-400 text-[10px] font-black uppercase tracking-tighter">Grand Total</span>
                       <h2 className="text-4xl font-black tracking-tighter">${Number(sale.total_amount).toFixed(2)}</h2>
                     </div>
-                    <CheckCircle2 className="h-10 w-10 text-blue-500/20" />
+                    <CheckCircle2 className="h-10 w-10 text-primary/20" />
                   </div>
                 </div>
               </Card>

@@ -160,7 +160,7 @@ const fetchInventory = async () => {
     {
       title: 'Reference',
       dataIndex: 'reference',
-      render: (ref: string) => <Text strong className="text-blue-600">{ref}</Text>
+      render: (ref: string) => <Text strong className="text-primary">{ref}</Text>
     },
     {
       title: 'Customer',

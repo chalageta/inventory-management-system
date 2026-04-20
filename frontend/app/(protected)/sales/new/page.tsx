@@ -124,7 +124,7 @@ export default function NewSalePage() {
       render: (_: any, r: SaleItem) => (
         <div>
           <div className="font-bold">{r.product_name}</div>
-          <div className="text-xs font-mono text-blue-600 uppercase">SN: {r.serial_number}</div>
+          <div className="text-xs font-mono text-primary uppercase">SN: {r.serial_number}</div>
         </div>
       )
     },
@@ -152,7 +152,7 @@ export default function NewSalePage() {
     <div className="min-h-screen bg-gray-50 p-6 lg:p-10">
       <div className="max-w-6xl mx-auto">
         <Title level={2} className="italic font-black text-slate-800 mb-8 flex items-center">
-          <ShoppingCartOutlined className="mr-2 text-blue-600" /> NEW MEDICAL SALE
+          <ShoppingCartOutlined className="mr-2 text-primary" /> NEW MEDICAL SALE
         </Title>
 
         <Row gutter={[24, 24]}>
@@ -201,7 +201,7 @@ export default function NewSalePage() {
                   <Col xs={24} sm={4}>
                     <Button
                       type="primary"
-                      className="h-12 w-full rounded-lg font-bold bg-blue-600 hover:bg-blue-700"
+                      className="h-12 w-full rounded-lg font-bold bg-primary hover:bg-primary"
                       onClick={handleAddItem}
                     >
                       ADD
@@ -241,7 +241,7 @@ export default function NewSalePage() {
                 block
                 type="primary"
                 size="large"
-                className="h-14 rounded-2xl bg-blue-600 font-bold text-lg border-none shadow-lg hover:scale-[1.02] transition-transform"
+                className="h-14 rounded-2xl bg-primary font-bold text-lg border-none shadow-lg hover:scale-[1.02] transition-transform"
                 onClick={handleCreateSale}
                 loading={loading}
               >

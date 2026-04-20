@@ -21,33 +21,29 @@ const router = express.Router();
 router.get(
   '/dashboard',
   protect(),
-  checkPermission('view_inventory'),
+  checkPermission('view_reports'),
   getStatsSummary
 );
 
-/**
- * =========================
- * ANALYTICS (FINANCE)
- * =========================
- */
+
 router.get(
   '/sales-trends',
   protect(),
-  checkPermission('view_finance'),
+  checkPermission('view_reports'),
   getSalesTrends
 );
 
 router.get(
   '/top-products',
   protect(),
-  checkPermission('view_finance'),
+  checkPermission('view_reports'),
   getTopProducts
 );
 
 router.get(
   '/stock-value',
   protect(),
-  checkPermission('view_finance'),
+  checkPermission('view_inventory'),
   getStockValueReport
 );
 
@@ -71,7 +67,7 @@ router.get(
 router.get(
   '/total-products',
   protect(),
-  checkPermission('view_inventory'),
+  checkPermission('view_reports'),
   getTotalProducts
 );
 
