@@ -1,10 +1,5 @@
 import db from '../config/db.js';
-
-/**
- * =========================
- * CREATE SALE (FIXED)
- * =========================
- */
+import { checkLowStockAndNotify } from '../services/stockService.js';
 
 export const createSale = async (req, res) => {
   try {
@@ -30,7 +25,6 @@ export const createSale = async (req, res) => {
     );
 
     const saleId = saleResult.insertId;
-
     const stockLogs = [];
 
     // =========================
@@ -55,9 +49,7 @@ export const createSale = async (req, res) => {
 
       totalAmount += salePrice;
 
-      // =========================
       // INSERT SALE ITEM
-      // =========================
       await db.execute(
         `INSERT INTO sale_items
         (sale_id, product_id, inventory_item_id, quantity, cost_price, sale_price)
@@ -65,9 +57,7 @@ export const createSale = async (req, res) => {
         [saleId, inv.product_id, inv.id, costPrice, salePrice]
       );
 
-      // =========================
-      // UPDATE INVENTORY → RESERVED
-      // =========================
+      // UPDATE INVENTORY → SOLD
       await db.execute(
         `UPDATE inventory_items
          SET status = 'sold', sale_id = ?
@@ -75,24 +65,20 @@ export const createSale = async (req, res) => {
         [saleId, inv.id]
       );
 
-      // =========================
-      // 🔥 STOCK LOG (IMPORTANT)
-      // =========================
+      // STOCK LOG
       stockLogs.push([
-        null,                  // purchase_id
-        inv.id,                // inventory_item_id
+        null,
+        inv.id,
         inv.product_id,
-        'SOLD',            // action_type
-        'available',           // from_status
-        'sold',           
+        'SOLD',
+        'available',
+        'sold',
         `sold to #${customer_name}`,
         userId
       ]);
     }
 
-    // =========================
     // INSERT STOCK LOGS
-    // =========================
     if (stockLogs.length) {
       await db.query(
         `INSERT INTO stock_logs
@@ -102,15 +88,17 @@ export const createSale = async (req, res) => {
       );
     }
 
-    // =========================
     // UPDATE TOTAL
-    // =========================
     await db.execute(
       `UPDATE sales SET total_amount = ? WHERE id = ?`,
       [totalAmount, saleId]
     );
 
+    // ✅ COMMIT AFTER EVERYTHING
     await db.commit();
+
+    // 🔥 NOW trigger low stock check (correct place)
+    await checkLowStockAndNotify();
 
     res.status(201).json({
       success: true,
@@ -124,7 +112,6 @@ export const createSale = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 export const approveSale = async (req, res) => {
   try {
     await db.execute(

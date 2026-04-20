@@ -93,3 +93,19 @@
 ◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 ◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
 🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (5) from .env // tip: ⌘ enable debugging { debug: true }
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (5) from .env // tip: ⌘ override existing { override: true }
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
