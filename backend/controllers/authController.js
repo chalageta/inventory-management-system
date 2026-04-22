@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import { sendPasswordResetEmail } from '../services/emailService.js';
 dotenv.config();
 
 // =======================
@@ -577,7 +578,6 @@ export const changePassword = async (req, res) => {
 // =======================
 // 🔑 PASSWORD RESET
 // =======================
-
 // ✅ FORGOT PASSWORD
 export const forgotPassword = async (req, res) => {
   try {
@@ -598,13 +598,16 @@ export const forgotPassword = async (req, res) => {
       [token, expires, email]
     );
 
-    res.json({ message: "Reset token generated", token }); // replace with email service later
+    // ✅ SECURE: Send token via email, NOT in response
+    await sendPasswordResetEmail(email, token);
+
+    res.json({ message: "Password reset instructions have been sent to your email." });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
-
+// ✅ RESET PASSWORD
 // ✅ RESET PASSWORD
 export const resetPassword = async (req, res) => {
   try {

@@ -1,5 +1,6 @@
 // controllers/productController.js
 import db from '../config/db.js';
+import xlsx from 'xlsx';
 /**
  * @desc    Get all products with search, category filter, low stock, and pagination
  * @route   GET /api/products
@@ -7,10 +8,17 @@ import db from '../config/db.js';
  */
 export const getAllProducts = async (req, res) => {
   try {
-    const { search, category_id, status, page = 1, limit = 10 } = req.query;
+    const {
+      search,
+      category_id,
+      status,
+      page = 1,
+      limit = 10
+    } = req.query;
 
     const params = [];
-    const baseQuery = `
+
+    let baseQuery = `
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
       LEFT JOIN users u1 ON p.created_by = u1.id
@@ -21,26 +29,43 @@ export const getAllProducts = async (req, res) => {
     let whereClause = ``;
 
     // =========================
-    // SEARCH
+    // SEARCH (ALL FIELDS)
     // =========================
     if (search) {
-      whereClause += ` AND (p.name LIKE ? OR p.barcode LIKE ?)`;
+      whereClause += `
+        AND (
+          p.name LIKE ?
+          OR p.barcode LIKE ?
+          OR p.manufacturer LIKE ?
+          OR p.model LIKE ?
+          OR p.description LIKE ?
+          OR c.name LIKE ?
+        )
+      `;
+
       const val = `%${search}%`;
-      params.push(val, val);
+      params.push(val, val, val, val, val, val);
     }
 
     // =========================
-    // CATEGORY FILTER
+    // CATEGORY FILTER (SINGLE OR MULTIPLE)
     // =========================
     if (category_id) {
-      whereClause += ` AND p.category_id = ?`;
-      params.push(category_id);
+      const ids = category_id.split(",").map(id => id.trim());
+
+      if (ids.length === 1) {
+        whereClause += ` AND p.category_id = ?`;
+        params.push(ids[0]);
+      } else {
+        whereClause += ` AND p.category_id IN (${ids.map(() => "?").join(",")})`;
+        params.push(...ids);
+      }
     }
 
     // =========================
     // LOW STOCK FILTER
     // =========================
-    if (status === 'low_stock') {
+    if (status === "low_stock") {
       whereClause += `
         AND (
           SELECT COUNT(*) 
@@ -53,7 +78,7 @@ export const getAllProducts = async (req, res) => {
     }
 
     // =========================
-    // COUNT QUERY (FIXED)
+    // COUNT QUERY
     // =========================
     const [countResult] = await db.execute(
       `SELECT COUNT(*) AS total ${baseQuery} ${whereClause}`,
@@ -71,8 +96,10 @@ export const getAllProducts = async (req, res) => {
       SELECT 
         p.id,
         p.name,
+        p.manufacturer,
+        p.model,
         p.barcode,
-            p.uom,
+        p.uom,
         p.min_stock,
         p.image,
         p.active,
@@ -80,7 +107,9 @@ export const getAllProducts = async (req, res) => {
         p.created_at,
         p.updated_at,
 
+        c.id AS category_id,
         c.name AS category_name,
+
         u1.name AS creator_name,
         u2.name AS updater_name,
 
@@ -105,9 +134,9 @@ export const getAllProducts = async (req, res) => {
     ]);
 
     // =========================
-    // REMOVE CREATED/UPDATED IDs (IMPORTANT FIX)
+    // CLEAN RESPONSE
     // =========================
-    const cleanedProducts = products.map(p => {
+    const cleanedProducts = products.map((p) => {
       const { created_by, updated_by, ...rest } = p;
       return rest;
     });
@@ -138,39 +167,41 @@ export const getProduct = async (req, res) => {
   try {
     const productId = req.params.id;
 
-    const [rows] = await db.execute(
-      `
-      SELECT 
-        p.id,
-        p.name,
-        p.barcode,
-        p.category_id,
-        p.uom,
-        p.min_stock,
-        p.image,
-        p.active,
-        p.deleted_at,
-        p.description,
-        p.created_at,
-        p.updated_at,
-        c.name AS category_name,
-        u1.name AS creator_name,
-        u2.name AS updater_name,
-        (
-          SELECT COUNT(*) 
-          FROM inventory_items i 
-          WHERE i.product_id = p.id 
-            AND i.status = 'available' 
-            AND i.deleted_at IS NULL
-        ) AS quantity_available
-      FROM products p
-      LEFT JOIN categories c ON p.category_id = c.id
-      LEFT JOIN users u1 ON p.created_by = u1.id
-      LEFT JOIN users u2 ON p.updated_by = u2.id
-      WHERE p.id = ? AND p.deleted_at IS NULL
-      `,
-      [productId]
-    );
+  const [rows] = await db.execute(
+  `
+  SELECT 
+    p.id,
+    p.name,
+    p.manufacturer,   
+    p.model,         
+    p.barcode,
+    p.category_id,
+    p.uom,
+    p.min_stock,
+    p.image,
+    p.active,
+    p.deleted_at,
+    p.description,
+    p.created_at,
+    p.updated_at,
+    c.name AS category_name,
+    u1.name AS creator_name,
+    u2.name AS updater_name,
+    (
+      SELECT COUNT(*) 
+      FROM inventory_items i 
+      WHERE i.product_id = p.id 
+        AND i.status = 'available' 
+        AND i.deleted_at IS NULL
+    ) AS quantity_available
+  FROM products p
+  LEFT JOIN categories c ON p.category_id = c.id
+  LEFT JOIN users u1 ON p.created_by = u1.id
+  LEFT JOIN users u2 ON p.updated_by = u2.id
+  WHERE p.id = ? AND p.deleted_at IS NULL
+  `,
+  [productId]
+);
 
     if (!rows.length) {
       return res.status(404).json({ error: "Product not found" });
@@ -252,22 +283,24 @@ export const createProduct = async (req, res) => {
     // =========================
     // INSERT PRODUCT (FIXED)
     // =========================
-    const [result] = await db.execute(
-      `INSERT INTO products
-       (name, barcode, category_id, uom, min_stock, image, description, created_by, updated_by)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?,  ?)`,
-      [
-        name,
-        barcode || null,
-        category_id || null,
-        uom,
-        min_stock,
-        image,
-        description,
-        userId,
-        userId
-      ]
-    );
+   const [result] = await db.execute(
+  `INSERT INTO products
+   (name, manufacturer, model, barcode, category_id, uom, min_stock, image, description, created_by, updated_by)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  [
+    name,
+    manufacturer || null,
+    model || null,
+    barcode || null,
+    category_id || null,
+    uom,
+    min_stock,
+    image,
+    description,
+    userId,
+    userId
+  ]
+);
 
     return res.status(201).json({
       message: "Product created successfully",
@@ -289,6 +322,8 @@ export const updateProduct = async (req, res) => {
     // =========================
     const {
       name,
+      manufacturer,
+      model,
       barcode,
       category_id,
       uom,
@@ -303,6 +338,8 @@ export const updateProduct = async (req, res) => {
     const safeUpdates = {};
 
     if (name !== undefined) safeUpdates.name = name;
+    if (manufacturer !== undefined) safeUpdates.manufacturer = manufacturer;
+    if (model !== undefined) safeUpdates.model = model;
     if (barcode !== undefined) safeUpdates.barcode = barcode;
     if (category_id !== undefined) safeUpdates.category_id = category_id;
     if (uom !== undefined) safeUpdates.uom = uom;
@@ -377,6 +414,201 @@ export const archiveProduct = async (req, res) => {
     res.json({ message: "Product archived successfully" });
 
   } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const uploadProductsExcel = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "Excel file is required" });
+    }
+
+    const userId = req.user?.id || 1;
+    const categoryId = 2;
+
+    const workbook = xlsx.read(req.file.buffer, { type: "buffer" });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const data = xlsx.utils.sheet_to_json(sheet);
+
+    let insertedProducts = 0;
+    let insertedPurchases = 0;
+    let skipped = 0;
+
+    await db.beginTransaction();
+
+    // =========================
+    // CLEAN NUMBER
+    // =========================
+    const cleanNumber = (value) => {
+      if (!value) return null;
+      if (typeof value === "number") return value;
+
+      const cleaned = String(value).replace(/,/g, "").trim();
+      const num = Number(cleaned);
+      return isNaN(num) ? null : num;
+    };
+
+    // =========================
+    // NORMALIZE KEYS
+    // =========================
+    const normalizeRow = (row) => {
+      const newRow = {};
+      Object.keys(row).forEach((key) => {
+        newRow[key.trim()] = row[key];
+      });
+      return newRow;
+    };
+
+    for (const rawRow of data) {
+      const row = normalizeRow(rawRow);
+const parseExcelDate = (value) => {
+  if (!value) return null;
+
+  // If Excel gives a number (serial date)
+  if (typeof value === "number") {
+    const excelStart = new Date(1899, 11, 30);
+    const date = new Date(excelStart.getTime() + value * 86400000);
+    return date.toISOString().split("T")[0];
+  }
+
+  // If string like "3/27/2026"
+  if (typeof value === "string") {
+    const parts = value.split("/");
+    if (parts.length === 3) {
+      const [month, day, year] = parts;
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    }
+  }
+
+  return null;
+};
+      const name = row["Item Name"]?.trim();
+      if (!name) continue;
+
+      const manufacturer = row["Manufacturer"] || null;
+
+      // 🔥 FIX: normalize model (avoid NULL duplicates)
+      const modelRaw = row["Model"];
+      const model =
+        modelRaw && modelRaw.trim() !== ""
+          ? modelRaw.trim()
+          : "NO_MODEL";
+
+      const serialNumber = row["Serial number"]?.toString().trim() || null;
+      const lotNumber = row["Lot number"]?.toString().trim() || null;
+      const location = row["Location"] || null;
+      // ✅ Expiry Date
+      const expiryDate = parseExcelDate(row["Expiry date"]);
+      const quantity =
+        parseInt(String(row["Quantity"]).replace(/\s/g, "")) || 1;
+
+      const unitCost = cleanNumber(row["Unit Cost"]);
+
+      const totalCost =
+        cleanNumber(row["Total Cost"]) ??
+        (unitCost && quantity ? unitCost * quantity : null);
+
+      const description = row["Description"] || null;
+
+      let productId;
+
+      // =========================
+      // CHECK / CREATE PRODUCT
+      // =========================
+      const [existProduct] = await db.execute(
+        `SELECT id FROM products 
+         WHERE name = ? AND model = ? AND deleted_at IS NULL`,
+        [name, model]
+      );
+
+      if (existProduct.length) {
+        productId = existProduct[0].id;
+      } else {
+        const [result] = await db.execute(
+          `INSERT INTO products
+          (name, manufacturer, model, category_id, uom, min_stock, description, created_by, updated_by)
+          VALUES (?, ?, ?, ?, 'Unit', 3, ?, ?, ?)`,
+          [
+            name,
+            manufacturer,
+            model,
+            categoryId,
+            description,
+            userId,
+            userId,
+          ]
+        );
+
+        productId = result.insertId;
+        insertedProducts++;
+      }
+
+      // =========================
+      // DUPLICATE CONTROL 🔥
+      // =========================
+
+      // 👉 Equipment → use serial
+      if (serialNumber) {
+        const [existSerial] = await db.execute(
+          `SELECT id FROM purchases WHERE serial_number = ?`,
+          [serialNumber]
+        );
+
+        if (existSerial.length) {
+          skipped++;
+          continue;
+        }
+      }
+
+      // 👉 Reagents → use lot
+      if (lotNumber) {
+        const [existLot] = await db.execute(
+          `SELECT id FROM purchases 
+           WHERE product_id = ? AND lot_number = ?`,
+          [productId, lotNumber]
+        );
+
+        if (existLot.length) {
+          skipped++;
+          continue;
+        }
+      }
+
+      // =========================
+      // INSERT PURCHASE
+      // =========================
+      await db.execute(
+        `INSERT INTO purchases
+        (product_id, serial_number, lot_number, expiry_date, total_items, location, unit_cost, total_cost, created_by)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          productId,
+          serialNumber,
+          lotNumber,
+          expiryDate,
+          quantity,
+          location,
+          unitCost,
+          totalCost,
+          userId,
+        ]
+      );
+
+      insertedPurchases++;
+    }
+
+    await db.commit();
+
+    res.json({
+      message: "Excel uploaded successfully",
+      insertedProducts,
+      insertedPurchases,
+      skippedDuplicates: skipped,
+    });
+
+  } catch (err) {
+    await db.rollback();
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 };

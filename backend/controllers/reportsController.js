@@ -235,28 +235,40 @@ export const getRecentActivity = async (req, res) => {
         created_at
       FROM (
 
-        -- SALES
+        -- ===================== SALES =====================
         SELECT 
           'sale' COLLATE utf8mb4_unicode_ci AS type,
-          CONCAT('New Sale: ', s.reference) COLLATE utf8mb4_unicode_ci AS label,
-          NULL AS created_by_name,
+          CONCAT('🧾 New Sale: ', s.reference) COLLATE utf8mb4_unicode_ci AS label,
+          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS created_by_name,
           s.created_at
         FROM sales s
-        WHERE s.active = 1 AND s.deleted_at IS NULL
+        LEFT JOIN users u ON u.id = s.user_id
+        WHERE s.deleted_at IS NULL
 
         UNION ALL
 
-        -- STOCK LOGS
+        -- ===================== STOCK LOGS =====================
         SELECT 
           'stock' COLLATE utf8mb4_unicode_ci AS type,
-          CONCAT(sl.action_type, ': ', p.name) COLLATE utf8mb4_unicode_ci AS label,
-          CAST(u.name AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_unicode_ci AS created_by_name,
+          CONCAT('📦 ', sl.action_type, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,
+          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS created_by_name,
           sl.created_at
         FROM stock_logs sl
-        LEFT JOIN products p 
-          ON p.id = sl.product_id
-        LEFT JOIN users u 
-          ON u.id = sl.created_by
+        LEFT JOIN products p ON p.id = sl.product_id
+        LEFT JOIN users u ON u.id = sl.created_by
+
+        UNION ALL
+
+        -- ===================== PURCHASES (ADDED FOR MODERN FEED) =====================
+        SELECT 
+          'purchase' COLLATE utf8mb4_unicode_ci AS type,
+          CONCAT('📥 Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,
+          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS created_by_name,
+          s.created_at
+        FROM purchases s
+        LEFT JOIN products p ON p.id = s.product_id
+        LEFT JOIN users u ON u.id = s.created_by
+        WHERE s.deleted_at IS NULL
 
       ) activity
       ORDER BY created_at DESC
@@ -264,6 +276,7 @@ export const getRecentActivity = async (req, res) => {
     `);
 
     res.json(rows);
+
   } catch (err) {
     console.error("Recent Activity Error:", err);
     res.status(500).json({ error: err.message });

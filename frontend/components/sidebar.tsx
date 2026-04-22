@@ -34,7 +34,7 @@ const allNavItems = [
 
   { href: '/products', label: 'Products', icon: Package, permission: 'view_products' },
 
-  { href: '/purchases', label: 'Purchases', icon: Package, permission: 'view_purchases' },
+  { href: '/purchases', label: 'Manage Purchases', icon: Package, permission: 'manage_purchases' },
 
   { href: '/inventory', label: 'Current Stock', icon: Boxes, permission: 'view_inventory' },
 

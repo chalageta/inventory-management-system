@@ -136,3 +136,47 @@ export const sendLowStockEmail = async (products) => {
     console.error("❌ Failed to send low stock email:", err.message);
   }
 };
+
+// PASSWORD RESET EMAIL
+// =========================
+export const sendPasswordResetEmail = async (email, token) => {
+  try {
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="font-family: sans-serif; background-color: #f4f7f6; padding: 20px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+          <h2 style="color: #333 text-align: center;">Password Reset Request</h2>
+          <p>Hello,</p>
+          <p>You are receiving this email because we received a password reset request for your account.</p>
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${resetUrl}" style="background-color: #4f46e5; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Reset Password</a>
+          </div>
+          <p>This link will expire in 15 minutes.</p>
+          <p>If you did not request a password reset, no further action is required.</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="font-size: 12px; color: #888;">If you're having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:</p>
+          <p style="font-size: 11px; color: #6366f1; word-break: break-all;">${resetUrl}</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    await transporter.sendMail({
+      from: `"Inventory System" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Password Reset Request",
+      html: htmlContent
+    });
+
+    console.log(`📧 Password reset email sent to: ${email}`);
+  } catch (err) {
+    console.error("❌ Failed to send reset email:", err.message);
+    throw new Error("Could not send reset email. Please try again later.");
+  }
+};

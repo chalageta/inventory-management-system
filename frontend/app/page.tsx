@@ -80,7 +80,7 @@ export default function LoginPage() {
 
           {/* LOGO */}
           <Image
-            src="/images/logo/gilando_logo.webp"
+            src="/images/logo/gilando_logo.png"
             alt="Inventory Logo"
             width={200}
             height={80}
@@ -168,17 +168,29 @@ export default function LoginPage() {
                 name="password"
                 control={control}
                 render={({ field }) => (
-                  <Input.Password
-                    {...field}
-                    prefix={<LockOutlined />}
-                    placeholder="••••••••"
-                    size="large"
-                    disabled={submitting}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      if (loginError) setLoginError(null);
-                    }}
-                  />
+                  <div className="flex flex-col">
+                    <Input.Password
+                      {...field}
+                      prefix={<LockOutlined />}
+                      placeholder="••••••••"
+                      size="large"
+                      disabled={submitting}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        if (loginError) setLoginError(null);
+                      }}
+                    />
+                    <div className="text-right mt-1">
+                      <Button 
+                        type="link" 
+                        size="small" 
+                        onClick={() => router.push('/forgot-password')}
+                        className="px-0 text-xs font-medium text-primary hover:text-indigo-600 transition-colors"
+                      >
+                        Forgot Password?
+                      </Button>
+                    </div>
+                  </div>
                 )}
               />
             </Form.Item>

@@ -8,10 +8,13 @@ import db from '../config/db.js';
     supplier_name = null,
     supplier_phone = null,
     invoice_no = null,
-    reference = null,
     total_items,
-    total_amount = null,
-    unit_price = null,
+    total_cost = null,
+    unit_cost = null,
+    location = null,
+    serial_number = null,
+    lot_number = null,
+    expiry_date = null,
     note = null
   } = req.body;
 
@@ -37,21 +40,25 @@ import db from '../config/db.js';
     // PRICE LOGIC (OPTIONAL)
     // =========================
 
-    if (unit_price && !total_amount) {
-      total_amount = (Number(unit_price) * Number(total_items)).toFixed(2);
-    } else if (!unit_price && total_amount) {
-      unit_price = (Number(total_amount) / Number(total_items)).toFixed(2);
-    } else if (unit_price && total_amount) {
-      const calculated = Number(unit_price) * Number(total_items);
+    if (unit_cost && !total_cost) {
+      total_cost = (Number(unit_cost) * Number(total_items)).toFixed(2);
+    } else if (!unit_cost && total_cost) {
+      unit_cost = (Number(total_cost) / Number(total_items)).toFixed(2);
+    } else if (unit_cost && total_cost) {
+      const calculated = Number(unit_cost) * Number(total_items);
 
-      if (Math.abs(calculated - Number(total_amount)) > 0.01) {
+      if (Math.abs(calculated - Number(total_cost)) > 0.01) {
         return res.status(400).json({
-          error: "unit_price × total_items must equal total_amount"
+          error: "unit_cost × total_items must equal total_cost"
         });
       }
     } else {
-      unit_price = null;
-      total_amount = null;
+      unit_cost = null;
+      total_cost = null;
+       location = null,
+       serial_number = null,
+       lot_number = null,
+       expiry_date = null
     }
 
     // =========================
@@ -59,19 +66,22 @@ import db from '../config/db.js';
     // =========================
     const [result] = await db.execute(
       `INSERT INTO purchases
-      (product_id, supplier_name, supplier_phone, invoice_no, reference,
-       unit_price, total_amount, total_items, note, created_by)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      (product_id, supplier_name, supplier_phone, invoice_no,
+       unit_cost, total_cost, total_items, note, location,serial_number,lot_number,expiry_date, created_by)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         product_id,
         supplier_name,
         supplier_phone,
         invoice_no,
-        reference,
-        unit_price,
-        total_amount,
+        unit_cost,
+        total_cost,
         total_items,
         note,
+        location,
+        serial_number,
+        lot_number,
+        expiry_date,
         userId
       ]
     );
@@ -81,8 +91,12 @@ import db from '../config/db.js';
       purchase_id: result.insertId,
       supplier_name,
       supplier_phone,
-      unit_price,
-      total_amount
+      unit_cost,
+      total_cost,
+      location,
+      serial_number,
+      lot_number,
+      expiry_date
     });
 
   } catch (err) {
@@ -117,10 +131,13 @@ export const updatePurchase = async (req, res) => {
       supplier_name,
       supplier_phone,
       invoice_no,
-      reference,
       total_items,
-      unit_price,
-      total_amount,
+      unit_cost,
+      total_cost,
+      location,
+      serial_number,
+      lot_number,
+      expiry_date,
       note
     } = req.body;
 
@@ -130,11 +147,14 @@ export const updatePurchase = async (req, res) => {
       supplier_name: supplier_name ?? old.supplier_name,
       supplier_phone: supplier_phone ?? old.supplier_phone,
       invoice_no: invoice_no ?? old.invoice_no,
-      reference: reference ?? old.reference,
-      total_items: total_items ?? old.total_items,
-      unit_price: unit_price ?? old.unit_price,
-      total_amount: total_amount ?? old.total_amount,
+         total_items: total_items ?? old.total_items,
+      unit_cost: unit_cost ?? old.unit_cost,
+      total_cost: total_cost ?? old.total_cost,
       note: note ?? old.note,
+      location: location ?? old.location,
+      serial_number: serial_number ?? old.serial_number,
+      lot_number: lot_number ?? old.lot_number,
+      expiry_date: expiry_date ?? old.expiry_date,
       updated_by: userId
     };
 
@@ -144,11 +164,14 @@ export const updatePurchase = async (req, res) => {
            supplier_name=?,
            supplier_phone=?,
            invoice_no=?,
-           reference=?,
-           total_items=?,
-           unit_price=?,
-           total_amount=?,
+             total_items=?,
+           unit_cost=?,
+           total_cost=?,
            note=?,
+           location=?,
+           serial_number=?,
+           lot_number=?,
+           expiry_date=?,
            updated_by=?
        WHERE id=?`,
       [
@@ -156,11 +179,14 @@ export const updatePurchase = async (req, res) => {
         data.supplier_name,
         data.supplier_phone,
         data.invoice_no,
-        data.reference,
         data.total_items,
-        data.unit_price,
-        data.total_amount,
+        data.unit_cost,
+        data.total_cost,
         data.note,
+        data.location,
+        data.serial_number,
+        data.lot_number,
+        data.expiry_date,
         data.updated_by,
         purchaseId
       ]
@@ -189,40 +215,79 @@ export const approvePurchase = async (req, res) => {
       return res.status(404).json({ error: "Purchase not found" });
     }
 
-    if (rows[0].status !== "pending") {
+    const purchase = rows[0];
+
+    if (purchase.status !== "pending") {
       await db.rollback();
       return res.status(400).json({ error: "Already processed" });
     }
 
-    // update status
+    if (!purchase.product_id) {
+      await db.rollback();
+      return res.status(400).json({ error: "Product not linked" });
+    }
+
+    // prevent duplicate
+    const [existing] = await db.execute(
+      `SELECT COUNT(*) AS count FROM inventory_items WHERE purchase_id = ?`,
+      [purchaseId]
+    );
+
+    if (existing[0].count > 0) {
+      await db.rollback();
+      return res.status(400).json({
+        error: "Inventory already exists for this purchase"
+      });
+    }
+
+    const inventoryValues = [];
+
+    const baseSerial = purchase.serial_number; // ⭐ IMPORTANT FIX
+
+    const unitCost =
+      purchase.unit_cost !== null ? Number(purchase.unit_cost) : null;
+
+    for (let i = 1; i <= purchase.total_items; i++) {
+      const serial =
+        purchase.total_items === 1
+          ? baseSerial
+          : `${baseSerial}-${i}`;
+
+      inventoryValues.push([
+        purchase.product_id,
+        purchase.id,
+        serial,
+        unitCost,
+        purchase.location,
+        "available",
+        userId
+      ]);
+    }
+
+    await db.query(
+      `INSERT INTO inventory_items
+       (product_id, purchase_id, serial_number, cost_price, location, status, created_by)
+       VALUES ?`,
+      [inventoryValues]
+    );
+
     await db.execute(
       `UPDATE purchases SET status='approved', updated_by=? WHERE id=?`,
       [userId, purchaseId]
     );
 
-    // 🔥 FIXED STOCK LOG
-    await db.execute(
-      `INSERT INTO stock_logs
-       (purchase_id, inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
-       VALUES (?, NULL, ?, 'PURCHASE_APPROVED', 'pending', 'approved', ?, ?)`,
-      [
-        purchaseId,
-        rows[0].product_id,
-        `Purchase #${purchaseId} approved`,
-        userId
-      ]
-    );
-
     await db.commit();
 
-    res.json({ message: "Purchase approved successfully" });
+    res.json({
+      message: "Purchase approved and inventory created",
+      created_items: purchase.total_items
+    });
 
   } catch (err) {
     await db.rollback();
     res.status(500).json({ error: err.message });
   }
 };
-
 export const receivePurchase = async (req, res) => {
   const purchaseId = req.params.id;
   const userId = req.user?.id;
@@ -246,12 +311,12 @@ export const receivePurchase = async (req, res) => {
     const purchase = rows[0];
 
     // =========================
-    // 2. BLOCK DUPLICATE RECEIVE (IMPORTANT FIX)
+    // 2. VALIDATIONS
     // =========================
     if (purchase.status === "received") {
       await db.rollback();
       return res.status(400).json({
-        error: "Purchase already received. Inventory already created."
+        error: "Already received"
       });
     }
 
@@ -264,18 +329,20 @@ export const receivePurchase = async (req, res) => {
 
     if (!purchase.product_id) {
       await db.rollback();
-      return res.status(400).json({ error: "Product not linked to purchase" });
+      return res.status(400).json({
+        error: "Product not linked"
+      });
     }
 
     // =========================
-    // 3. EXTRA SAFETY: CHECK IF INVENTORY EXISTS
+    // 3. OPTIONAL: PREVENT DUPLICATE INVENTORY CHECK
     // =========================
-    const [existingItems] = await db.execute(
+    const [existing] = await db.execute(
       `SELECT COUNT(*) AS count FROM inventory_items WHERE purchase_id = ?`,
       [purchaseId]
     );
 
-    if (existingItems[0].count > 0) {
+    if (existing[0].count > 0) {
       await db.rollback();
       return res.status(400).json({
         error: "Inventory already exists for this purchase"
@@ -283,97 +350,32 @@ export const receivePurchase = async (req, res) => {
     }
 
     // =========================
-    // 4. BUILD INVENTORY DATA
-    // =========================
-    const batchNo = `BATCH-${purchase.id}-${Date.now()}`;
-    const inventoryValues = [];
-    const itemLogs = [];
-
-    const unitCost =
-      purchase.unit_price !== null && purchase.unit_price !== undefined
-        ? Number(purchase.unit_price)
-        : null;
-
-    for (let i = 1; i <= purchase.total_items; i++) {
-      const serial = `${batchNo}-${i}`;
-
-      inventoryValues.push([
-        purchase.product_id,
-        purchase.id,
-        batchNo,
-        serial,
-        unitCost, // can be null
-        'available',
-        userId
-      ]);
-    }
-
-    // =========================
-    // 5. INSERT INVENTORY
-    // =========================
-    const [insertResult] = await db.query(
-      `INSERT INTO inventory_items
-       (product_id, purchase_id, batch_no, serial_number, cost_price, status, created_by)
-       VALUES ?`,
-      [inventoryValues]
-    );
-
-    // =========================
-    // 6. STOCK LOGS
-    // =========================
-    let startId = insertResult.insertId;
-
-    for (let i = 0; i < purchase.total_items; i++) {
-      itemLogs.push([
-        purchaseId,
-        startId + i,
-        purchase.product_id,
-        'IN',
-        null,
-        'available',
-        `Received via purchase #${purchase.id}`,
-        userId
-      ]);
-    }
-
-    if (itemLogs.length) {
-      await db.query(
-        `INSERT INTO stock_logs
-         (purchase_id, inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
-         VALUES ?`,
-        [itemLogs]
-      );
-    }
-
-    // =========================
-    // 7. EVENT LOG
-    // =========================
-    await db.execute(
-      `INSERT INTO stock_logs
-       (purchase_id, inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
-       VALUES (?, NULL, ?, 'PURCHASE_RECEIVED', 'approved', 'available', ?, ?)`,
-      [
-        purchaseId,
-        purchase.product_id,
-        `Stock received via purchase #${purchaseId}, batch ${batchNo}`,
-        userId
-      ]
-    );
-
-    // =========================
-    // 8. UPDATE STATUS
+    // 4. ONLY UPDATE STATUS (NO INVENTORY HERE)
     // =========================
     await db.execute(
       `UPDATE purchases SET status='received', updated_by=? WHERE id=?`,
       [userId, purchaseId]
     );
 
+    // =========================
+    // 5. LOG EVENT
+    // =========================
+    await db.execute(
+      `INSERT INTO stock_logs
+       (purchase_id, inventory_item_id, product_id, action_type, from_status, to_status, note, created_by)
+       VALUES (?, NULL, ?, 'PURCHASE_RECEIVED', 'approved', 'received', ?, ?)`,
+      [
+        purchaseId,
+        purchase.product_id,
+        `Purchase received #${purchaseId}`,
+        userId
+      ]
+    );
+
     await db.commit();
 
     res.json({
-      message: "Stock received successfully",
-      batch_no: batchNo,
-      created_items: purchase.total_items
+      message: "Purchase marked as received successfully"
     });
 
   } catch (err) {
@@ -399,8 +401,8 @@ export const getPurchases = async (req, res) => {
     }
 
     if (search) {
-      where += ` AND (p.supplier_name LIKE ? OR p.invoice_no LIKE ?)`;
-      params.push(`%${search}%`, `%${search}%`);
+      where += ` AND (p.supplier_name LIKE ? OR p.invoice_no LIKE ? OR p.location   LIKE ? OR p.serial_number LIKE ?)`;
+      params.push(`%${search}%`, `%${search}%` , `%${search}%`, `%${search}%`);
     }
 
     const [rows] = await db.execute(
@@ -411,14 +413,14 @@ export const getPurchases = async (req, res) => {
         p.supplier_name,
         p.supplier_phone,
         p.invoice_no,
-        p.reference,
-
-        p.unit_price,        -- ✅ ADD THIS
-        p.total_amount,
+        p.unit_cost,       
+        p.total_cost,
         p.total_items,
 
         p.status,
         p.note,
+        p.location,
+        p.serial_number,
         p.reason,
         p.created_at,
         p.updated_at,
@@ -536,10 +538,16 @@ export const getPurchaseDetail = async (req, res) => {
       SELECT 
         p.*,
         pr.name AS product_name,
-        u.name AS created_by
+        u.name AS created_by,
+        u2.name AS updated_by,
+        u3.name AS approver_name,
+        u4.name AS receiver_name
       FROM purchases p
       LEFT JOIN products pr ON p.product_id = pr.id
       LEFT JOIN users u ON p.created_by = u.id
+      LEFT JOIN users u2 ON p.updated_by = u2.id
+      LEFT JOIN users u3 ON p.approved_by = u3.id
+      LEFT JOIN users u4 ON p.received_by = u4.id
       WHERE p.id = ? AND p.deleted_at IS NULL
       `,
       [purchaseId]

@@ -7,3 +7,601 @@ ReferenceError: name is not defined
 ReferenceError: name is not defined
     at updateProfile (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/authController.js:522:9)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'xlsx' imported from C:\Users\HP\Desktop\inventory management system\backend\controllers\productController.js
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:256:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:854:18)
+    at defaultResolve (node:internal/modules/esm/resolve:984:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:175:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+Error: Only image files allowed
+    at fileFilter (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/upload.js:29:10)
+    at wrappedFileFilter (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:518:28)
+    at HeaderParser.cb (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+Error: Only image files allowed
+    at fileFilter (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/upload.js:29:10)
+    at wrappedFileFilter (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:518:28)
+    at HeaderParser.cb (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+Error: Only image files allowed
+    at fileFilter (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/upload.js:29:10)
+    at wrappedFileFilter (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:518:28)
+    at HeaderParser.cb (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\HP\Desktop\inventory management system\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\HP\Desktop\inventory management system\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+ReferenceError: multer is not defined
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/routes/products.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+TypeError: db.getConnection is not a function
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:395:31)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at done (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:243:7)
+    at Multipart.emit (node:events:518:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+TypeError: db.getConnection is not a function
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:395:31)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at done (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:243:7)
+    at Multipart.emit (node:events:518:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+ReferenceError: mysql is not defined
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:395:13)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at done (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:243:7)
+    at Multipart.emit (node:events:518:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+TypeError: db.getConnection is not a function
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:396:31)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at done (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:243:7)
+    at Multipart.emit (node:events:518:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+TypeError: db.getConnection is not a function
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:396:31)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at done (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (C:\Users\HP\Desktop\inventory management system\backend\node_modules\multer\lib\make-middleware.js:243:7)
+    at Multipart.emit (node:events:518:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Error: Duplicate entry '' for key 'reference'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:448:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: 'INSERT INTO purchases\n' +
+    '        (product_id, total_items, total_amount, unit_price, created_by)\n' +
+    '        VALUES (?, ?, ?, ?, ?)',
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry '' for key 'reference'"
+}
+Error: Unknown column 'location' in 'field list'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:472:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: 'INSERT INTO inventory_items\n' +
+    '          (product_id, purchase_id, serial_number, status, location, created_by)\n' +
+    '          VALUES (?, ?, ?, ?, ?, ?)',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 'location' in 'field list'"
+}
+Error: Unknown column 'location' in 'field list'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:472:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: 'INSERT INTO inventory_items\n' +
+    '          (product_id, purchase_id, serial_number, status, location, created_by)\n' +
+    '          VALUES (?, ?, ?, ?, ?, ?)',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 'location' in 'field list'"
+}
+TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+    at C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\base\connection.js:787:17
+    at Array.forEach (<anonymous>)
+    at Connection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\base\connection.js:779:22)
+    at C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:53:12)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:427:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: Duplicate entry 'ML904941025121L01689-1' for key 'serial_number'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:499:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: 'INSERT INTO inventory_items\n' +
+    '          (product_id, purchase_id, batch_no, location, serial_number, cost_price, status, created_by)\n' +
+    '          VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry 'ML904941025121L01689-1' for key 'serial_number'"
+}
+ReferenceError: startIndex is not defined
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:495:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: Duplicate entry 'Qb4-54000460' for key 'serial_number'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:517:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: 'INSERT INTO inventory_items\n' +
+    '    (product_id, purchase_id, serial_number, status, location, created_by)\n' +
+    '    VALUES (?, ?, ?, ?, ?, ?)',
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry 'Qb4-54000460' for key 'serial_number'"
+}
+Error: Duplicate entry 'Qb4-54000460' for key 'serial_number'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:517:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: 'INSERT INTO inventory_items\n' +
+    '    (product_id, purchase_id, serial_number, status, location, created_by)\n' +
+    '    VALUES (?, ?, ?, ?, ?, ?)',
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry 'Qb4-54000460' for key 'serial_number'"
+}
+❌ Failed to send low stock email: getaddrinfo EAI_AGAIN s918.lon1.mysecurecloudhost.com
+Recent Activity Error: Error: Unknown column 's.created_by' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale created: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u ON u.id = s.created_by\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u ON u.id = s.created_by\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u ON u.id = sl.created_by\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.created_by' in 'on clause'"
+}
+Recent Activity Error: Error: Unknown column 's.user_id' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale created: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u ON u.id = sl.created_by\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.user_id' in 'on clause'"
+}
+Recent Activity Error: Error: Unknown column 's.user_id' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale created: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u ON u.id = sl.user_id\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.user_id' in 'on clause'"
+}
+Recent Activity Error: Error: Unknown column 's.user_id' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u ON u.id = s.user_id\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u ON u.id = sl.user_id\n' +
+    '        WHERE sl.deleted_at IS NULL\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.user_id' in 'on clause'"
+}
+Recent Activity Error: Error: Unknown column 's.created_by' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = COALESCE(s.user_id, s.created_by)\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = COALESCE(s.created_by, s.user_id)\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = sl.created_by\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.created_by' in 'on clause'"
+}
+Recent Activity Error: Error: Unknown column 's.user_id' in 'on clause'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at getRecentActivity (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/reportsController.js:230:29)
+    at Layer.handleRequest (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\HP\Desktop\inventory management system\backend\node_modules\router\lib\route.js:157:13)
+    at file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/middleware/authMiddleware.js:97:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: '\n' +
+    '      SELECT \n' +
+    '        type,\n' +
+    '        action,\n' +
+    '        label,\n' +
+    '        user_name,\n' +
+    '        created_at\n' +
+    '      FROM (\n' +
+    '\n' +
+    '        -- ===================== SALES =====================\n' +
+    '        SELECT \n' +
+    "          'sale' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          'SALE_CREATED' COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('New sale: ', COALESCE(s.reference, 'N/A')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM sales s\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = COALESCE(s.user_id, s.user_id)\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== PURCHASES =====================\n' +
+    '        SELECT \n' +
+    "          'purchase' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    "          CONCAT('PURCHASE_', UPPER(s.status)) COLLATE utf8mb4_unicode_ci AS action,\n" +
+    "          CONCAT('Purchase ', s.status, ': ', COALESCE(p.name, 'Unknown Product')) COLLATE utf8mb4_unicode_ci AS label,\n" +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          s.created_at\n' +
+    '        FROM purchases s\n' +
+    '        LEFT JOIN products p ON p.id = s.product_id\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = COALESCE(s.user_id, s.user_id)\n' +
+    '        WHERE s.deleted_at IS NULL\n' +
+    '\n' +
+    '        UNION ALL\n' +
+    '\n' +
+    '        -- ===================== STOCK LOGS =====================\n' +
+    '        SELECT \n' +
+    "          'stock' COLLATE utf8mb4_unicode_ci AS type,\n" +
+    '          sl.action_type COLLATE utf8mb4_unicode_ci AS action,\n' +
+    '          CONCAT(\n' +
+    "            sl.action_type, ': ',\n" +
+    "            COALESCE(p.name, 'Unknown Product')\n" +
+    '          ) COLLATE utf8mb4_unicode_ci AS label,\n' +
+    "          COALESCE(u.name, 'System') COLLATE utf8mb4_unicode_ci AS user_name,\n" +
+    '          sl.created_at\n' +
+    '        FROM stock_logs sl\n' +
+    '        LEFT JOIN products p ON p.id = sl.product_id\n' +
+    '        LEFT JOIN users u \n' +
+    '          ON u.id = sl.created_by\n' +
+    '\n' +
+    '      ) activity\n' +
+    '      ORDER BY created_at DESC\n' +
+    '      LIMIT 10\n' +
+    '    ',
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 's.user_id' in 'on clause'"
+}
+Error: Duplicate entry 'MIN01A08020604' for key 'unique_serial'
+    at PromiseConnection.execute (C:\Users\HP\Desktop\inventory management system\backend\node_modules\mysql2\lib\promise\connection.js:47:22)
+    at uploadProductsExcel (file:///C:/Users/HP/Desktop/inventory%20management%20system/backend/controllers/productController.js:516:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: 'INSERT INTO purchases\n' +
+    '        (product_id, serial_number, total_items, unit_cost, total_cost, created_by)\n' +
+    '        VALUES (?, ?, ?, ?, ?, ?)',
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry 'MIN01A08020604' for key 'unique_serial'"
+}

@@ -92,7 +92,6 @@ AND p.active = 1
           i.*,
           p.name AS product_name,
           pu.invoice_no,
-          pu.reference AS purchase_reference,
           s.reference AS sale_reference,
           s.customer_name
         ${baseQuery}
@@ -119,7 +118,7 @@ AND p.active = 1
         i.*,
         p.name AS product_name,
         pu.invoice_no,
-        pu.reference AS purchase_reference,
+        
         s.reference AS sale_reference,
         s.customer_name
       ${baseQuery}

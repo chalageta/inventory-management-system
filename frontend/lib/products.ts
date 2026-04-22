@@ -25,3 +25,14 @@ export const archiveProduct = async (id: number) => {
   const { data } = await api.delete(`/products/${id}`);
   return data;
 };
+
+export const uploadProductsExcel = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const { data } = await api.post('/products/upload-excel', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return data;
+};

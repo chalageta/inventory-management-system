@@ -5,13 +5,30 @@ import {
   getProduct,
   createProduct,
   updateProduct,
-  archiveProduct
-} from '../controllers/productController.js';
+  archiveProduct,
+  uploadProductsExcel
 
+} from '../controllers/productController.js';
+import multer from 'multer';
 import { protect, checkPermission } from '../middleware/authMiddleware.js';
+import { upload } from '../middleware/upload.js';
 
 const router = express.Router();
 
+const excelUpload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: (req, file, cb) => {
+    // Accept Excel mimetypes only
+    if (
+      file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || 
+      file.mimetype === 'application/vnd.ms-excel'
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only Excel files (.xlsx, .xls) are allowed!'), false);
+    }
+  }
+});
 /**
  * =========================
  * PRODUCT ROUTES
@@ -68,4 +85,11 @@ router.delete(
   archiveProduct
 );
 
+router.post(
+  '/upload-excel',
+  protect(),
+  checkPermission('create_product'),
+  excelUpload.single('file'), // This specifically allows Excel files
+  uploadProductsExcel
+);
 export default router;

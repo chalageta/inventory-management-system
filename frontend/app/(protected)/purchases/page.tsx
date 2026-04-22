@@ -184,18 +184,20 @@ const handleReceive = async (id: number) => {
     );
   }
 },
- {
+{
   title: 'Actions',
   fixed: isMobile ? undefined : 'right',
   render: (_: any, record: any) => {
     const canApprove = can('approve_purchase');
     const canReject = can('reject_purchase');
-    const canReceive = can('receive_purchase');
     const canDelete = can('delete_purchase');
     const canUpdate = can('update_purchase');
 
+    const isPending = record.status === 'pending';
+
     return (
       <Space wrap>
+        {/* ALWAYS VIEW */}
         <Button
           size="small"
           onClick={() => router.push(`/purchases/${record.id}`)}
@@ -203,13 +205,12 @@ const handleReceive = async (id: number) => {
           View
         </Button>
 
-        {/* ===================== PENDING ONLY ===================== */}
-        {record.status === 'pending' && (
+        {/* ===================== ONLY PENDING ACTIONS ===================== */}
+        {isPending && (
           <>
             {canUpdate && (
               <Button
                 size="small"
-                type="default"
                 onClick={() => router.push(`/purchases/edit/${record.id}`)}
               >
                 Edit
@@ -247,19 +248,12 @@ const handleReceive = async (id: number) => {
             )}
           </>
         )}
-        
-        {record.status === 'pending' && canReceive && (
-  <Button
-    type="primary"
-    ghost
-    size="small"
-    icon={<InboxOutlined />}
-    onClick={() => handleReceive(record.id)}
-  >
-    Receive
-  </Button>
-)}
 
+        {/* ===================== AFTER APPROVAL ===================== */}
+        {!isPending && (
+          // ONLY VIEW (no edit, no delete, no approve, no receive)
+          null
+        )}
       </Space>
     );
   }
@@ -314,9 +308,7 @@ const handleReceive = async (id: number) => {
             >
               <Option value="pending">Pending</Option>
               <Option value="approved">Approved</Option>
-              <Option value="received">Received</Option>
-              <Option value="cancelled">Cancelled</Option>
-            </Select>
+                </Select>
           </Col>
         </Row>
       </Card>

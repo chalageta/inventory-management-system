@@ -12,6 +12,9 @@ import { toast } from 'sonner';
 // =======================
 const productSchema = z.object({
   name: z.string().min(1, 'Product name is required'),
+    manufacturer: z.string().optional(),   
+  model: z.string().optional(),          
+
   barcode: z.string().optional(),
   min_stock: z.number().min(0, 'Must be >= 0'),
   uom: z.string().min(1, 'Unit is required'),
@@ -70,6 +73,8 @@ export default function ProductsDialog({
         .then((data) => {
           form.setFieldsValue({
             name: data.name,
+              manufacturer: data.manufacturer, 
+              model: data.model,                 
             barcode: data.barcode,
             min_stock: data.min_stock,
             uom: data.uom,
@@ -147,15 +152,25 @@ const handleSubmit = async () => {
     >
       <Form form={form} layout="vertical" className="grid grid-cols-2 gap-4">
 
-        {/* Name */}
-        <Form.Item
-          label="Product Name"
-          name="name"
-          rules={[{ required: true, message: 'Required' }]}
-          className="col-span-2"
-        >
-          <Input placeholder="Enter product name" />
-        </Form.Item>
+   {/* Name */}
+<Form.Item
+  label="Product Name"
+  name="name"
+  rules={[{ required: true, message: 'Required' }]}
+  className="col-span-2"
+>
+  <Input placeholder="Enter product name" />
+</Form.Item>
+
+{/* Manufacturer */}
+<Form.Item label="Manufacturer" name="manufacturer">
+  <Input placeholder="Dell, HP..." />
+</Form.Item>
+
+{/* Model */}
+<Form.Item label="Model" name="model">
+  <Input placeholder="Model number" />
+</Form.Item>
 
         {/* Category */}
         <Form.Item

@@ -21,34 +21,34 @@ const router = express.Router();
 router.post(
   '/',
   protect(),
-  checkPermission('create_purchase'),
+  checkPermission('manage_purchases'),
   createPurchase
 );
 
 router.get(
   '/',
   protect(),
-  checkPermission('view_purchases'),
+  checkPermission('manage_purchases'),
   getPurchases
 );
 
 router.get(
   '/:id',
   protect(),
-  checkPermission('view_purchases'),
+  checkPermission('manage_purchases'),
   getPurchaseDetail
 );
 router.put(
   '/:id',
   protect(),
-  checkPermission('update_purchase'),
+  checkPermission('manage_purchases'),
   updatePurchase
 );
 
 router.delete(
   '/:id',
   protect(),
-  checkPermission('delete_purchase'),
+  checkPermission('manage_purchases'),
   deletePurchase
 );
 
