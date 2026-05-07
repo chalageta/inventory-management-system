@@ -142,7 +142,7 @@ const StockLogsPage = () => {
                         {record.from_status || 'INIT'}
                     </span>
                     <ArrowRightOutlined className="text-gray-300 text-[10px]" />
-                    <span className="text-primary text-xs font-semibold px-2 py-0.5 bg-blue-50 rounded border border-blue-100">
+                    <span className="text-primary text-xs font-semibold px-2 py-0.5 bg-blue-50 rounded border border-primary">
                         {record.to_status}
                     </span>
                 </div>

@@ -6,7 +6,8 @@ import {
   createProduct,
   updateProduct,
   archiveProduct,
-  uploadProductsExcel
+  uploadProductsExcel,
+  getProductList
 
 } from '../controllers/productController.js';
 import multer from 'multer';
@@ -43,6 +44,15 @@ router.get(
   protect(),
   checkPermission('view_products'),
   getAllProducts
+);
+
+/**
+ * GET PRODUCT LIST (SIMPLE)
+ */
+router.get(
+  '/list',
+  protect(),
+  getProductList
 );
 
 /**

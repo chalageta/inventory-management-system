@@ -11,6 +11,8 @@ import db from '../config/db.js';
     total_items,
     total_cost = null,
     unit_cost = null,
+    unit_price = null, // alias for unit_cost
+    total_amount = null, // alias for total_cost
     location = null,
     serial_number = null,
     lot_number = null,
@@ -18,15 +20,19 @@ import db from '../config/db.js';
     note = null
   } = req.body;
 
+  // Aliases
+  if (unit_price && !unit_cost) unit_cost = unit_price;
+  if (total_amount && !total_cost) total_cost = total_amount;
+
   const userId = req.user?.id || null;
 
   try {
     // =========================
-    // REQUIRED VALIDATION (UPDATED)
+    // REQUIRED VALIDATION
     // =========================
     if (!product_id || !total_items) {
       return res.status(400).json({
-        error: "product, total_items are required"
+        error: "Product and total_items are required"
       });
     }
 
@@ -37,28 +43,19 @@ import db from '../config/db.js';
     }
 
     // =========================
-    // PRICE LOGIC (OPTIONAL)
+    // PRICE LOGIC (AUTO-CALCULATE)
     // =========================
-
     if (unit_cost && !total_cost) {
       total_cost = (Number(unit_cost) * Number(total_items)).toFixed(2);
     } else if (!unit_cost && total_cost) {
       unit_cost = (Number(total_cost) / Number(total_items)).toFixed(2);
     } else if (unit_cost && total_cost) {
       const calculated = Number(unit_cost) * Number(total_items);
-
-      if (Math.abs(calculated - Number(total_cost)) > 0.01) {
+      if (Math.abs(calculated - Number(total_cost)) > 0.05) { // allowed minor rounding diff
         return res.status(400).json({
           error: "unit_cost × total_items must equal total_cost"
         });
       }
-    } else {
-      unit_cost = null;
-      total_cost = null;
-       location = null,
-       serial_number = null,
-       lot_number = null,
-       expiry_date = null
     }
 
     // =========================
@@ -134,6 +131,8 @@ export const updatePurchase = async (req, res) => {
       total_items,
       unit_cost,
       total_cost,
+      unit_price, // alias
+      total_amount, // alias
       location,
       serial_number,
       lot_number,
@@ -141,15 +140,18 @@ export const updatePurchase = async (req, res) => {
       note
     } = req.body;
 
+    const final_unit_cost = unit_cost ?? unit_price ?? old.unit_cost;
+    const final_total_cost = total_cost ?? total_amount ?? old.total_cost;
+
     // ✅ FIX: fallback old values + convert undefined → null
     const data = {
       product_id: product_id ?? old.product_id,
       supplier_name: supplier_name ?? old.supplier_name,
       supplier_phone: supplier_phone ?? old.supplier_phone,
       invoice_no: invoice_no ?? old.invoice_no,
-         total_items: total_items ?? old.total_items,
-      unit_cost: unit_cost ?? old.unit_cost,
-      total_cost: total_cost ?? old.total_cost,
+      total_items: total_items ?? old.total_items,
+      unit_cost: final_unit_cost,
+      total_cost: final_total_cost,
       note: note ?? old.note,
       location: location ?? old.location,
       serial_number: serial_number ?? old.serial_number,
@@ -249,9 +251,11 @@ export const approvePurchase = async (req, res) => {
 
     for (let i = 1; i <= purchase.total_items; i++) {
       const serial =
-        purchase.total_items === 1
-          ? baseSerial
-          : `${baseSerial}-${i}`;
+        !baseSerial
+          ? null
+          : purchase.total_items === 1
+            ? baseSerial
+            : `${baseSerial}-${i}`;
 
       inventoryValues.push([
         purchase.product_id,
@@ -401,8 +405,8 @@ export const getPurchases = async (req, res) => {
     }
 
     if (search) {
-      where += ` AND (p.supplier_name LIKE ? OR p.invoice_no LIKE ? OR p.location   LIKE ? OR p.serial_number LIKE ?)`;
-      params.push(`%${search}%`, `%${search}%` , `%${search}%`, `%${search}%`);
+      where += ` AND (p.supplier_name LIKE ? OR p.invoice_no LIKE ? OR p.location LIKE ? OR p.serial_number LIKE ? OR pr.name LIKE ?)`;
+      params.push(`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`);
     }
 
     const [rows] = await db.execute(
@@ -421,11 +425,15 @@ export const getPurchases = async (req, res) => {
         p.note,
         p.location,
         p.serial_number,
+        p.lot_number,
+        p.expiry_date,
         p.reason,
         p.created_at,
         p.updated_at,
 
         pr.name AS product_name,
+        pr.manufacturer,
+        pr.model,
         u.name AS created_by
 
       FROM purchases p
@@ -443,6 +451,7 @@ export const getPurchases = async (req, res) => {
       `
       SELECT COUNT(*) AS total
       FROM purchases p
+      LEFT JOIN products pr ON p.product_id = pr.id
       ${where}
       `,
       params
@@ -538,16 +547,14 @@ export const getPurchaseDetail = async (req, res) => {
       SELECT 
         p.*,
         pr.name AS product_name,
+        pr.manufacturer,
+        pr.model,
         u.name AS created_by,
-        u2.name AS updated_by,
-        u3.name AS approver_name,
-        u4.name AS receiver_name
+        u2.name AS updated_by
       FROM purchases p
       LEFT JOIN products pr ON p.product_id = pr.id
       LEFT JOIN users u ON p.created_by = u.id
       LEFT JOIN users u2 ON p.updated_by = u2.id
-      LEFT JOIN users u3 ON p.approved_by = u3.id
-      LEFT JOIN users u4 ON p.received_by = u4.id
       WHERE p.id = ? AND p.deleted_at IS NULL
       `,
       [purchaseId]
@@ -638,17 +645,20 @@ export const getPurchaseDetail = async (req, res) => {
 const [items] = await db.execute(
   `
   SELECT 
-    id,
-    purchase_id,
-    product_id,
-    serial_number,
-    batch_no,
-    cost_price,
-    status,
-    created_at
-  FROM inventory_items
-  WHERE purchase_id = ?
-  ORDER BY created_at ASC
+    ii.id,
+    ii.purchase_id,
+    ii.product_id,
+    ii.serial_number,
+    ii.batch_no,
+    ii.cost_price,
+    ii.status,
+    ii.created_at,
+    pr.name AS product_name,
+    pr.model
+  FROM inventory_items ii
+  LEFT JOIN products pr ON ii.product_id = pr.id
+  WHERE ii.purchase_id = ?
+  ORDER BY ii.created_at ASC
   `,
   [purchaseId]
 );

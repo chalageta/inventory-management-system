@@ -352,3 +352,77 @@ export const getTotalSalesSold = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+/**
+ * =========================
+ * NOTIFICATIONS HEADER
+ * =========================
+ */
+export const getNotifications = async (req, res) => {
+  try {
+    const notifications = [];
+
+    // 1. Low Stock Alerts
+    const [lowStockProducts] = await db.execute(`
+      SELECT p.id, p.name, p.min_stock, COUNT(i.id) AS available_qty
+      FROM products p
+      LEFT JOIN inventory_items i ON i.product_id = p.id AND i.status = 'available'
+      WHERE p.deleted_at IS NULL AND p.active = 1
+      GROUP BY p.id, p.name, p.min_stock
+      HAVING available_qty <= p.min_stock AND p.min_stock > 0
+    `);
+
+    if (lowStockProducts.length > 0) {
+      notifications.push({
+        id: 'low_stock',
+        type: 'warning',
+        title: 'Low Stock Alert',
+        message: `${lowStockProducts.length} items have dropped below their minimum stock threshold.`
+      });
+    }
+
+    // 2. Pending Sales Approvals
+    // Assume sales table has a status column where 'pending' means awaiting finance approval
+    try {
+      const [pendingSales] = await db.execute(`
+        SELECT COUNT(*) as count FROM sales WHERE status = 'pending' AND deleted_at IS NULL
+      `);
+      
+      if (pendingSales[0].count > 0) {
+        notifications.push({
+          id: 'pending_sales',
+          type: 'info',
+          title: 'Pending Approvals',
+          message: `${pendingSales[0].count} sales orders are waiting for Finance approval.`
+        });
+      }
+    } catch (e) {
+      // Ignore if status column doesn't exist
+    }
+
+    // 3. Incoming Stock (Purchases)
+    // Assume purchases table has a status column 'ordered' or 'pending'
+    try {
+      const [pendingPurchases] = await db.execute(`
+        SELECT COUNT(*) as count FROM purchases WHERE status IN ('pending', 'ordered') AND deleted_at IS NULL
+      `);
+      
+      if (pendingPurchases[0].count > 0) {
+        notifications.push({
+          id: 'incoming_stock',
+          type: 'success',
+          title: 'Incoming Stock',
+          message: `${pendingPurchases[0].count} purchase orders are awaiting delivery.`
+        });
+      }
+    } catch (e) {
+      // Ignore
+    }
+
+    res.json(notifications);
+
+  } catch (err) {
+    console.error("Notifications Error:", err);
+    res.status(500).json({ error: err.message });
+  }
+};

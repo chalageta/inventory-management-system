@@ -123,7 +123,7 @@ export default function SaleDetailPage() {
                 <Badge className={
                   sale.status === 'Completed' ? 'bg-green-100 text-green-700 border-green-200' :
                     sale.status === 'Cancelled' ? 'bg-red-100 text-red-700 border-red-200' :
-                      'bg-blue-100 text-primary'
+                      'bg-primary text-primary'
                 }>
                   {sale.status}
                 </Badge>

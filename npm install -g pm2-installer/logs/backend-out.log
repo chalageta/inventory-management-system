@@ -4480,3 +4480,455 @@ Skipping duplicate serial: BG7-53000625
 ◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
 ◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-24 05:13:58] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-24 06:20:14] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-24 07:32:37] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+[2026-04-24 13:33:54] DEBUG Sending mail using SMTP/8.0.5[client:8.0.5]
+[2026-04-24 13:34:06] ERROR [h5ok2mGicdo] getaddrinfo ENOTFOUND s918.lon1.mysecurecloudhost.com
+[2026-04-24 13:34:06] DEBUG [h5ok2mGicdo] Closing connection to the server using "destroy"
+[2026-04-24 13:34:06] ERROR Send Error: getaddrinfo ENOTFOUND s918.lon1.mysecurecloudhost.com
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 05:04:51] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-25 05:22:26] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 05:24:54] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 05:26:53] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-25 05:33:59] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+[2026-04-25 05:35:55] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 05:38:03] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-25 05:41:38] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-25 05:42:40] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-25 05:46:39] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 05:47:55] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+[2026-04-25 05:48:50] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 05:50:10] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-25 05:51:10] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-25 05:53:24] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-25 05:55:46] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 05:58:27] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+[2026-04-25 06:01:08] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-25 06:03:45] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-25 06:07:02] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 06:08:48] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-25 06:09:26] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 06:10:54] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-25 06:12:10] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-25 06:14:04] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 06:15:19] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 06:19:55] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-25 06:21:12] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-25 06:21:47] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-25 06:23:46] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-25 06:27:27] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-25 08:59:07] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-27 05:14:14] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-04-28 12:21:49] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-28 12:26:54] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-04-28 12:27:00] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-28 12:32:23] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-28 12:38:59] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-28 12:42:45] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-28 12:46:45] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-28 12:50:49] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-04-28 12:56:43] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[2026-04-28 12:56:47] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-28 13:00:17] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-04-28 13:43:12] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-28 13:57:20] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-04-30 05:16:12] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-04-30 17:26:04] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[2026-05-02 08:54:15] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+[2026-05-03 18:12:54] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-05-03 19:50:16] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-05-03 19:57:58] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-05-04 03:33:43] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-05-04 03:45:51] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-05-05 05:17:52] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[2026-05-06 07:29:27] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-05-07 05:25:09] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[2026-05-07 18:05:35] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-05-07 18:57:56] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ override existing { override: true }
+◇ injecting env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[2026-05-07 19:00:00] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000
+◇ injecting env (8) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injecting env (0) from .env // tip: ⌘ override existing { override: true }
+[2026-05-07 19:00:37] DEBUG Creating transport: nodemailer (8.0.5; +https://nodemailer.com/; SMTP/8.0.5[client:8.0.5])
+✅ Connected to MySQL database
+◇ injecting env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injecting env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+🚀 Server running on http://0.0.0.0:5000

@@ -1,194 +1,158 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Package,
   ShoppingCart,
   FileText,
-  Tags,
-  LogOut,
   Boxes,
   History,
   Users,
   Shield,
   KeyRound,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Tags,
+  LayoutGrid,
   BarChart3,
-  TrendingUp
-} from 'lucide-react';
+  TrendingUp,
+  LogOut,
+  X,
+} from "lucide-react";
 
-import { useAuth } from '@/lib/auth-context';
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
-// ================= NAV ITEMS =================
-const allNavItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, permission: null },
-
-  { href: '/categories', label: 'Categories', icon: Tags, permission: 'view_categories' },
-
-  { href: '/users', label: 'Manage Users', icon: Users, permission: 'manage_users' },
-
-  { href: '/products', label: 'Products', icon: Package, permission: 'view_products' },
-
-  { href: '/purchases', label: 'Manage Purchases', icon: Package, permission: 'manage_purchases' },
-
-  { href: '/inventory', label: 'Current Stock', icon: Boxes, permission: 'view_inventory' },
-
-  { href: '/sales', label: 'Sales / Out', icon: ShoppingCart, permission: 'view_sales' },
-
-  { href: '/stock-logs', label: 'Stock Logs', icon: History, permission: 'view_logs' },
-
-  // ================= REPORTS (REMOVED SINGLE LINK) =================
+export const allNavItems = [
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/products", label: "manage Products", icon: LayoutGrid },
+  { href: "/categories", label: "manage Categories", icon: Tags },
+  { href: "/purchases", label: "manage Purchases", icon: Package },
+  { href: "/inventory", label: "manage stock", icon: Boxes },
+  { href: "/sales", label: "manage Sales", icon: ShoppingCart },
+  { href: "/stock-logs", label: "Logs", icon: History },
   {
-    label: 'Reports',
+    label: "Reports",
     icon: FileText,
-    permission: 'view_reports',
     children: [
-      {
-        href: '/reports/sales',
-        label: 'Sales Report',
-        icon: BarChart3,
-        permission: 'view_reports',
-      },
-      {
-        href: '/reports/top-products',
-        label: 'Top Products',
-        icon: TrendingUp,
-        permission: 'view_reports',
-      },
+      { href: "/reports/sales", label: "Sales Report", icon: BarChart3 },
+      { href: "/reports/top-products", label: "Top Products", icon: TrendingUp },
     ],
   },
-
-  { href: '/admin/roles', label: 'Role Management', icon: Shield, permission: 'manage_roles' },
-
-  { href: '/admin/permissions', label: 'Permission Management', icon: KeyRound, permission: 'manage_permissions' },
+  { href: "/users", label: "manage Users", icon: Users },
+  { href: "/admin/roles", label: "manage Roles", icon: Shield },
+  { href: "/admin/permissions", label: "manage Permissions", icon: KeyRound },
 ];
 
-export function Sidebar({ onClose }: { onClose?: () => void }) {
+export function Sidebar({ open, setOpen }: any) {
   const pathname = usePathname();
-  const { user, can, logout } = useAuth();
-  const [openReports, setOpenReports] = useState(true);
+  const { logout } = useAuth();
 
-  // ================= FILTER =================
-  const filteredNav = allNavItems.filter((item) => {
-    if (!item.permission) return true;
-    if (user?.role_name === 'Admin') return true;
-    return can(item.permission);
-  });
+  const [collapsed, setCollapsed] = useState(false);
+  const [openReports, setOpenReports] = useState(false);
+
+  useEffect(() => {
+    setCollapsed(window.innerWidth < 1024);
+  }, []);
 
   return (
-    <div className="flex h-full w-64 flex-col border-r bg-sidebar text-sidebar-foreground shadow-sm">
-
-      {/* LOGO */}
-      <div className="flex h-16 items-center justify-center bg-primary shrink-0">
-        <Image
-          src="/images/logo/gilando_logo.webp"
-          alt="Logo"
-          width={140}
-          height={50}
-          className="w-[140px] h-auto"
-          priority
+    <TooltipProvider>
+      {/* BACKDROP (mobile only) */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
         />
-      </div>
+      )}
 
-      {/* NAV */}
-      <nav className="flex-1 space-y-1 px-3 py-6 overflow-y-auto">
+      <div
+        className={cn(
+          "fixed md:static z-50 h-screen bg-[#0f172a] text-slate-300 flex flex-col border-r border-slate-800 transition-transform duration-300",
+          collapsed ? "w-16" : "w-60",
+          open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        )}
+      >
+        {/* HEADER */}
+        <div className="flex items-center justify-between h-16 px-3 border-b border-slate-800">
+          {!collapsed && <span className="text-white font-semibold">Inventory</span>}
 
-        {filteredNav.map((item) => {
+          <div className="flex gap-2">
+            {/* close mobile */}
+            <button className="md:hidden" onClick={() => setOpen(false)}>
+              <X className="h-5 w-5" />
+            </button>
 
-          // ================= REPORTS SECTION =================
-          if ('children' in item) {
-            return (
-              <div key={item.label} className="space-y-1">
+            <button onClick={() => setCollapsed(!collapsed)}>
+              {collapsed ? <ChevronRight /> : <ChevronLeft />}
+            </button>
+          </div>
+        </div>
 
-                {/* Parent */}
-                <button
-                  onClick={() => setOpenReports(!openReports)}
-                  className={cn(
-                    'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all',
-                    'text-muted-foreground hover:bg-accent hover:text-foreground'
-                  )}
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span>{item.label}</span>
-                </button>
+        {/* NAV */}
+        <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+          {allNavItems.map((item: any) => {
+            const hasChildren = "children" in item;
+            const isActive = pathname === item.href;
 
-                {/* Children */}
-                {openReports && (
-                  <div className="ml-6 space-y-1 border-l pl-3">
-                    {item.children.map((child) => {
-                      const isActive =
-                        pathname === child.href ||
-                        pathname.startsWith(`${child.href}/`);
+            if (hasChildren) {
+              return (
+                <div key={item.label}>
+                  <button
+                    onClick={() => setOpenReports(!openReports)}
+                    className="flex items-center gap-3 w-full py-2 px-2 hover:bg-white/5 rounded-lg"
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {!collapsed && <span className="flex-1 text-left">{item.label}</span>}
+                    {!collapsed && <ChevronDown className={openReports ? "rotate-180" : ""} />}
+                  </button>
 
-                      return (
+                  {openReports && !collapsed && (
+                    <div className="ml-6 mt-1 space-y-1 border-l border-slate-700 pl-3">
+                      {item.children.map((child: any) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          onClick={onClose}
-                          className={cn(
-                            'flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all',
-                            isActive
-                              ? 'text-primary font-semibold'
-                              : 'text-muted-foreground hover:text-foreground'
-                          )}
+                          className="block text-sm py-2 hover:text-white"
                         >
-                          <child.icon className="h-4 w-4" />
                           {child.label}
                         </Link>
-                      );
-                    })}
-                  </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 py-2 px-2 rounded-lg",
+                  isActive ? "bg-primary text-white" : "hover:bg-white/5"
                 )}
-              </div>
+              >
+                <item.icon className="h-5 w-5" />
+                {!collapsed && <span>{item.label}</span>}
+              </Link>
             );
-          }
+          })}
+        </nav>
 
-          // ================= NORMAL ITEMS =================
-          const isActive =
-            pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={onClose}
-              className={cn(
-                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all',
-                isActive
-                  ? 'bg-primary/10 text-primary border-l-4 border-primary'
-                  : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-              )}
-            >
-              <item.icon className="h-5 w-5" />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* USER INFO */}
-      {user && (
-        <div className="px-4 py-2 text-xs text-muted-foreground border-t">
-          Role: {user.role_name}
+        {/* LOGOUT */}
+        <div className="p-3 border-t border-slate-800">
+          <Button onClick={logout} className="w-full">
+            <LogOut className="h-4 w-4 mr-2" />
+            {!collapsed && "Logout"}
+          </Button>
         </div>
-      )}
-
-      {/* LOGOUT */}
-      <div className="border-t p-4">
-        <Button
-          variant="ghost"
-          className="w-full justify-start gap-3 text-muted-foreground hover:text-red-600 hover:bg-red-50"
-          onClick={logout}
-        >
-          <LogOut className="h-5 w-5" />
-          <span>Logout</span>
-        </Button>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }

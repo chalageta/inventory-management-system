@@ -605,3 +605,4 @@ Error: Duplicate entry 'MIN01A08020604' for key 'unique_serial'
   sqlState: '23000',
   sqlMessage: "Duplicate entry 'MIN01A08020604' for key 'unique_serial'"
 }
+❌ Failed to send low stock email: getaddrinfo ENOTFOUND s918.lon1.mysecurecloudhost.com

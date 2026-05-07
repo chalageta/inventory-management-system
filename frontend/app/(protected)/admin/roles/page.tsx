@@ -321,7 +321,7 @@ export default function RoleManagementPage() {
         <Space>
           <Tooltip title="Manage Permissions">
             <Button 
-              className="flex items-center justify-center border-blue-100 text-primary hover:bg-blue-50"
+              className="flex items-center justify-center border-primary text-primary hover:bg-blue-50"
               icon={<EyeOutlined />} 
               onClick={() => openPermissionsModal(record)} 
             />

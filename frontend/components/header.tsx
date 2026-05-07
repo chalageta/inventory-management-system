@@ -1,151 +1,121 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Menu as MenuIcon,
-  UserCircle,
-  ChevronDown,
-  ShieldCheck,
-} from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Sidebar } from "./sidebar";
+import { Menu, Bell, Search, ChevronDown, AlertTriangle, Package, DollarSign, Info } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { Dropdown, Skeleton, MenuProps, Input, Badge } from "antd";
 import Link from "next/link";
-import { Dropdown, Skeleton, MenuProps } from "antd";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 
-export function Header() {
+export function Header({ setSidebarOpen }: any) {
   const { user, logout, loading } = useAuth();
-  const [open, setOpen] = useState(false);
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
 
- const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5000";
+  useEffect(() => {
+    if (!loading && user) {
+      fetchNotifications();
+    }
+  }, [loading, user]);
 
-const imageUrl =
-  user?.image && user.image.startsWith("/uploads")
-    ? `${BASE_URL}${user.image}`
-    : null;
+  const fetchNotifications = async () => {
+    try {
+      const res = await api.get('/reports/notifications');
+      const data = res.data || [];
+      setNotifications(data);
+      setUnreadCount(data.length);
+    } catch (err) {
+      console.error("Failed to fetch notifications:", err);
+    }
+  };
+
   const menuItems: MenuProps["items"] = [
-    {
-      key: "user-info",
-      label: (
-        <div className="px-2 py-2 border-b mb-1">
-          <p className="text-xs font-semibold text-slate-400 uppercase">
-            Account
-          </p>
-          <p className="text-sm font-bold text-slate-700 truncate">
-            {user?.email}
-          </p>
-        </div>
-      ),
-      disabled: true,
-    },
-    {
-      key: "profile",
-      label: (
-        <Link href="/profile" className="px-2 py-1 block">
-          View Profile
-        </Link>
-      ),
-    },
-    {
-      key: "security",
-      label: (
-        <Link href="/change-password" className="px-2 py-1 block">
-          Security Settings
-        </Link>
-      ),
-    },
-    {
-      type: "divider",
-    },
+    { key: "profile", label: <Link href="/profile">Profile</Link> },
+    { key: "security", label: <Link href="/change-password">Security</Link> },
+    { type: "divider" },
     {
       key: "logout",
       danger: true,
-      label: (
-        <button onClick={logout} className="w-full text-left px-2 py-1">
-          Sign Out
-        </button>
-      ),
+      label: <button onClick={logout}>Logout</button>,
     },
   ];
 
-  const getInitials = (name: string) => {
-    if (!name) return "??";
-    const parts = name.trim().split(/\s+/);
-    if (parts.length >= 2) {
-      return (parts[0][0] + parts[1][0]).toUpperCase();
+  const getIconForType = (type: string) => {
+    switch (type) {
+      case 'warning': return <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5 shrink-0" />;
+      case 'success': return <Package className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />;
+      case 'info': return <DollarSign className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />;
+      default: return <Info className="h-5 w-5 text-gray-500 mt-0.5 shrink-0" />;
     }
-    return parts[0].substring(0, 2).toUpperCase();
   };
 
+  const notificationItems: MenuProps["items"] = notifications.length > 0 
+    ? notifications.map((n, idx) => ({
+        key: n.id || idx,
+        label: (
+          <div className="flex items-start gap-3 p-2 w-64 whitespace-normal">
+            {getIconForType(n.type)}
+            <div>
+              <p className="font-semibold text-sm text-gray-800">{n.title}</p>
+              <p className="text-xs text-gray-500">{n.message}</p>
+            </div>
+          </div>
+        ),
+      })).flatMap((item, idx, array) => 
+        idx < array.length - 1 ? [item, { type: "divider", key: `div-${idx}` }] : [item]
+      )
+    : [
+        {
+          key: "empty",
+          label: (
+            <div className="p-4 text-center text-gray-500 w-64">
+              <p className="text-sm">No new notifications</p>
+            </div>
+          )
+        }
+      ];
+
   return (
-    <header className="sticky top-0 z-50 flex h-16 items-center justify-between bg-white/80 backdrop-blur border-b px-6">
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-white border-b px-4 md:px-6">
 
       {/* LEFT */}
-      <div className="flex items-center gap-4">
-        <div className="lg:hidden">
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <MenuIcon className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
+      <div className="flex items-center gap-3 w-full">
 
-            <SheetContent side="left" className="p-0 w-64">
-              <Sidebar onClose={() => setOpen(false)} />
-            </SheetContent>
-          </Sheet>
-        </div>
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="md:hidden p-2 hover:bg-gray-100 rounded-lg text-gray-600"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <Menu className="h-5 w-5" />
+        </button>
 
-        <div className="lg:hidden font-bold text-primary">
-          Gilando IMS
+        <div className="hidden md:flex w-80">
+          <Input 
+            prefix={<Search className="text-gray-400 h-4 w-4" />} 
+            placeholder="Search..." 
+          />
         </div>
       </div>
 
       {/* RIGHT */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
+
+        {/* NOTIFICATIONS */}
+        <Dropdown menu={{ items: notificationItems }} trigger={["click"]} placement="bottomRight">
+          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors relative">
+            <Badge count={unreadCount} size="small" offset={[-2, 2]}>
+              <Bell className="h-5 w-5 text-gray-600" />
+            </Badge>
+          </button>
+        </Dropdown>
 
         {loading ? (
-          <Skeleton.Avatar active size="large" />
+          <Skeleton.Avatar active />
         ) : (
           <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
-            <div className="flex items-center gap-3 cursor-pointer">
-
-              {/* USER INFO */}
-              <div className="hidden sm:flex flex-col items-end leading-tight">
-                <span className="text-sm font-bold text-slate-900">
-                  {user?.name || "User"}
-                </span>
-
-                <span className="text-[10px] font-bold text-primary uppercase flex items-center gap-1">
-                  <ShieldCheck className="h-3 w-3" />
-                  {user?.role_name || "Guest"}
-                </span>
-              </div>
-
-              {/* AVATAR */}
-              <div className="relative">
-                <div className="h-10 w-10 rounded-full overflow-hidden border flex items-center justify-center bg-blue-50">
-                  {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt={user?.name}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <span className="text-sm font-bold text-primary">
-                      {getInitials(user?.name || "")}
-                    </span>
-                  )}
-                </div>
-
-                <div className="absolute -bottom-1 -right-1 bg-white rounded-full border p-0.5">
-                  <ChevronDown className="h-3 w-3 text-slate-500" />
-                </div>
-              </div>
-
+            <div className="flex items-center gap-2 cursor-pointer text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors">
+              <span className="hidden sm:block font-medium">{user?.name}</span>
+              <ChevronDown className="h-4 w-4" />
             </div>
           </Dropdown>
         )}

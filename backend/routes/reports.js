@@ -6,7 +6,8 @@ import {
   getRecentActivity,
   getStockValueReport,
   getTotalProducts,
-  getTotalSalesSold
+  getTotalSalesSold,
+  getNotifications
 } from '../controllers/reportsController.js';
 
 import { protect, checkPermission } from '../middleware/authMiddleware.js';
@@ -76,6 +77,17 @@ router.get(
   protect(),
   checkPermission('view_sales'),
   getTotalSalesSold
+);
+
+/**
+ * =========================
+ * NOTIFICATIONS
+ * =========================
+ */
+router.get(
+  '/notifications',
+  protect(),
+  getNotifications
 );
 
 export default router;

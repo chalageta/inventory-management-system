@@ -166,21 +166,37 @@ const handleSubmit = async () => {
         </Form.Item>
 
         {/* ========================= */}
-        {/* INVOICE */}
+        {/* INVOICE & SERIAL */}
         {/* ========================= */}
         <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              name="invoice_no"
-              label="Invoice Number"
-               >
+          <Col span={8}>
+            <Form.Item name="invoice_no" label="Invoice Number">
               <Input placeholder="INV-2026-001" />
             </Form.Item>
           </Col>
 
+          <Col span={8}>
+            <Form.Item name="serial_number" label="Serial Number">
+              <Input placeholder="Base Serial..." />
+            </Form.Item>
+          </Col>
+
+          <Col span={8}>
+            <Form.Item name="lot_number" label="Lot Number">
+              <Input placeholder="LOT-001..." />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
           <Col span={12}>
-            <Form.Item name="reference" label="Reference">
-              <Input placeholder="PO-REF..." />
+            <Form.Item name="location" label="Receiving Location">
+              <Input placeholder="Warehouse A / Shelf 4..." />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item name="expiry_date" label="Expiry Date">
+              <Input type="date" style={{ width: '100%' }} />
             </Form.Item>
           </Col>
         </Row>
@@ -192,11 +208,7 @@ const handleSubmit = async () => {
         {/* ========================= */}
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item
-              name="supplier_name"
-              label="Supplier Name"
-             
-            >
+            <Form.Item name="supplier_name" label="Supplier Name">
               <Input placeholder="Global Med Inc." />
             </Form.Item>
           </Col>
@@ -214,13 +226,33 @@ const handleSubmit = async () => {
         {/* ORDER DETAILS */}
         {/* ========================= */}
         <Row gutter={16}>
-          <Col span={8}>
+          <Col span={6}>
             <Form.Item
               name="total_items"
               label="Quantity"
               rules={[{ required: true, type: 'number', min: 1 }]}
             >
               <InputNumber style={{ width: '100%' }} min={1} />
+            </Form.Item>
+          </Col>
+          
+          <Col span={9}>
+            <Form.Item
+              name="unit_price"
+              label="Unit Price ($)"
+              rules={[{ type: 'number', min: 0 }]}
+            >
+              <InputNumber style={{ width: '100%' }} min={0} precision={2} />
+            </Form.Item>
+          </Col>
+
+          <Col span={9}>
+            <Form.Item
+              name="total_amount"
+              label="Total Amount ($)"
+              rules={[{ type: 'number', min: 0 }]}
+            >
+              <InputNumber style={{ width: '100%' }} min={0} precision={2} />
             </Form.Item>
           </Col>
         </Row>
@@ -236,7 +268,7 @@ const handleSubmit = async () => {
             icon: <InfoCircleOutlined />
           }}
         >
-          <Input.TextArea rows={3} placeholder="Optional notes..." />
+          <Input.TextArea rows={2} placeholder="Optional notes..." />
         </Form.Item>
 
       </Form>

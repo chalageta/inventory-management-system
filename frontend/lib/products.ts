@@ -6,6 +6,11 @@ export const getProducts = async (params: any = {}) => {
   return data;
 };
 
+export const getProductList = async () => {
+  const { data } = await api.get('/products/list');
+  return data;
+};
+
 export const getProduct = async (id: number) => {
   const { data } = await api.get(`/products/${id}`);
   return data;

@@ -122,7 +122,7 @@ export default function CategoriesDialog({
             type="primary"
             htmlType="submit"
             loading={loading}
-            className="flex-1 rounded-xl font-bold h-11 bg-primary shadow-lg shadow-blue-100 hover:bg-primary"
+            className="flex-1 rounded-xl font-bold h-11 bg-primary shadow-lg shadow-primary hover:bg-primary"
           >
             {editingId ? 'Update' : 'Create'}
           </Button>

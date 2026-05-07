@@ -158,6 +158,23 @@ export const getAllProducts = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+/**
+ * @desc    Get a simple list of all active products (id, name, model)
+ * @route   GET /api/products/list
+ * @access  Protected
+ */
+export const getProductList = async (req, res) => {
+  try {
+    const [products] = await db.execute(
+      `SELECT id, name, model, manufacturer FROM products WHERE deleted_at IS NULL AND active = 1 ORDER BY name ASC`
+    );
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 /**
  * @desc    Get single product by ID (with inventory details)
  * @route   GET /api/products/:id
@@ -240,6 +257,8 @@ export const createProduct = async (req, res) => {
   try {
     const {
       name,
+      manufacturer,
+      model,
       barcode,
       category_id,
       uom = 'Unit',
